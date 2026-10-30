@@ -111,12 +111,6 @@ Existing evidence includes 14 computational workflow checks, 9 installation chec
 
 `skills/` contains skills, `packages/` contains kernel snapshots, and `src/gear_transmission/` provides invocation and reproducibility workflows. Computational source and original interfaces are maintained independently.
 
-## References and license
-
-Organization and installation documentation draw on [nature-skills](https://github.com/Yuan1z0825/nature-skills), [Anthropic Skills](https://github.com/anthropics/skills), and [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills).
-
-[MIT](LICENSE). Copyright notices from the integrated kernel are retained.
-
 ## Changelog
 
 - **2026-10-30 · v0.1.0**
