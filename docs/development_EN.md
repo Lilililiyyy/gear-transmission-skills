@@ -68,7 +68,7 @@ Actual records are in [acceptance.json](../evaluations/acceptance.json) and [for
 | Independent rerun of 3 candidates × 3 conditions | 198 raw arrays passed |
 | Independent agent using a different helical input | Actual invocation, plotting, and 22-array rerun passed |
 | Execution and recomputation after wheel installation | Passed |
-| Remote CI | Configured, not yet executed |
+| Remote CI | Four Windows / Linux × Python 3.10 / 3.11 configurations passed; see the [CI record](../evaluations/ci.json) |
 
 Record execution completion, solver termination criteria, numerical reproducibility, spatial / phase convergence, original-component response accuracy, and physical testing separately. Unperformed validation remains unverified. Check whether independent-project model changes or validation conclusions apply to the integrated snapshot and operating conditions.
 

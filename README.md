@@ -101,6 +101,8 @@ python -m gear_transmission replay output/example --output output/example_replay
 
 已有 14 项计算工作流检查、9 项安装检查，以及原工程基准对比和单／多工况复算记录，见[计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
 
+Windows／Linux × Python 3.10／3.11 的全新环境安装、实际计算与独立复算已全部通过 [CI 验收](evaluations/ci.json)。
+
 ## 文档与开发
 
 - [安装指南](docs/installation.md)：环境、宿主注册、自然语言安装与复算检查。
@@ -115,3 +117,4 @@ python -m gear_transmission replay output/example --output output/example_replay
   - 首个可运行技能 `cylindrical-gear-analysis`：保留圆柱齿轮 LTCA 内核，支持单工况、修形方案比较、报告、图表与独立复算。
   - 增加跨平台 Codex 安装入口：`--pull` 更新并安装，`--check` 校验完整资源与运行环境，保护已有同名技能和本地修改。
   - 提供中英双语 README、安装与开发说明；详细计算模型链接至独立项目。
+  - 首次发布至 GitHub，通过 Windows／Linux 与 Python 3.10／3.11 的四项 CI 验收。

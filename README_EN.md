@@ -103,6 +103,8 @@ Output directories must be new. Bundled inputs: [single condition](skills/cylind
 
 Existing evidence includes 14 computational workflow checks, 9 installation checks, a benchmark against the original project, and single- and multi-condition reruns. See the [computational acceptance record](evaluations/acceptance.json) and [installation record](evaluations/installation.json). Numerical reproducibility, discretization convergence, and physical validation are recorded separately; consult the independent project for model accuracy limits.
 
+Fresh-environment installation, actual calculations, and independent reruns passed all four Windows / Linux × Python 3.10 / 3.11 [CI checks](evaluations/ci.json).
+
 ## Documentation and development
 
 - [Installation guide](docs/installation_EN.md): environment setup, agent registration, natural-language installation, and reproducibility checks.
@@ -117,3 +119,4 @@ Existing evidence includes 14 computational workflow checks, 9 installation chec
   - First runnable skill, `cylindrical-gear-analysis`: preserved cylindrical gear LTCA kernel, single-condition analysis, modification comparisons, reports, plots, and independent reruns.
   - Cross-platform Codex installation: `--pull` updates and installs; `--check` verifies complete resources and the runtime, while protecting existing same-named skills and local changes.
   - Bilingual READMEs, installation guides, and development notes; detailed computational models remain documented in the independent project.
+  - First GitHub publication, passing four CI configurations across Windows / Linux and Python 3.10 / 3.11.

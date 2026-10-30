@@ -1,0 +1,50 @@
+{
+  "schema": "gear_skills_ci_acceptance_v1",
+  "date": "2026-10-30",
+  "tested_commit": "7a2094952f7bc71d4dc8a944d000c6fce2ef386c",
+  "run_url": "https://github.com/Lilililiyyy/gear-transmission-skills/actions/runs/41074325954",
+  "status": "completed",
+  "conclusion": "success",
+  "updated_at": "2026-10-30T14:46:38Z",
+  "checks": [
+    "公开仓库检出后通过平台脚本创建全新虚拟环境、安装计算及绘图依赖并同步完整技能",
+    "--check 校验资源、实际导入路径与内核身份",
+    "每项任务通过 23 项自动检查",
+    "实际运行随附 32 相位、21 条带单工况并生成图表",
+    "重新求解并通过独立复算"
+  ],
+  "jobs": [
+    {
+      "name": "test (ubuntu-latest, 3.11)",
+      "url": "https://github.com/Lilililiyyy/gear-transmission-skills/actions/runs/41074325954/job/124126346632",
+      "conclusion": "success",
+      "started_at": "2026-10-30T14:44:42Z",
+      "completed_at": "2026-10-30T14:45:18Z"
+    },
+    {
+      "name": "test (windows-latest, 3.11)",
+      "url": "https://github.com/Lilililiyyy/gear-transmission-skills/actions/runs/41074325954/job/124126346953",
+      "conclusion": "success",
+      "started_at": "2026-10-30T14:44:42Z",
+      "completed_at": "2026-10-30T14:45:45Z"
+    },
+    {
+      "name": "test (windows-latest, 3.10)",
+      "url": "https://github.com/Lilililiyyy/gear-transmission-skills/actions/runs/41074325954/job/124126347043",
+      "conclusion": "success",
+      "started_at": "2026-10-30T14:44:43Z",
+      "completed_at": "2026-10-30T14:46:38Z"
+    },
+    {
+      "name": "test (ubuntu-latest, 3.10)",
+      "url": "https://github.com/Lilililiyyy/gear-transmission-skills/actions/runs/41074325954/job/124126347261",
+      "conclusion": "success",
+      "started_at": "2026-10-30T14:44:42Z",
+      "completed_at": "2026-10-30T14:45:33Z"
+    }
+  ],
+  "limits": [
+    "未覆盖 macOS 原生环境与各宿主客户端的界面启用",
+    "CI 通过表示所列环境的安装、执行与数值复现通过，不代表工程精度或物理试验验证"
+  ]
+}

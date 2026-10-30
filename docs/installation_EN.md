@@ -183,4 +183,4 @@ Directory and invocation conventions were checked on 2026-10-30.
 - [Official WorkBuddy skill documentation](https://cloud.tencent.com/document/product/1831/134432).
 - [Vercel Skills CLI](https://github.com/vercel-labs/skills) · [nature-skills](https://github.com/Yuan1z0825/nature-skills).
 
-Existing evidence covers local Python invocation, numerical reruns, and scripted installation checks through Windows PowerShell and Git Bash; see the [installation record](../evaluations/installation.json). Native Linux / macOS environments and activation in individual clients have not all been tested; the current client state remains authoritative.
+Existing evidence covers local Python invocation, numerical reruns, and scripted installation checks through Windows PowerShell and Git Bash; see the [installation record](../evaluations/installation.json). Fresh-environment installation, actual calculations, and reruns passed the Windows / Linux × Python 3.10 / 3.11 [CI checks](../evaluations/ci.json). Native macOS environments and activation in individual clients have not all been tested; the current client state remains authoritative.

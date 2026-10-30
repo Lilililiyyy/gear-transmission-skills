@@ -182,4 +182,4 @@ macOS／Linux 将解释器换成 `.venv/bin/python`。输出目录须为新目�
 - [WorkBuddy 官方技能说明](https://cloud.tencent.com/document/product/1831/134432)。
 - [Vercel Skills CLI](https://github.com/vercel-labs/skills) · [nature-skills](https://github.com/Yuan1z0825/nature-skills)。
 
-已有记录覆盖本地 Python 调用、数值复算与脚本在 Windows PowerShell／Git Bash 中的安装校验，见[安装验收](../evaluations/installation.json)。Linux／macOS 原生环境及各客户端的界面启用尚未逐一实装验收，实际以当前客户端状态为准。
+已有记录覆盖本地 Python 调用、数值复算与脚本在 Windows PowerShell／Git Bash 中的安装校验，见[安装验收](../evaluations/installation.json)。Windows／Linux × Python 3.10／3.11 的全新环境安装、实际计算及复算已通过 [CI 验收](../evaluations/ci.json)。macOS 原生环境及各客户端的界面启用尚未逐一实装验收，实际以当前客户端状态为准。
