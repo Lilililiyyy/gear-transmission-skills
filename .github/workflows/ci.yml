@@ -5,7 +5,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       PYTHONUTF8: '1'
-      CODEX_SKILLS_DIR: ${{ runner.temp }}/gear-skills
+      CODEX_SKILLS_DIR: ${{ github.workspace }}/output/installed-skills
       GEAR_SKILLS_PYTHON: python
     strategy:
       matrix:
