@@ -1,0 +1,25 @@
+{
+  "schema": "gear_ltca_request_v1",
+  "assumptions": ["合成示例：直齿、零变位、外啮合；除给定齿向鼓形外不增加修形，采用内核默认齿坯、相位原点和局部参照深度。", "比较限于所列三个候选与三个工况；没有指定材料许用压力，不给出强度安全结论。"],
+  "case": {
+    "pair": {
+      "pinion": {"teeth": 28, "normal_module_mm": 2.5, "face_width_mm": 25, "pressure_angle_deg": 20, "helix_angle_deg": 0, "internal": false},
+      "wheel": {"teeth": 56, "normal_module_mm": 2.5, "face_width_mm": 25, "pressure_angle_deg": 20, "helix_angle_deg": 0, "internal": false}
+    },
+    "material_pinion": {"youngs_modulus_gpa": 210, "poisson_ratio": 0.3},
+    "material_wheel": {"youngs_modulus_gpa": 210, "poisson_ratio": 0.3},
+    "phases": 32, "strips": 21, "elastic_mode": "coupled", "local_contact": true
+  },
+  "study": {
+    "designs": [
+      {"name": "0μm鼓形", "modification_pinion": {"lead_crown_um": 0}},
+      {"name": "8μm鼓形", "modification_pinion": {"lead_crown_um": 8}},
+      {"name": "12μm鼓形", "modification_pinion": {"lead_crown_um": 12}}
+    ],
+    "operating_points": [
+      {"name": "20Nm", "torque_n_m": 20, "misalignment_um": 12},
+      {"name": "80Nm", "torque_n_m": 80, "misalignment_um": 12},
+      {"name": "120Nm", "torque_n_m": 120, "misalignment_um": 12}
+    ]
+  }
+}

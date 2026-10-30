@@ -1,0 +1,62 @@
+{
+  "scope": "独立代理按Skill完成一个显式请求；未声称全部自动触发与追问场景通过",
+  "request": {
+    "schema": "gear_ltca_request_v1",
+    "assumptions": [
+      "按用户许可，未给定的几何细节、修形细节和求解器参数采用内核默认值；实际默认值以求解输出 input.json 与 run.json.defaulted_fields 为准。",
+      "两轮均为外齿、零变位；未给定实际根圆、顶圆及有效形径，按默认几何规则生成；中心距按内核默认规则计算，轴向错位为零。",
+      "大轮无修形；除小轮齿向鼓形 8 μm 外，其余修形幅值为零。",
+      "正失准 6 μm 表示有效重叠齿宽右端减左端的法向间隙。扭矩 50 N·m 为已选受载面非负幅值。",
+      "8 相位、7 条带为本次指定离散，起采相位采用默认值 0；本次不宣称离散收敛或物理验证。"
+    ],
+    "case": {
+      "pair": {
+        "pinion": {
+          "teeth": 24,
+          "normal_module_mm": 2,
+          "face_width_mm": 20,
+          "pressure_angle_deg": 20,
+          "helix_angle_deg": 15,
+          "internal": false
+        },
+        "wheel": {
+          "teeth": 72,
+          "normal_module_mm": 2,
+          "face_width_mm": 20,
+          "pressure_angle_deg": 20,
+          "helix_angle_deg": -15,
+          "internal": false
+        }
+      },
+      "material_pinion": {
+        "youngs_modulus_gpa": 207,
+        "poisson_ratio": 0.3
+      },
+      "material_wheel": {
+        "youngs_modulus_gpa": 207,
+        "poisson_ratio": 0.3
+      },
+      "torque_n_m": 50,
+      "misalignment_um": 6,
+      "modification_pinion": {
+        "lead_crown_um": 8
+      },
+      "phases": 8,
+      "strips": 7,
+      "elastic_mode": "coupled",
+      "local_contact": true
+    }
+  },
+  "run_completed": true,
+  "replay_passed": true,
+  "compared_arrays": 22,
+  "maximum_absolute_difference": 0.0,
+  "recomputed_metrics": {
+    "te_peak_to_peak_m": 1.502281179968818e-06,
+    "angular_te_peak_to_peak_rad": 6.661225998882091e-05,
+    "max_pressure_pa": 1032722157.1395895,
+    "mean_mesh_stiffness_n_per_m": 473159530.49054396
+  },
+  "summary_independently_recomputed": true,
+  "physical_validation": false
+}

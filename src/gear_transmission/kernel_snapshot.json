@@ -1,0 +1,31 @@
+{
+  "schema": "gear_kernel_snapshot_v1",
+  "source_project": "cylindrical-gear-ltca",
+  "source_base_commit": "7f16631b16da0c9ac885f424b6310d48fbcb6925",
+  "source_state": "当前工作树的逐文件字节快照，含未提交更新；不是上述提交的纯净导出",
+  "implementation": "保留现有新写重建计算内核，算法源码未修改",
+  "kernel_version": "0.1.0",
+  "files": {
+    "gear_contact/__init__.py": "747f64b31e9d449d97e7b82f6159132d678a14875912ec84379de555193c0b8d",
+    "gear_contact/__main__.py": "d7edbd907ef0f1795469903dbd22078d47e204da2a2bf59d9c416d5860882b74",
+    "gear_contact/analysis.py": "af0a0f4b2082fdbc3f28ac37f59a5249f2ebbd8e04e0a29a26f97646cc9a3f03",
+    "gear_contact/config.py": "850f4ca8b125bb986706d18a4c0159eb9e6dbbff3bf3bf3416516b977fe5c946",
+    "gear_contact/contact_pressure.py": "de5b10add5d9784f6f0e6c87d3aab0f33dc02899ac3d7430ba2acadc63cb1bc7",
+    "gear_contact/design.py": "24a73a80f8852d619c2ee7f0c5e7fc59402331491bf49d22d014d6be004593a0",
+    "gear_contact/elasticity.py": "4a3f5ef03b3f51779f3b3daadd386777313e1d710b17e3d813a2f31d1efe2d4c",
+    "gear_contact/extended_contact.py": "a07dda04acba2583ab949aaef19ccb30ee52551367f555cfc3f3da4deb213898",
+    "gear_contact/geometry.py": "c2a543660a675c0fd56137fcd77e3f9b2944ededcbc787fe8319f11927251e76",
+    "gear_contact/hertz.py": "42d176167c94ddccb75e0c12feb1ac4fe7146638ad68c4acf29b350bd6c36aef",
+    "gear_contact/io.py": "99db2f8d696590c9d1e9caf3a767881cf4ccc892e23fab1227d4a75f45345030",
+    "gear_contact/iso_contact.py": "431b8ce1e7c685070fa710bd6f4e8d1015767238e6504d890a250f7e720a94fb",
+    "gear_contact/plotting.py": "6bd22bb334676cc7cff721695aabf8814168b64b477c5eefa58b2c476166c416",
+    "gear_contact/solver.py": "98437bd348e0f37e20072f5c391654d8a337af69c1dc12be19071501db54399c",
+    "gear_contact/strength.py": "28e9a6cd9b4de68d99edd90d1a4e003085d0e0bb24b89d7cbf1ff982a131993a",
+    "gear_contact/surfaces.py": "1f0a582d451f0d4a6c57e0e9b0fae416af92ddaf678b226a489a0c6d9df5b05a",
+    "LICENSE": "b7a3a78f3b2e0ee2ba3308810a5889d216661d087b21661e6134527725f566da",
+    "pyproject.toml": "4812d9626b147c8a6be0e2ca35b09e5bf49874393afb943972a677564ab31887",
+    "constraints.txt": "ef54f6e6e8cd0dbf90afd08a3b75bcb98cb794811e8fcba9298ef3a3b740a0bc",
+    "docs/api.md": "c34e52235a6fdbc228f238d697fe8fc5f8fc23f09f78775eb905e7bd950aa0c6",
+    "docs/model.md": "b6933429af00ffa114a899c5ee966c441bfc1f75d1f6815adc61aea5259bfb96"
+  }
+}

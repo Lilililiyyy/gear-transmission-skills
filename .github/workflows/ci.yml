@@ -1,0 +1,32 @@
+name: 圆柱齿轮Skill验收
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONUTF8: '1'
+      CODEX_SKILLS_DIR: ${{ runner.temp }}/gear-skills
+      GEAR_SKILLS_PYTHON: python
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.10', '3.11']
+        include:
+          - os: ubuntu-latest
+            runtime_python: .venv/bin/python
+          - os: windows-latest
+            runtime_python: .venv/Scripts/python.exe
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - if: runner.os != 'Windows'
+        run: bash scripts/update-codex-skills.sh
+      - if: runner.os == 'Windows'
+        run: .\scripts\update-codex-skills.ps1
+      - run: python -B scripts/update_codex_skills.py --check
+      - run: ${{ matrix.runtime_python }} -m unittest discover -s tests -v
+      - run: ${{ matrix.runtime_python }} -m gear_transmission check skills/cylindrical-gear-analysis/assets/single_case.json
+      - run: ${{ matrix.runtime_python }} -m gear_transmission run skills/cylindrical-gear-analysis/assets/single_case.json --output output/single --plots
+      - run: ${{ matrix.runtime_python }} -m gear_transmission replay output/single --output output/replay

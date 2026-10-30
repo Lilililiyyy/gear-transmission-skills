@@ -1,0 +1,139 @@
+{
+  "schema": "gear_skill_source_map_v1",
+  "workflow": "protocol.prepare_request → workflow.run_request → analyze_pair或compare_designs → export_result；replay_run重新执行同一流程",
+  "adaptation": "src/gear_transmission为本次新写工作流；下列计算函数保留原实现与接口",
+  "symbols": [
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/config.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/config.py",
+      "symbol": "modification_from_config",
+      "lines": [
+        21,
+        38
+      ],
+      "sha256": "850f4ca8b125bb986706d18a4c0159eb9e6dbbff3bf3bf3416516b977fe5c946",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/config.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/config.py",
+      "symbol": "analyze_config",
+      "lines": [
+        41,
+        66
+      ],
+      "sha256": "850f4ca8b125bb986706d18a4c0159eb9e6dbbff3bf3bf3416516b977fe5c946",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/geometry.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/geometry.py",
+      "symbol": "Gear",
+      "lines": [
+        33,
+        170
+      ],
+      "sha256": "c2a543660a675c0fd56137fcd77e3f9b2944ededcbc787fe8319f11927251e76",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/geometry.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/geometry.py",
+      "symbol": "GearPair",
+      "lines": [
+        174,
+        278
+      ],
+      "sha256": "c2a543660a675c0fd56137fcd77e3f9b2944ededcbc787fe8319f11927251e76",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/geometry.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/geometry.py",
+      "symbol": "contact_grid",
+      "lines": [
+        306,
+        371
+      ],
+      "sha256": "c2a543660a675c0fd56137fcd77e3f9b2944ededcbc787fe8319f11927251e76",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/analysis.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/analysis.py",
+      "symbol": "analyze_pair",
+      "lines": [
+        90,
+        249
+      ],
+      "sha256": "af0a0f4b2082fdbc3f28ac37f59a5249f2ebbd8e04e0a29a26f97646cc9a3f03",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/design.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/design.py",
+      "symbol": "compare_designs",
+      "lines": [
+        51,
+        108
+      ],
+      "sha256": "24a73a80f8852d619c2ee7f0c5e7fc59402331491bf49d22d014d6be004593a0",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/elasticity.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/elasticity.py",
+      "symbol": "build_structural_compliance",
+      "lines": [
+        139,
+        201
+      ],
+      "sha256": "4a3f5ef03b3f51779f3b3daadd386777313e1d710b17e3d813a2f31d1efe2d4c",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/solver.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/solver.py",
+      "symbol": "solve_contact",
+      "lines": [
+        63,
+        232
+      ],
+      "sha256": "98437bd348e0f37e20072f5c391654d8a337af69c1dc12be19071501db54399c",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/hertz.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/hertz.py",
+      "symbol": "hertz_line_contact",
+      "lines": [
+        34,
+        54
+      ],
+      "sha256": "42d176167c94ddccb75e0c12feb1ac4fe7146638ad68c4acf29b350bd6c36aef",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/io.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/io.py",
+      "symbol": "export_result",
+      "lines": [
+        41,
+        123
+      ],
+      "sha256": "99db2f8d696590c9d1e9caf3a767881cf4ccc892e23fab1227d4a75f45345030",
+      "implementation": "原字节保留的现有新写重建计算内核"
+    }
+  ]
+}

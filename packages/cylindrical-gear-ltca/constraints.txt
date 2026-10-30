@@ -1,0 +1,5 @@
+# 已验证的依赖版本约束，配合 pip install -c constraints.txt -e ".[plots]" 使用。
+# 所需依赖及其兼容范围定义在 pyproject.toml；此文件只固定复现环境的版本。
+numpy==1.26.4
+scipy==1.14.1
+matplotlib==3.7.1

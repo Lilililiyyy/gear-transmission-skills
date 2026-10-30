@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gear-transmission-skills"
+version = "0.1.0"
+description = "齿轮传动设计 Skill 库：保留独立计算内核与可复算工程流程"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = ["numpy>=1.24", "scipy>=1.10"]
+
+[project.optional-dependencies]
+plots = ["matplotlib>=3.6"]
+
+[project.scripts]
+gear-design = "gear_transmission.cli:main"
+
+[tool.setuptools]
+packages = ["gear_transmission", "gear_contact"]
+
+[tool.setuptools.package-dir]
+gear_transmission = "src/gear_transmission"
+gear_contact = "packages/cylindrical-gear-ltca/gear_contact"
+
+[tool.setuptools.package-data]
+gear_transmission = ["kernel_snapshot.json"]

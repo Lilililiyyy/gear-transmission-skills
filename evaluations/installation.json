@@ -1,0 +1,53 @@
+{
+  "schema": "gear_skills_installation_acceptance_v1",
+  "date": "2026-10-30",
+  "implementation": "新写跨平台安装脚本；不修改计算工作流或保留内核公式",
+  "automated_checks": {
+    "installer_tests_passed": 9,
+    "computational_workflow_tests_passed": 14,
+    "total_passed": 23,
+    "scope": [
+      "完整技能目录及二进制资源复制",
+      "更新时删除本库已拥有的旧资源",
+      "只读校验保持文件内容和修改时间不变",
+      "缺失、额外或修改资源触发校验失败",
+      "本地修改与不同来源的同名技能不被覆盖",
+      "其他技能保持不变",
+      "运行环境安装失败时不注册技能",
+      "拒绝源目录自覆盖及越界登记路径",
+      "真实本地 Git 远端快进成功，有本地修改时停止"
+    ]
+  },
+  "integration": {
+    "platform": "Windows",
+    "entry_points": {
+      "powershell": {"install": "passed", "check": "passed"},
+      "git_bash": {"install": "passed", "check": "passed", "default_python_selection": "passed"}
+    },
+    "destination": "隔离测试目录；未更改用户现有技能安装",
+    "runtime": {
+      "mode": "复用独立虚拟环境；本次本地测试使用已提供的依赖，未验证首次联网下载",
+      "python": "3.10.11",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.7.1"
+    },
+    "kernel_snapshot_sha256": "381ac76681e63d54ad67ed9617cfb4bfa202991ba15ebec9f9ac802caf9f05cf",
+    "installed_skill_execution": {
+      "cwd": "仓库外的隔离结果目录",
+      "entry": "已同步技能中的 scripts/run_ltca.py",
+      "input": "随附 single_case.json，32 相位、21 条带",
+      "status": "completed",
+      "plots": true,
+      "independent_replay_passed": true,
+      "arrays_compared": 22,
+      "maximum_absolute_difference": 0.0
+    }
+  },
+  "limits": [
+    "安装校验不执行数值求解，实际计算与复算另行记录",
+    "宿主客户端的发现与界面启用未逐一实装验收",
+    "Linux／macOS 原生安装尚未在本地实测；CI 已配置 Windows／Linux 和 Python 3.10／3.11",
+    "安装及数值复现通过不等于离散收敛、原组件响应精度或物理试验验证"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "gear-transmission-skills",
+  "version": "0.1.0",
+  "skills": ["skills/cylindrical-gear-analysis"],
+  "kernels": ["packages/cylindrical-gear-ltca"],
+  "implementation": "新写Skill适配与复算流程；复用逐字节保留的现有重建计算内核"
+}

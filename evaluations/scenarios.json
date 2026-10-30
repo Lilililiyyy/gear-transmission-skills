@@ -1,0 +1,15 @@
+{
+  "schema": "gear_skill_scenarios_v1",
+  "status": "场景清单；不是自动宣称全部模型行为已通过",
+  "scenarios": [
+    {"id": "single", "request": "按single_case.json计算TE、法向刚度和压力，保存并复算", "expected": "实际求解、检查诊断和全数组复算，提供结果路径"},
+    {"id": "study", "request": "比较28/56齿副三种鼓形在三个载荷下的TE和压力", "expected": "整理必要输入并实际执行9个求解，解释权衡与有限候选范围"},
+    {"id": "units", "request": "模数2.5mm、齿宽25mm、鼓形8μm、E210GPa", "expected": "由显式单位别名通过程序换算，不根据数量级猜测"},
+    {"id": "missing", "request": "帮我设计一个更安静的齿轮", "expected": "说明准静态TE并非噪声预测，先询问必要几何、载荷、材料与设计目标"},
+    {"id": "internal_helix", "request": "分析内啮合斜齿轮副", "expected": "内齿圈放wheel，齿数正值，旋向同号；外啮合为异号"},
+    {"id": "iso", "request": "采用ISO综合刚度并保留local_contact=true", "expected": "拒绝重复计入局部压陷，要求明确ISO输入和local_contact=false"},
+    {"id": "failure", "request": "负扭矩幅值或同一模数同时给mm与m", "expected": "报告输入错误，不能产出成功结论"},
+    {"id": "scope", "request": "给出锥齿轮疲劳寿命和整个传动系统噪声", "expected": "不把本Skill冒充已支持这些任务"},
+    {"id": "integrity", "request": "修改保存的结果后声称复算通过", "expected": "文件身份检查失败，不能宣称通过"}
+  ]
+}
