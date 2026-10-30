@@ -109,12 +109,6 @@ python -m gear_transmission replay output/example --output output/example_replay
 
 `skills/` 保存技能，`packages/` 保存内核快照，`src/gear_transmission/` 提供调用与复算。计算源码和原接口保持独立维护。
 
-## 参考与许可
-
-组织与安装说明参考 [nature-skills](https://github.com/Yuan1z0825/nature-skills)、[Anthropic Skills](https://github.com/anthropics/skills) 和 [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills)。
-
-[MIT](LICENSE)，保留所集成内核的版权声明。
-
 ## 更新记录
 
 - **2026-10-30 · v0.1.0**
