@@ -2,11 +2,9 @@
 
 [中文](README.md) · [English](README_EN.md)
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL--3.0--only-blue.svg)](LICENSE)
 
-[English](README_EN.md)
-
-面向齿轮传动设计的 Agent Skills 库，通过自然语言调用独立计算内核，完成参数分析、方案比较和结果复算。
+齿轮传动设计的 Agent Skills 库，通过自然语言调用独立计算内核，完成参数分析、方案比较和结果复算。
 
 ## 目录
 
@@ -125,6 +123,10 @@ Windows／Linux × Python 3.10／3.11 的全新环境安装、实际计算与独
 - [输入契约](skills/cylindrical-gear-analysis/references/input-contract.md) · [结果定义](skills/cylindrical-gear-analysis/references/results.md)。
 
 `skills/` 保存技能，`packages/` 保存内核快照，`src/gear_transmission/` 提供调用与复算。计算源码和原接口保持独立维护。
+
+## 许可与商业授权
+
+本项目采用 [AGPL-3.0-only](LICENSE)。如需闭源集成，可[联系作者](https://github.com/Lilililiyyy)获取商业授权。
 
 ## 更新记录
 
