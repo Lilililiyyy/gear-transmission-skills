@@ -1,8 +1,21 @@
 # Gear Transmission Skills
 
+[中文](README.md) · [English](README_EN.md)
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 [English](README_EN.md)
 
 面向齿轮传动设计的 Agent Skills 库，通过自然语言调用独立计算内核，完成参数分析、方案比较和结果复算。
+
+## 目录
+
+- [可用技能](#可用技能)
+- [安装](#安装)
+- [使用](#使用)
+- [输出与验证](#输出与验证)
+- [文档与开发](#文档与开发)
+- [更新记录](#更新记录)
 
 ## 可用技能
 
