@@ -120,6 +120,8 @@ Fresh-environment installation, actual calculations, and independent reruns pass
 
 ## Documentation and development
 
+- [Preliminary source provenance review](https://github.com/Lilililiyyy/gear-transmission-skills/blob/docs/unified-readme-2026/docs/source-provenance-review.md): source clues, internal reuse, and review limitations across the three repositories.
+
 - [Installation guide](docs/installation_EN.md): environment setup, agent registration, natural-language installation, and reproducibility checks.
 - [Development guide](docs/development_EN.md): directory responsibilities, kernel snapshots, and conventions for adding skills.
 - [Input contract](skills/cylindrical-gear-analysis/references/input-contract.md) · [result definitions](skills/cylindrical-gear-analysis/references/results.md), currently in Chinese.
