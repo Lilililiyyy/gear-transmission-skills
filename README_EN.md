@@ -1,8 +1,21 @@
 # Gear Transmission Skills
 
+[简体中文](README.md) · **English**
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 [简体中文](README.md)
 
 Agent Skills for gear transmission design, connecting natural-language requests to independent computational kernels for parameter studies, design comparisons, and reproducible calculations.
+
+## Contents
+
+- [Available skills](#available-skills)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Outputs and validation](#outputs-and-validation)
+- [Documentation and development](#documentation-and-development)
+- [Changelog](#changelog)
 
 ## Available skills
 
