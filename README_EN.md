@@ -1,8 +1,19 @@
 # Gear Transmission Skills
 
-[简体中文](README.md)
+[简体中文](README.md) · **English**
 
-Agent Skills for gear transmission design, connecting natural-language requests to independent computational kernels for parameter studies, design comparisons, and reproducible calculations.
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL--3.0--only-blue.svg)](LICENSE)
+
+ gear transmission design, connecting natural-language requests to independent computational kernels for parameter studies, design comparisons, and reproducible calculations.
+
+## Contents
+
+- [Available skills](#available-skills)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Outputs and validation](#outputs-and-validation)
+- [Documentation and development](#documentation-and-development)
+- [Changelog](#changelog)
 
 ## Available skills
 
@@ -107,11 +118,16 @@ Fresh-environment installation, actual calculations, and independent reruns pass
 
 ## Documentation and development
 
+
 - [Installation guide](docs/installation_EN.md): environment setup, agent registration, natural-language installation, and reproducibility checks.
 - [Development guide](docs/development_EN.md): directory responsibilities, kernel snapshots, and conventions for adding skills.
 - [Input contract](skills/cylindrical-gear-analysis/references/input-contract.md) · [result definitions](skills/cylindrical-gear-analysis/references/results.md), currently in Chinese.
 
 `skills/` contains skills, `packages/` contains kernel snapshots, and `src/gear_transmission/` provides invocation and reproducibility workflows. Computational source and original interfaces are maintained independently.
+
+## License and commercial licensing
+
+This project is licensed under [AGPL-3.0-only](LICENSE). For proprietary or closed-source integration, [contact the author](https://github.com/Lilililiyyy) to discuss a commercial license.
 
 ## Changelog
 

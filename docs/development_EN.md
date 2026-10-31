@@ -2,7 +2,7 @@
 
 [简体中文](development.md)
 
-This library maintains agent workflows and access to computational capabilities. Independent projects maintain models, algorithms, complete APIs, and examples. The currently integrated project is [Cylindrical Gear LTCA](https://github.com/Lyy0617/Cylindrical-Gear-LTCA).
+This library maintains agent workflows and access to computational capabilities. Independent projects maintain models, algorithms, complete APIs, and examples. The currently integrated project is [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA).
 
 ## Code ownership
 
@@ -72,12 +72,6 @@ Actual records are in [acceptance.json](../evaluations/acceptance.json) and [for
 
 Record execution completion, solver termination criteria, numerical reproducibility, spatial / phase convergence, original-component response accuracy, and physical testing separately. Unperformed validation remains unverified. Check whether independent-project model changes or validation conclusions apply to the integrated snapshot and operating conditions.
 
-## Structural references
+## Repository conventions
 
-The library adopts the parts of these projects that suit its current scope:
-
-- [Anthropic Skills](https://github.com/anthropics/skills): skills grouped under `skills/`, each with a clear `SKILL.md` entry point.
-- [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills): available skills, installation, and invocation examples near the front of a concise README.
-- [Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills): separate skill registration from scientific dependencies, load references as needed, and retain workflow validation.
-
-The skill format follows the [Agent Skills specification](https://agentskills.io/specification).
+The repository separates skill entry points, workflow adapters, independent computational-kernel snapshots, tests, and acceptance records. Keep skill entry points concise; place conditional details in references, repeatable helpers in scripts, and example inputs or output templates in assets. Computational algorithms are maintained by their corresponding kernel projects, while the integration layer handles parameter adaptation, unit conversion, invocation, and result delivery.

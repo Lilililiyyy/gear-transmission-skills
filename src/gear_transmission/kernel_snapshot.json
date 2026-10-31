@@ -2,7 +2,7 @@
   "schema": "gear_kernel_snapshot_v1",
   "source_project": "cylindrical-gear-ltca",
   "source_base_commit": "7f16631b16da0c9ac885f424b6310d48fbcb6925",
-  "source_state": "当前工作树的逐文件字节快照，含未提交更新；不是上述提交的纯净导出",
+  "source_state": "计算源码按来源项目的固定工作树快照保留；本次仅同步许可证与发行元数据为 AGPL-3.0-only，计算 Python 文件未改动。",
   "implementation": "保留现有新写重建计算内核，算法源码未修改",
   "kernel_version": "0.1.0",
   "files": {
@@ -22,8 +22,8 @@
     "gear_contact/solver.py": "98437bd348e0f37e20072f5c391654d8a337af69c1dc12be19071501db54399c",
     "gear_contact/strength.py": "28e9a6cd9b4de68d99edd90d1a4e003085d0e0bb24b89d7cbf1ff982a131993a",
     "gear_contact/surfaces.py": "1f0a582d451f0d4a6c57e0e9b0fae416af92ddaf678b226a489a0c6d9df5b05a",
-    "LICENSE": "b7a3a78f3b2e0ee2ba3308810a5889d216661d087b21661e6134527725f566da",
-    "pyproject.toml": "4812d9626b147c8a6be0e2ca35b09e5bf49874393afb943972a677564ab31887",
+    "LICENSE": "d8a6cc31abc16b6748c7a21f21611f5a1ec33f67d22ca23d7da1c19b95496bee",
+    "pyproject.toml": "b721fd1da8bbdb835b9f15b986d402a6959de6d1b5184ac55a34620d2a336d3f",
     "constraints.txt": "ef54f6e6e8cd0dbf90afd08a3b75bcb98cb794811e8fcba9298ef3a3b740a0bc",
     "docs/api.md": "c34e52235a6fdbc228f238d697fe8fc5f8fc23f09f78775eb905e7bd950aa0c6",
     "docs/model.md": "b6933429af00ffa114a899c5ee966c441bfc1f75d1f6815adc61aea5259bfb96"

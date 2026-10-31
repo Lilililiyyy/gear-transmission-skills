@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "渐开线圆柱齿轮半解析准静态承载齿面接触分析（LTCA）"
 readme = "README.md"
 requires-python = ">=3.10"
-license = "MIT"
+license = "AGPL-3.0-only"
 license-files = ["LICENSE"]
 keywords = ["LTCA", "cylindrical-gears", "loaded-tooth-contact-analysis", "microgeometry", "static-transmission-error", "mesh-stiffness"]
 classifiers = [

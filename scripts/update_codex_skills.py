@@ -83,7 +83,7 @@ def install_runtime(root, runtime):
         command([sys.executable, '-m', 'venv', runtime], root)
     if not (runtime / 'pyvenv.cfg').is_file():
         raise ValueError(f'请指定独立虚拟环境：{runtime}')
-    command([python, '-m', 'pip', 'install', 'setuptools>=65', 'wheel'], root)
+    command([python, '-m', 'pip', 'install', 'setuptools>=77', 'wheel'], root)
     command([python, '-m', 'pip', 'install', '--no-build-isolation', '-c', root / 'constraints.txt',
              '-e', f'{root}[plots]'], root)
     return python
