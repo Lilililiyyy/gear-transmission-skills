@@ -1,6 +1,6 @@
 # 保留的圆柱齿轮重建计算内核
 
-本目录保存现有 `cylindrical-gear-ltca` 公开工程的选定文件快照：完整 `gear_contact` Python模块、原安装元数据、依赖约束、MIT许可和模型／接口说明。所选原文件保持原字节，未重写公式或修改分支。
+本目录保存现有 `cylindrical-gear-ltca` 公开工程的选定文件快照：完整 `gear_contact` Python模块、原安装元数据、依赖约束、AGPL-3.0-only许可和模型／接口说明。所选原文件保持原字节，未重写公式或修改分支。
 
 快照身份见 `../../src/gear_transmission/kernel_snapshot.json`：记录来源项目、来源仓库基准提交及每个文件SHA256。来源工作树包含尚未提交更新，因此该提交只是来源背景，逐文件哈希才是本次快照的实际身份。
 
