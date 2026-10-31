@@ -118,6 +118,8 @@ Windows／Linux × Python 3.10／3.11 的全新环境安装、实际计算与独
 
 ## 文档与开发
 
+- [源码来源审查（初步）](https://github.com/Lilililiyyy/gear-transmission-skills/blob/docs/unified-readme-2026/docs/source-provenance-review.md)：记录三个仓库的来源线索、内部复用关系与审查边界。
+
 - [安装指南](docs/installation.md)：环境、宿主注册、自然语言安装与复算检查。
 - [开发说明](docs/development.md)：目录职责、内核快照与新增 Skill 的约定。
 - [输入契约](skills/cylindrical-gear-analysis/references/input-contract.md) · [结果定义](skills/cylindrical-gear-analysis/references/results.md)。
