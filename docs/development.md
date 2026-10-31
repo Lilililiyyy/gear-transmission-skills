@@ -2,7 +2,7 @@
 
 [English](development_EN.md)
 
-本库维护智能体工作流和计算能力的接入。独立计算项目维护模型、算法、完整接口和案例；当前已接入 [Cylindrical Gear LTCA](https://github.com/Lyy0617/Cylindrical-Gear-LTCA)。
+本库维护智能体工作流和计算能力的接入。独立计算项目维护模型、算法、完整接口和案例；当前已接入 [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA)。
 
 ## 代码归属
 
@@ -72,12 +72,6 @@ python -m unittest discover -s tests -v
 
 执行完成、求解退出条件通过、数值复现、空间／相位收敛、原组件响应精度和物理试验验证分别记录。未执行的验证保持未验证。独立项目的模型更新或验证结论，也须核对是否覆盖当前快照和所用工况。
 
-## 结构参考
+## 组织约定
 
-本库参考以下项目的组织方式，按当前规模采用需要的部分：
-
-- [Anthropic Skills](https://github.com/anthropics/skills)：以 `skills/` 聚合技能，每项有明确的 `SKILL.md` 入口。
-- [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills)：README 先给可用技能、安装与调用示例，目录组织保持简洁。
-- [Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)：区分技能注册与科学计算依赖，按需读取参考资料，并保留工作流验证。
-
-Skill 格式遵循 [Agent Skills 规范](https://agentskills.io/specification)。
+本项目按职责划分技能入口、工作流适配、独立计算内核快照、测试与验收记录。新增技能应保持入口简洁，将条件性细节放入 references，将可重复执行的辅助逻辑放入 scripts，并将案例输入与输出模板放入 assets。计算算法由对应内核项目维护，集成层负责参数适配、单位转换、调用和结果交付。
