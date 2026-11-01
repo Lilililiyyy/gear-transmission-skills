@@ -6,7 +6,7 @@
 
 Agent Skills for gear transmission design, connecting natural-language requests to independent computational kernels for parameter studies, design comparisons, and reproducible calculations.
 
-The library and integrated LTCA kernel are both **0.2.0**, with the kernel pinned to independent-project commit `c63030d`.
+Library **0.3.0** integrates the complete LTCA **0.2.0** runtime at independent-project commit `c63030d`, including its case workflows and updated plotting.
 
 ## Contents
 
@@ -21,7 +21,7 @@ The library and integrated LTCA kernel are both **0.2.0**, with the kernel pinne
 
 | Skill | Capabilities | Status | Independent computational project |
 |---|---|---|---|
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical gear LTCA, modification and misalignment analysis, TE / normal stiffness / Hertz pressure, multi-condition design comparisons | Available | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, updated contact plots, explicit-factor strength calculations, and complete benchmark cases | Available | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
 
 The independent project maintains the computational models, complete API, and examples. This library provides agent workflows, input adaptation, reports, and reproducibility checks.
 
@@ -108,13 +108,26 @@ python -m gear_transmission replay output/example --output output/example_replay
 
 Output directories must be new. Bundled inputs: [single condition](skills/cylindrical-gear-analysis/assets/single_case.json) · [multi-condition modification comparison](skills/cylindrical-gear-analysis/assets/crown_study.json).
 
+To reproduce the independent project's updated **18/77 helical case and contact figures**:
+
+```bash
+python -m gear_transmission case --output output/helical_18_77 --plots
+python -m gear_transmission replay output/helical_18_77 --output output/helical_18_77_replay
+```
+
+Or ask: “Use cylindrical-gear-analysis to reproduce the updated complete 18/77 case, including the tooth-pass pressure map, three-cycle response, instantaneous pressure band, explicit-factor strength comparison, and an independent rerun.”
+
+Ordinary `run --plots` also produces the updated geometry, cycle, instantaneous-band, and tooth-pass figures from the user's actual inputs. Bundled MASTA data is used only for case comparisons. Strength calculations require explicit rating factors and material stress limits. See the [updated workflow reference](skills/cylindrical-gear-analysis/references/new-workflow.md), currently in Chinese, for plot definitions and scope.
+
 ## Outputs and validation
 
 - `report.md`: principal metrics, design trade-offs, and model scope.
 - `run.json` and `cases/`: inputs, code identity, raw arrays, and solver diagnostics.
 - `replay.json`: input, summary, and complete array comparisons after recomputation.
 
-There are currently 16 computational workflow checks and 9 installation checks. See the [kernel 0.2.0 synchronization record](evaluations/kernel-sync-0.2.0.json) for the current source comparisons and reruns. The original [computational acceptance record](evaluations/acceptance.json) and [installation record](evaluations/installation.json) retain evidence for their recorded older versions. Numerical reproducibility, discretization convergence, and physical validation are recorded separately; consult the independent project for model accuracy limits.
+The complete `case` workflow also exports `workflow_summary.json`, `strength.json`, `ltca/`, and `sensitivity/`. Actual solve directories are listed in `run.json.cases`.
+
+There are 21 computation / plotting workflow checks and 9 installation checks. The [0.3.0 acceptance record](evaluations/full-sync-0.3.0.json) covers complete resources, source figure comparisons, and independent reruns. The [0.2.0 kernel record](evaluations/kernel-sync-0.2.0.json), [initial computation record](evaluations/acceptance.json), and [installation record](evaluations/installation.json) retain their original versioned evidence. Numerical reproducibility, discretization convergence, and physical validation remain separate; consult the independent project for model accuracy limits.
 
 Installation, actual calculations, and independent reruns across Windows / Linux × Python 3.10 / 3.11 are covered by [continuous integration](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml). The initial release results remain in the [CI record](evaluations/ci.json).
 
@@ -132,6 +145,12 @@ Installation, actual calculations, and independent reruns across Windows / Linux
 This project is licensed under [AGPL-3.0-only](LICENSE). For proprietary or closed-source integration, [contact the author](https://github.com/Lilililiyyy) to discuss a commercial license.
 
 ## Changelog
+
+- **2026-11-02 · v0.3.0**
+  - Include complete case orchestration, plotting helpers, and public benchmark inputs; record and verify all 47 upstream runtime files.
+  - Add `case`, directly invoking the preserved upstream workflow for explicit-factor strength, instantaneous comparisons, tooth-pass pressure maps, and sensitivity cases.
+  - Apply updated plotting to ordinary inputs, keeping centre pressure, endpoint pressure, instantaneous bands, and cycle envelopes distinct, with three-cycle display and SI plotting data.
+  - Add complete-resource synchronization checks, array and strength reruns, source figure comparisons, and wheel distribution checks.
 
 - **2026-11-01 · v0.2.0**
   - Integrate cylindrical gear kernel `0.2.0`, refreshing 21 files, source hashes, and function mappings from the clean working tree at commit `c63030d`.

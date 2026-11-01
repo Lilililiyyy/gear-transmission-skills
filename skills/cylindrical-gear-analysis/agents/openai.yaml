@@ -1,4 +1,4 @@
 interface:
   display_name: "圆柱齿轮承载接触分析"
-  short_description: "调用独立内核计算圆柱齿轮修形、传递误差、刚度与接触压力，保存可复算结果"
+  short_description: "圆柱齿轮 LTCA、新版接触图与显式因子强度复算，保留完整原始数据"
   default_prompt: "使用 $cylindrical-gear-analysis 分析圆柱齿轮副，核实单位与边界，计算并保存可复算的结果。"

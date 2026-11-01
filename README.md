@@ -6,7 +6,7 @@
 
 齿轮传动设计的 Agent Skills 库，通过自然语言调用独立计算内核，完成参数分析、方案比较和结果复算。
 
-当前库版本与集成 LTCA 内核版本均为 **0.2.0**，内核固定至独立项目提交 `c63030d`。
+当前库版本为 **0.3.0**，完整集成 LTCA **0.2.0**（独立项目提交 `c63030d`）的计算、案例与新版绘图后处理。
 
 ## 目录
 
@@ -21,7 +21,7 @@
 
 | Skill | 主要能力 | 状态 | 独立计算项目 |
 |---|---|---|---|
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形与失准分析、TE／法向刚度／Hertz 压力、多工况方案比较 | 可用 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标 | 可用 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
 
 计算模型、完整接口和案例由独立项目维护。本库提供智能体工作流、输入适配、报告与复算交付。
 
@@ -106,13 +106,26 @@ python -m gear_transmission replay output/example --output output/example_replay
 
 输出目录须为新目录。随附输入：[单工况](skills/cylindrical-gear-analysis/assets/single_case.json) · [多工况修形比较](skills/cylindrical-gear-analysis/assets/crown_study.json)。
 
+复现独立项目新版 **18/77 斜齿轮完整案例及接触图**：
+
+```bash
+python -m gear_transmission case --output output/helical_18_77 --plots
+python -m gear_transmission replay output/helical_18_77 --output output/helical_18_77_replay
+```
+
+自然语言也可直接要求：“使用 cylindrical-gear-analysis 复现新版 18/77 完整案例，生成整齿接触压力、三周期响应、同相位压力带及显式因子强度对比，并独立复算。”
+
+普通 `run --plots` 同样输出新版几何、三周期、瞬时压力带与整齿通过程图，采用用户实际输入；随附 MASTA 参照只在完整案例中用于对标。强度使用显式输入的评级因子及材料应力限。图义、目录及适用范围见[新版工作流](skills/cylindrical-gear-analysis/references/new-workflow.md)。
+
 ## 输出与验证
 
 - `report.md`：主要指标、方案权衡与模型范围。
 - `run.json` 与 `cases/`：输入、代码身份、原始数组和求解诊断。
 - `replay.json`：重新求解后的输入、汇总量与全数组比较。
 
-当前有 16 项计算工作流检查和 9 项安装检查，本次来源对比与复算见[内核 0.2.0 同步验收](evaluations/kernel-sync-0.2.0.json)。首版记录保存在[计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)，对应其各自登记的旧版本。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
+完整 `case` 另存 `workflow_summary.json`、`strength.json`、`ltca/` 与 `sensitivity/`；所有结果以 `run.json.cases` 登记的目录为准。
+
+当前有 21 项计算／绘图工作流检查和 9 项安装检查；完整资源、图表来源对比与复算见[0.3.0 同步验收](evaluations/full-sync-0.3.0.json)。[0.2.0 内核验收](evaluations/kernel-sync-0.2.0.json)、[首版计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)保留各自版本记录。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
 
 Windows／Linux × Python 3.10／3.11 的安装、实际计算和独立复算纳入[持续验收](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml)，首版结果见 [CI 记录](evaluations/ci.json)。
 
@@ -130,6 +143,12 @@ Windows／Linux × Python 3.10／3.11 的安装、实际计算和独立复算纳
 本项目采用 [AGPL-3.0-only](LICENSE)。如需闭源集成，可[联系作者](https://github.com/Lilililiyyy)获取商业授权。
 
 ## 更新记录
+
+- **2026-11-02 · v0.3.0**
+  - 补齐独立项目的案例编排、绘图后处理及公开对标输入，完整登记 47 个来源文件并在运行时校验。
+  - 新增 `case` 完整案例入口，直接调用原项目新版工作流，支持显式因子强度、同相位接触对标、整齿压力和敏感性分析。
+  - 普通工况接入新版绘图，区分中心压力、独立端点压力、瞬时压力带与通过程包络；保留三周期原样展开及 SI 复绘数据。
+  - 增加全资源同步／校验脚本、全数组及强度复算、图表来源对比和 wheel 分发验收。
 
 - **2026-11-01 · v0.2.0**
   - 集成独立圆柱齿轮项目 `0.2.0`，按提交 `c63030d` 的干净工作树更新 21 个文件、来源哈希和函数映射。

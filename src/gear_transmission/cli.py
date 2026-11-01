@@ -14,20 +14,29 @@ def main(argv=None):
     check.add_argument('request', help='请求JSON文件')
     run = commands.add_parser('run', help='实际求解并保存可复算结果')
     run.add_argument('request', help='请求JSON文件')
+    case = commands.add_parser('case', help='直接运行新版完整案例：显式因子强度、LTCA及接触图对标')
+    case.add_argument('request', nargs='?', help='独立项目案例JSON；省略时使用随附18/77案例')
     replay = commands.add_parser('replay', help='验证保存文件后，重新求解并比较全部原数组')
     replay.add_argument('result', help='已完成的原结果目录')
-    for command in (run, replay):
+    for command in (run, replay, case):
         command.add_argument('--output', required=True, help='尚不存在的新结果目录')
         command.add_argument('--plots', action='store_true', help='同时生成中文PNG／SVG图表')
     args = parser.parse_args(argv)
     try:
         if args.command == 'check':
-            prepared = prepare_request(read_json(args.request))
+            request = read_json(args.request)
+            if request.get('schema_version') == 1 and 'analysis' in request and 'loading' in request:
+                from .case_workflow import prepare_case_request
+                prepared = prepare_case_request(request)
+            else:
+                prepared = prepare_request(request)
             result = {'request_valid': True, 'solve_count': prepared['solve_count'],
                       'defaulted_fields': prepared['defaults'], 'unit_conversions': prepared['conversions'],
                       'identity': identity(), 'scope': '结构与基本参数校验；不证明网格可用或数值求解成功'}
-        elif args.command == 'run':
-            run = run_request(read_json(args.request), args.output, plots=args.plots)
+        elif args.command in ('run', 'case'):
+            from .upstream import snapshot_root
+            path = args.request or snapshot_root()/'examples/helical_18_77_case.json'
+            run = run_request(read_json(path), args.output, plots=args.plots)
             result = {'status': run['status'], 'solve_count': len(run['cases']), 'output': args.output}
         else:
             result = replay_run(args.result, args.output, plots=args.plots)

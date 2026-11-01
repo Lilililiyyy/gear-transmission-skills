@@ -134,6 +134,126 @@
       ],
       "sha256": "a2e89171846d6ffa9a18c4334887ac231b5919065f636778e7d2dc5f4fc9e271",
       "implementation": "原字节保留的现有新写重建计算内核"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/run_cylindrical_workflow.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/run_cylindrical_workflow.py",
+      "symbol": "prepare_case",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        39,
+        65
+      ],
+      "sha256": "453a37491240aaa28edfca11a0707c2a6892c51d72d0adc231e6e558c9f340d5"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/run_cylindrical_workflow.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/run_cylindrical_workflow.py",
+      "symbol": "calculate_case",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        74,
+        79
+      ],
+      "sha256": "453a37491240aaa28edfca11a0707c2a6892c51d72d0adc231e6e558c9f340d5"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/run_cylindrical_workflow.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/run_cylindrical_workflow.py",
+      "symbol": "run",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        134,
+        223
+      ],
+      "sha256": "453a37491240aaa28edfca11a0707c2a6892c51d72d0adc231e6e558c9f340d5"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/case_contact_plotting.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/case_contact_plotting.py",
+      "symbol": "repeat_cycle_for_display",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        45,
+        66
+      ],
+      "sha256": "c5332737611e6db243e4aa1e958dcc3b119e06602f96cef2fb3c0bad90df1417"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/case_contact_plotting.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/case_contact_plotting.py",
+      "symbol": "_project_line_samples",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        69,
+        141
+      ],
+      "sha256": "c5332737611e6db243e4aa1e958dcc3b119e06602f96cef2fb3c0bad90df1417"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/case_contact_plotting.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/case_contact_plotting.py",
+      "symbol": "plot_case_contact",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        283,
+        439
+      ],
+      "sha256": "c5332737611e6db243e4aa1e958dcc3b119e06602f96cef2fb3c0bad90df1417"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/case_native_contact_plotting.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/case_native_contact_plotting.py",
+      "symbol": "project_contact_pass_samples",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        12,
+        25
+      ],
+      "sha256": "c2fc9fb8fd62da4f3f08afb3b8b8d221ea687f6f4f24a49993c60bf839894a71"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/case_native_contact_plotting.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/case_native_contact_plotting.py",
+      "symbol": "plot_native_contact_comparison",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        28,
+        110
+      ],
+      "sha256": "c2fc9fb8fd62da4f3f08afb3b8b8d221ea687f6f4f24a49993c60bf839894a71"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/case_geometry_plotting.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/case_geometry_plotting.py",
+      "symbol": "plot_case_geometry",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        76,
+        187
+      ],
+      "sha256": "f8b69abf70f042dc3bd0e724be96db03b308cf029475ba847e088db3c840ee79"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/case_sensitivity.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/case_sensitivity.py",
+      "symbol": "run_case_sensitivity",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        50,
+        142
+      ],
+      "sha256": "4ba5090a2ce3eaaaa0446e8de8a5cdf51793a46411f2086ca5791f66543e9b40"
     }
   ],
   "source_repository": "https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA",

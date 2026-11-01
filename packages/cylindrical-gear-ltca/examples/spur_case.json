@@ -1,0 +1,15 @@
+{
+  "pair": {
+    "pinion": {"teeth": 28, "normal_module_m": 0.0025, "face_width_m": 0.025},
+    "wheel": {"teeth": 56, "normal_module_m": 0.0025, "face_width_m": 0.025}
+  },
+  "torque_n_m": 80,
+  "material_pinion": {"youngs_modulus_pa": 210000000000, "poisson_ratio": 0.3},
+  "material_wheel": {"youngs_modulus_pa": 210000000000, "poisson_ratio": 0.3},
+  "modification_pinion": {"lead_crown_m": 0.000008, "tip_relief_m": 0.000006, "tip_start": 0.72},
+  "misalignment_m": 0.000012,
+  "phases": 32,
+  "strips": 21,
+  "elastic_mode": "coupled",
+  "local_contact": true
+}

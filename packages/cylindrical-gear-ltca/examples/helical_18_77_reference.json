@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "case_id": "helical_18_77",
+  "reference_name": "MASTA",
+  "case_file": "helical_18_77_case.json",
+  "geometry_values": {
+    "center_distance_m": 0.10359190488550728,
+    "base_pitch_m": 0.0062440575834709095,
+    "face_overlap_m": 0.024,
+    "normal_force_n": 152.5069448455186,
+    "pinion.reference_radius_m": 0.019627939873043485,
+    "pinion.base_radius_m": 0.017887907328476945,
+    "pinion.root_form_radius_m": 0.018443736893372698,
+    "pinion.tip_form_radius_m": 0.02228153977207547,
+    "wheel.reference_radius_m": 0.0839639650124638,
+    "wheel.base_radius_m": 0.07652049246070693,
+    "wheel.root_form_radius_m": 0.08141427909905885,
+    "wheel.tip_form_radius_m": 0.0853103651134318
+  },
+  "strength_values": {
+    "zone_factor": 2.2262866067490035,
+    "elastic_factor_sqrt_pa": 190271.8506896375,
+    "nominal_tangential_force_n": 87.57278685883786,
+    "nominal_contact_stress_pa": 129468678.84152532,
+    "pinion.nominal_root_stress_pa": 4084931.5271100583,
+    "pinion.contact_stress_pa": 540463096.580786,
+    "pinion.root_stress_pa": 51404278.452586316,
+    "pinion.contact_safety_factor": 3.199555539619078,
+    "pinion.bending_safety_factor": 18.85911841356145,
+    "wheel.nominal_root_stress_pa": 4198757.245032052,
+    "wheel.contact_stress_pa": 540463096.580786,
+    "wheel.root_stress_pa": 52836647.35774325,
+    "wheel.contact_safety_factor": 3.594378697932508,
+    "wheel.bending_safety_factor": 20.1604663703196
+  },
+  "ltca_values": {
+    "mean_normal_approach_m": 1.1067045847902377e-06,
+    "te_peak_to_peak_m": 3.4133914387656075e-08,
+    "max_endpoint_pressure_pa": 186674351.8004542,
+    "mean_mesh_stiffness_n_per_m": 220932698.40098312
+  },
+  "contact_metadata": "masta_reference/showcase_contact.json",
+  "contact_arrays": "masta_reference/showcase_contact.npz",
+  "native_contact_metadata": "masta_reference/showcase_native_contact.json",
+  "native_contact_image": "masta_reference/showcase_native_contact.png",
+  "native_contact_arrays": "masta_reference/showcase_native_contact.npz",
+  "strength_reference": "masta_reference/strength_reference.json",
+  "limitations": [
+    "MASTA仅用于对标，计算由本项目内核完成。",
+    "本案例选择ISO综合刚度、Love条带影响和齿顶延伸；齿梁模型是另一种独立弹性选择。",
+    "中心与端点压力分别保存，主对比使用同端点定义；显示压力带不等于完整二维接触解。",
+    "切线刚度与有限差分增量刚度的定义分别保留，接触切换处可能存在小差异。",
+    "实体根顶圆和有效形径是几何输入，未自动生成刀具根部过渡或判定干涉。",
+    "节点间隙是给定边界，不计算完整轴、轴承或箱体变形。",
+    "标准评级因子及材料/寿命应力限为显式输入，不含完整因子选取或材料寿命链。",
+    "同一几何相位按接触线配准，未拟合TE或压力曲线；数值接近不构成物理精度认证。"
+  ],
+  "files": {
+    "helical_18_77_case.json": "7ea688056ae1a47b93f5a451e69a03b9a285ec003c35190656802f6c3d7092b4",
+    "masta_reference/cases.json": "90177fbb246826c377a48e65051c0be66855c23175313c67bc139f291695c8ed",
+    "masta_reference/showcase_contact.json": "af4179e7548c8293624ab8a1aa7cc47ed29ab3f20f7ab124329521507065edfb",
+    "masta_reference/showcase_contact.npz": "62aee4341c15f462f69e5ab1b105a5a1b49ab8c329d987c88a37487e587520cc",
+    "masta_reference/strength_reference.json": "172ee07124624028937fb75989f7ff29ecd10fba8a92cc1fd372c2642d4ac6d7",
+    "masta_reference/strength_reference_manifest.json": "d604954c502c2c31b9a18138713a2d729b5f329d4bca80e5ddc7936104841022",
+    "masta_reference/showcase_native_contact.json": "28dfcee3e0970cab5fb71d9c32c89c6f4bf6953517f7eb659046c14b296419d3",
+    "masta_reference/showcase_native_contact.png": "6f553658974589f45acf9fc50008b1b12e63b281a25d93a4489c04e99b2af7cb",
+    "masta_reference/showcase_native_contact.npz": "6fb034e0d7c04bae2e178a2572914ee5206f8300edb413409588370a8591637f"
+  }
+}

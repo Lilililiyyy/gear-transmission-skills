@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "case_id": "helical_18_77",
+  "label": "18/77外啮合斜齿轮副：100%载荷",
+  "analysis": {
+    "pair": {
+      "pinion": {
+        "teeth": 18,
+        "normal_module_m": 0.002,
+        "face_width_m": 0.024,
+        "pressure_angle_rad": 0.39269908169872414,
+        "helix_angle_rad": -0.41015237421866746,
+        "profile_shift": 0.32679994951588004,
+        "internal": false,
+        "tip_diameter_m": 0.04456307954415094,
+        "root_diameter_m": 0.03556307954415094,
+        "root_form_diameter_m": 0.036887473786745395,
+        "tip_form_diameter_m": 0.04456307954415094
+      },
+      "wheel": {
+        "teeth": 77,
+        "normal_module_m": 0.002,
+        "face_width_m": 0.024,
+        "pressure_angle_rad": 0.39269908169872414,
+        "helix_angle_rad": 0.41015237421866746,
+        "profile_shift": -0.3267999495158864,
+        "internal": false,
+        "tip_diameter_m": 0.1706207302268636,
+        "root_diameter_m": 0.1616207302268636,
+        "root_form_diameter_m": 0.1628285581981177,
+        "tip_form_diameter_m": 0.1706207302268636
+      },
+      "center_distance_m": null,
+      "axial_offset_m": 0.0
+    },
+    "material_pinion": {
+      "youngs_modulus_pa": 207000000000,
+      "poisson_ratio": 0.3
+    },
+    "material_wheel": {
+      "youngs_modulus_pa": 207000000000,
+      "poisson_ratio": 0.3
+    },
+    "modification_pinion": {
+      "kind": "composite",
+      "components": [
+        {
+          "kind": "parameters",
+          "profile_crown_m": 8.230316576566792e-07,
+          "lead_crown_m": 4.874995545711296e-07
+        },
+        {
+          "kind": "curve",
+          "axis": "profile",
+          "coordinates": [
+            0.0,
+            1.0
+          ],
+          "removal_m": [
+            -1.5881867761018131e-22,
+            -3.970466940254533e-22
+          ]
+        },
+        {
+          "kind": "curve",
+          "axis": "lead",
+          "coordinates": [
+            0.0,
+            1.0
+          ],
+          "removal_m": [
+            0.0,
+            -1.5881867761018131e-22
+          ]
+        },
+        {
+          "kind": "curve",
+          "axis": "lead",
+          "bounds": "extrapolate",
+          "coordinates": [
+            0.09999999999999998,
+            0.30000000000000004,
+            0.5,
+            0.7,
+            0.8999999999999999
+          ],
+          "removal_m": [
+            4.6987842879276434e-08,
+            2.8867652361613518e-08,
+            9.630013187570531e-09,
+            -2.4891169218597974e-08,
+            -6.059433920986232e-08
+          ]
+        }
+      ]
+    },
+    "modification_wheel": {
+      "kind": "composite",
+      "components": [
+        {
+          "kind": "parameters",
+          "profile_crown_m": 0.0,
+          "lead_crown_m": 0.0
+        },
+        {
+          "kind": "curve",
+          "axis": "profile",
+          "coordinates": [
+            0.0,
+            1.0
+          ],
+          "removal_m": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "kind": "curve",
+          "axis": "lead",
+          "coordinates": [
+            0.0,
+            1.0
+          ],
+          "removal_m": [
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "phases": 32,
+    "strips": 40,
+    "elastic_mode": "iso_love",
+    "local_contact": false,
+    "iso_settings": {
+      "application_factor": 1.0,
+      "material_reference_youngs_modulus_pa": 207000000000.0
+    },
+    "extended_contact_settings": {
+      "face_extension_factor": 0.14073562622070318,
+      "roll_extension_factor": 0.4
+    },
+    "phase_offset": 0.036931454775936845
+  },
+  "loading": {
+    "nominal_pinion_torque_n_m": 1.718873394980122,
+    "ltca_torque_multiplier": 1.4754808677367255,
+    "note": "名义扭矩用于标准强度；LTCA按独立乘子给定目标，两者不重复放大。"
+  },
+  "strength": {
+    "face_width_m": 0.024,
+    "mesh_factors": {
+      "application_factor": 1.0,
+      "dynamic_factor": 1.4754808651293996,
+      "additional_load_factor": 1.0,
+      "face_contact_factor": 5.975781317924178,
+      "transverse_contact_factor": 1.976397882492956,
+      "face_bending_factor": 4.315255598761251,
+      "transverse_bending_factor": 1.976397882492956,
+      "contact_ratio_factor": 0.8643008620048774,
+      "helix_contact_factor": 1.044241880053645,
+      "helix_bending_factor": 0.8041666666666667,
+      "root_contact_ratio_factor": 1.0,
+      "deep_tooth_factor": 1.0
+    },
+    "pinion_factors": {
+      "form_factor": 1.2035710211390656,
+      "stress_correction_factor": 2.31333782025444,
+      "rim_factor": 1.0,
+      "single_pair_contact_factor": 1.0,
+      "root_stress_face_width_m": 0.024
+    },
+    "pinion_limits": {
+      "contact_limit_pa": 1729241694.6247346,
+      "bending_limit_pa": 969439374.3010107
+    },
+    "wheel_factors": {
+      "form_factor": 1.385889509390674,
+      "stress_correction_factor": 2.0649909769544528,
+      "rim_factor": 1.0,
+      "single_pair_contact_factor": 1.0,
+      "root_stress_face_width_m": 0.024
+    },
+    "wheel_limits": {
+      "contact_limit_pa": 1942629041.3686168,
+      "bending_limit_pa": 1065211452.1762187
+    }
+  },
+  "instant": {
+    "rotation_index": 0,
+    "source_line_index": 1,
+    "pinion_tooth_id": 14,
+    "wheel_tooth_id": 62,
+    "project_tooth_pair_index": 0,
+    "selection": "该相位MASTA主承载齿对，不按两侧结果吻合程度挑选"
+  },
+  "scope": {
+    "strength_factors_external": true,
+    "independent_strength_factor_prediction": false,
+    "ltca_model_equivalent_to_masta": false,
+    "physical_validation": false
+  }
+}

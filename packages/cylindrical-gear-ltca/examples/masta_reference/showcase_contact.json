@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "case_id": "helical_100_stage_1_external",
+  "kind": "MASTA接触对标数据与几何相位",
+  "coordinates": {
+    "face_coordinate_m": "小轮齿宽中点为零，y-b/2；单位m",
+    "roll_pinion_m": "小轮渐开线展长qA，单位m；不等于齿面弧长",
+    "roll_wheel_m": "大轮渐开线展长qB，单位m",
+    "local_pressure_band": "峰压/半宽为局部Hertz带参数；不得直接把半宽画成展长q方向距离"
+  },
+  "phase_registration": {
+    "phase_offset": 0.036931454775936845,
+    "phase_forward_direction": 1,
+    "sample_count": 32,
+    "base_pitch_m": 0.00624405758347091,
+    "contact_low_roll_m": 0.00492627915990438,
+    "base_helix_angle_rad": -0.3772831955196731,
+    "ordinary_line_slope": -0.3962659106806261,
+    "formula": "z=y-b/2；c=qA-tan(beta_b)*z；phase=((c-contact_low)/base_pitch-0.5) mod 1",
+    "basis": "只采用双方均未延伸的普通接触中心点，不读取TE/压力进行对齐",
+    "maximum_phase_residual_cycles": 7.771561172376096e-16,
+    "maximum_intercept_residual_m": 1.214306433183765e-17
+  },
+  "array_layout": {
+    "rotation_line_offsets": "[r]:[r+1]对应相位r的接触线",
+    "centre_offsets": "[line]:[line+1]对应该接触线的N个条带中心",
+    "endpoint_offsets": "[line]:[line+1]对应同线N+1个端点，压力与半宽只存这里",
+    "line_project_tooth_pair_index": "按普通线截距和齿对编号映射到本项目接触线index，不改变坐标",
+    "centre_extended_pinion/endpoint_extended_pinion": "小轮齿顶延伸标志",
+    "centre_extended_wheel/endpoint_extended_wheel": "大轮齿顶延伸标志",
+    "centre_eligible": "根形接触可用标志，不代表该点一定承载"
+  },
+  "units": {
+    "length": "m",
+    "force": "N",
+    "pressure": "Pa",
+    "line_load": "N/m",
+    "stiffness": "N/m",
+    "curvature": "1/m",
+    "phase": "基节周期"
+  },
+  "counts": {
+    "rotations": 32,
+    "lines": 126,
+    "centres": 5040,
+    "endpoints": 5166,
+    "extended_centres": 2491
+  },
+  "checks": {
+    "original_mesh_force_layout_residual_n": 8.526512829121202e-14,
+    "endpoint_hertz_integral_identity_residual_n_per_m": 1.8189894035458565e-12
+  },
+  "suggested_instant": {
+    "rotation_index": 0,
+    "source_line_index": 1,
+    "pinion_tooth_id": 14,
+    "wheel_tooth_id": 62,
+    "project_tooth_pair_index": 0,
+    "selection": "该相位MASTA主承载齿对，不按两侧结果吻合程度挑选"
+  },
+  "limitations": [
+    "本数据含齿顶延伸；对标时须明确选择相同接触域和几何配置。",
+    "压力/半宽为端点Hertz后处理，中心力为条带力；两套采样不可混用。",
+    "在face-roll材料坐标可比较接触线与载荷位置，不能据此宣称完整二维齿面压力精度。",
+    "单相位同齿Hertz压力带重建与采样周期最大包络必须分开；包络不能积分为瞬时合力。",
+    "标准强度和LTCA局部峰压是不同物理评价，不可相互替代。"
+  ],
+  "arrays_file": "showcase_contact.npz",
+  "arrays_sha256": "62aee4341c15f462f69e5ab1b105a5a1b49ab8c329d987c88a37487e587520cc"
+}

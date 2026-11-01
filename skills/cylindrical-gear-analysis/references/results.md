@@ -1,5 +1,7 @@
 # 结果解释与复算
 
+新版图表及完整案例目录见 [新版完整工作流](new-workflow.md)。常规 `run` 使用 `cases/`；完整 `case` 使用 `ltca/` 和可选 `sensitivity/`，实际目录以 `run.json.cases` 为准。`max_endpoint_pressure_pa` 是独立端点最大压力，不能与 `max_pressure_pa` 的中心定义互换。
+
 先读根目录 `run.json`：只有 `status=completed`、`analysis_completed=true`才表示本次所有任务及请求的后处理完成。失败保留 `error`与已有文件，不能将文件存在当作成功。随后逐个查看 `cases`指向的原内核输出。
 
 |字段|定义|

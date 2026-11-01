@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "case_id": "helical_100_stage_1_external",
+  "method": "ISO6336_2006_explicit_factors",
+  "inputs": {
+    "nominal_pinion_torque_n_m": 1.718873394980122,
+    "face_width_m": 0.024,
+    "mesh_factors": {
+      "application_factor": 1.0,
+      "dynamic_factor": 1.4754808651293996,
+      "additional_load_factor": 1.0,
+      "face_contact_factor": 5.975781317924178,
+      "transverse_contact_factor": 1.976397882492956,
+      "face_bending_factor": 4.315255598761251,
+      "transverse_bending_factor": 1.976397882492956,
+      "contact_ratio_factor": 0.8643008620048774,
+      "helix_contact_factor": 1.044241880053645,
+      "helix_bending_factor": 0.8041666666666667,
+      "root_contact_ratio_factor": 1.0,
+      "deep_tooth_factor": 1.0
+    },
+    "pinion_factors": {
+      "form_factor": 1.2035710211390656,
+      "stress_correction_factor": 2.31333782025444,
+      "rim_factor": 1.0,
+      "single_pair_contact_factor": 1.0,
+      "root_stress_face_width_m": 0.024
+    },
+    "pinion_limits": {
+      "contact_limit_pa": 1729241694.6247346,
+      "bending_limit_pa": 969439374.3010107
+    },
+    "material_pinion": {
+      "youngs_modulus_pa": 207000000000.0,
+      "poisson_ratio": 0.3
+    },
+    "wheel_factors": {
+      "form_factor": 1.385889509390674,
+      "stress_correction_factor": 2.0649909769544528,
+      "rim_factor": 1.0,
+      "single_pair_contact_factor": 1.0,
+      "root_stress_face_width_m": 0.024
+    },
+    "wheel_limits": {
+      "contact_limit_pa": 1942629041.3686168,
+      "bending_limit_pa": 1065211452.1762187
+    },
+    "material_wheel": {
+      "youngs_modulus_pa": 207000000000.0,
+      "poisson_ratio": 0.3
+    }
+  },
+  "loading": {
+    "nominal_pinion_torque_n_m": 1.718873394980122,
+    "ltca_torque_n_m": 2.5361648038731786,
+    "ltca_torque_multiplier": 1.4754808651293996
+  },
+  "reference_values": {
+    "zone_factor": 2.2262866067490035,
+    "elastic_factor_sqrt_pa": 190271.8506896375,
+    "nominal_tangential_force_n": 87.57278685883786,
+    "nominal_contact_stress_pa": 129468678.84152532,
+    "pinion.nominal_root_stress_pa": 4084931.5271100583,
+    "pinion.contact_stress_pa": 540463096.580786,
+    "pinion.root_stress_pa": 51404278.452586316,
+    "pinion.contact_safety_factor": 3.199555539619078,
+    "pinion.bending_safety_factor": 18.85911841356145,
+    "wheel.nominal_root_stress_pa": 4198757.245032052,
+    "wheel.contact_stress_pa": 540463096.580786,
+    "wheel.root_stress_pa": 52836647.35774325,
+    "wheel.contact_safety_factor": 3.594378697932508,
+    "wheel.bending_safety_factor": 20.1604663703196
+  },
+  "scope": {
+    "external_rating_factors": true,
+    "external_material_life_stress_limits": true,
+    "independent_factor_prediction": false,
+    "standard_method": "ISO 6336:2006",
+    "notes": [
+      "评级因子和材料/寿命应力限为公开接口的显式外部输入，本次只核验应力组合链。",
+      "名义参考圆切向力与LTCA放大后的目标力/扭矩分别保留，不混用。",
+      "标准接触应力是评级标量，不是LTCA压力场，齿根应力也不来自接触峰压。",
+      "强度数据与接触对标数据的目标载荷有约1e-9相对差，数值分别保留。",
+      "安全系数使用sigmaHG/sigmaH及sigmaFG/sigmaF，外部应力限尚未除以最低设计安全系数。",
+      "此强度数据涵盖标准应力与安全系数，不含局部齿根应力场。"
+    ]
+  }
+}

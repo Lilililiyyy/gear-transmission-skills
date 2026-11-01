@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "files": {
+    "helical_18_77_case.json": "7ea688056ae1a47b93f5a451e69a03b9a285ec003c35190656802f6c3d7092b4",
+    "helical_18_77_reference.json": "6e744f0cc0efd2392d35fcaac0fcd361ca5372d130279eb66f9425935cd168d5"
+  },
+  "kind": "案例输入与MASTA对标数据校验清单"
+}

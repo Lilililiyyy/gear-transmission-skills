@@ -1,5 +1,7 @@
 # 请求、单位与默认值
 
+以下为常规 LTCA 请求协议；复现独立项目的新版完整案例时，使用 [完整案例 SI 协议](new-workflow.md)，两种协议不可混合。
+
 请求是UTF-8 JSON，根字段为 `schema`、`case`、可选 `study` 和 `assumptions`。`schema`固定为 `gear_ltca_request_v1`。未知字段、重复JSON键、非有限数、重复指定同一物理量均报错。
 
 `case`沿用原内核的命名配置。`pair.pinion` 与 `pair.wheel`至少包含 `teeth`、`normal_module_m`、`face_width_m`。常用字段包括 `pressure_angle_rad`、带旋向的 `helix_angle_rad`、`profile_shift`、`internal` 和实际根／顶圆及有效形径。`pair`另可给 `center_distance_m`、`axial_offset_m`。

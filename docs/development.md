@@ -41,7 +41,18 @@ Skill 可先通过显式请求验证，再补充自动触发、缺失信息追�
 
 算法变更先在独立工程完成，再显式更新集成快照、对应记录和验收。保留原公式、数据布局、单位、符号与分支。原工程继续更新时，本库不会自动替换已验收快照，也不在两个位置同时修改算法。
 
-当前集成内核为 `0.2.0`，来源为干净工作树提交 `c63030dc4314a67ba282a3899f7ec8a5f6950fe1`。本次按原字节同步 21 个文件，更新函数映射，并增加 ISO 零载荷内啮合及延伸接触 CSV 回归检查；验收见 [0.2.0 同步记录](../evaluations/kernel-sync-0.2.0.json)。历史验收保持原版本和身份，不用新版本结果改写旧记录。
+库 `0.3.0` 集成内核 `0.2.0`，来源为干净工作树提交 `c63030dc4314a67ba282a3899f7ec8a5f6950fe1`。同步范围包括全部计算模块、案例编排、绘图后处理、案例输入及公开对标资源，共 47 个文件；生成结果与缓存不复制。历史验收保持原版本和身份。
+
+在库根执行以下命令，来源路径使用实际独立项目检出位置：
+
+```bash
+python scripts/sync_ltca_snapshot.py --source ../cylindrical-gear-ltca
+python scripts/sync_ltca_snapshot.py --source ../cylindrical-gear-ltca --check
+```
+
+脚本要求来源工作树干净，按跟踪文件更新完整运行清单、原始字节、来源哈希及函数行段。`--check` 只读核对，能发现仅同步内核而遗漏案例或绘图资源的情况。更新后重新安装、运行完整案例与普通请求，再做来源对比、独立复算及 wheel 检查。原项目新增图表不会仅因复制文件而自动接入 Skill，仍须核对实际绘图入口。
+
+`gear_ltca_snapshot` 随 wheel 保留原工程资源目录，支持直接执行原案例脚本；公开 `gear_contact` 与其内核副本均来自同一份快照源码，运行时分别核验。验收见 [0.3.0 完整同步](../evaluations/full-sync-0.3.0.json)。
 
 集成说明见 [内核快照 README](../packages/cylindrical-gear-ltca/README.md)。模型与完整接口优先查阅独立项目；随快照保留的 [模型说明](../packages/cylindrical-gear-ltca/docs/model.md) 和 [接口说明](../packages/cylindrical-gear-ltca/docs/api.md) 对应当前集成版本。
 

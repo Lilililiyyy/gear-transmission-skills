@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gear-transmission-skills"
-version = "0.2.0"
+version = "0.3.0"
 description = "齿轮传动设计 Skill 库：保留独立计算内核与可复算工程流程"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -19,11 +19,13 @@ plots = ["matplotlib>=3.6"]
 gear-design = "gear_transmission.cli:main"
 
 [tool.setuptools]
-packages = ["gear_transmission", "gear_contact"]
+packages = ["gear_transmission", "gear_contact", "gear_ltca_snapshot"]
 
 [tool.setuptools.package-dir]
 gear_transmission = "src/gear_transmission"
 gear_contact = "packages/cylindrical-gear-ltca/gear_contact"
+gear_ltca_snapshot = "packages/cylindrical-gear-ltca"
 
 [tool.setuptools.package-data]
 gear_transmission = ["kernel_snapshot.json"]
+gear_ltca_snapshot = ["LICENSE", "pyproject.toml", "constraints.txt", "gear_contact/*.py", "docs/*.md", "examples/*.py", "examples/*.json", "examples/masta_reference/*"]

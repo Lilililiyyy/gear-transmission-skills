@@ -28,7 +28,12 @@ def identity():
     actual = {p.relative_to(kernel).as_posix(): sha256(p) for p in sorted(kernel.rglob('*.py'))}
     if actual != expected:
         raise RuntimeError('实际加载的gear_contact与登记快照不一致，请重新安装本项目并核对内核来源')
+    from .upstream import snapshot_root
+    resources = {name: sha256(snapshot_root()/name) for name in manifest['files']}
+    if resources != manifest['files']:
+        raise RuntimeError('案例、后处理或对标资源与登记快照不一致，请重新安装完整项目')
     return {'kernel_files': actual, 'snapshot_sha256': sha256(here / 'kernel_snapshot.json'),
+            'runtime_resources': resources,
             'workflow_files': {p.name: sha256(p) for p in sorted(here.glob('*.py'))},
             'versions': {'workflow': __version__, 'kernel': gear_contact.__version__,
                          'python': platform.python_version(), 'numpy': np.__version__, 'scipy': scipy.__version__}}
@@ -78,6 +83,9 @@ def _report(directory, manifest, request, study):
 
 def run_request(request, output, *, plots=False):
     """执行任意已支持参数的请求；输出目录须为新目录，异常保留失败状态。"""
+    if request.get('schema_version') == 1 and 'analysis' in request and 'loading' in request:
+        from .case_workflow import run_case_request
+        return run_case_request(request, output, plots=plots)
     prepared = prepare_request(request)
     before = identity()
     output = Path(output).resolve()
@@ -110,13 +118,15 @@ def run_request(request, output, *, plots=False):
             if not result.summary['all_converged']:
                 raise ArithmeticError(f'第{index}个求解含未收敛相位，结果不能标记完成')
         if plots:
-            from gear_contact.plotting import plot_analysis, plot_comparison
+            from .plotting import plot_result, plot_cycles
             if study is None:
-                plot_analysis(results[0][2], output / 'plots')
+                manifest['plot_definitions'] = plot_result(results[0][2], output / 'plots')
             else:
+                for case, (_, _, result) in zip(manifest['cases'], results):
+                    case['plot_definitions'] = plot_result(result, output / case['directory'] / 'plots')
                 for index, point in enumerate(prepared['points'], 1):
-                    plot_comparison({name: values[point.name] for name, values in study.results.items()},
-                                    output / f'plots/point_{index:03d}')
+                    plot_cycles({name: values[point.name] for name, values in study.results.items()},
+                                output / f'plots/point_{index:03d}')
         if identity() != before:
             raise RuntimeError('运行期间源码或依赖版本发生变化，本次结果不能标记可复现完成')
         manifest.update(status='completed', analysis_completed=True)
@@ -187,7 +197,10 @@ def replay_run(directory, output, *, plots=False):
     output = Path(output).resolve()
     if output.is_relative_to(directory) or directory.is_relative_to(output):
         raise ValueError('复算目录与原结果目录不能互相包含')
-    current = run_request(read_json(directory / 'request.json'), output, plots=plots)
+    # 原案例在 --plots 时同时计算三个敏感性方案；复算须保留相同求解集合。
+    native = reference.get('workflow_kind') == 'cylindrical_case_v1'
+    current = run_request(read_json(directory / 'request.json'), output,
+                          plots=plots or (native and reference['plots']))
     records = []
     if len(current['cases']) != len(reference['cases']):
         raise ValueError('复算求解数量与原记录不同')
@@ -206,8 +219,10 @@ def replay_run(directory, output, *, plots=False):
                         'arrays': rows, 'passed': bool(input_passed and summary_passed and all(r['passed'] for r in rows))})
     study_passed = (read_json(directory / 'study.json') == read_json(output / 'study.json')
                     if (directory / 'study.json').exists() else not (output / 'study.json').exists())
+    strength_passed = reference.get('strength') == current.get('strength')
     result = {'schema': 'gear_ltca_replay_v1', 'reference_run_sha256': sha256(directory / 'run.json'),
-              'passed': all(r['passed'] for r in records) and study_passed, 'study_equal': study_passed,
+              'passed': all(r['passed'] for r in records) and study_passed and strength_passed,
+              'study_equal': study_passed, 'strength_equal': strength_passed,
               'cases': records, 'scope': '同源码与数值环境的独立重新求解和全数组复现，不构成工程精度验证'}
     write_json(output / 'replay.json', result)
     current['validation']['numerical_replay'] = '通过' if result['passed'] else '失败'

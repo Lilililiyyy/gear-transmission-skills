@@ -1,0 +1,103 @@
+{
+  "schema": "gear_full_runtime_sync_v1",
+  "date": "2026-11-02",
+  "library_version": "0.3.0",
+  "kernel_version": "0.2.0",
+  "source_commit": "c63030dc4314a67ba282a3899f7ec8a5f6950fe1",
+  "upstream_runtime_files": 47,
+  "upstream_bytes_preserved": true,
+  "formula_changes": false,
+  "unit_tests": {
+    "workflow_and_plotting": 21,
+    "installer": 9,
+    "passed": 30
+  },
+  "complete_case_source_comparison": {
+    "npz_files": {
+      "07_contact_pass_data.npz": 5,
+      "contact_plot_data.npz": 30,
+      "ltca/arrays.npz": 42,
+      "sensitivity/additional_misalignment/ltca/arrays.npz": 42,
+      "sensitivity/baseline/ltca/arrays.npz": 42,
+      "sensitivity/misalignment_and_crown/ltca/arrays.npz": 42
+    },
+    "array_count": 203,
+    "png_exact": {
+      "02_case_benchmarks.png": true,
+      "03_ltca_cycle.png": true,
+      "04_contact_pattern.png": true,
+      "05_contact_coordinates.png": true,
+      "06_modification_sensitivity.png": true,
+      "07_masta_native_contact.png": true,
+      "07_native_contact_comparison.png": true,
+      "07_project_contact_pass.png": true
+    },
+    "strength_equal": true,
+    "geometry_png_exact": true
+  },
+  "complete_case_replay": {
+    "passed": true,
+    "solve_count": 4,
+    "arrays": 168,
+    "strength_equal": true
+  },
+  "generic_cases": [
+    {
+      "name": "single",
+      "solve_count": 1,
+      "source_exact_arrays": 22,
+      "replayed_arrays": 22,
+      "plots_completed": true
+    },
+    {
+      "name": "study",
+      "solve_count": 4,
+      "source_exact_arrays": 88,
+      "replayed_arrays": 88,
+      "plots_completed": true
+    },
+    {
+      "name": "extended",
+      "solve_count": 1,
+      "source_exact_arrays": 42,
+      "replayed_arrays": 42,
+      "plots_completed": true
+    },
+    {
+      "name": "zero_internal",
+      "solve_count": 1,
+      "source_exact_arrays": 22,
+      "replayed_arrays": 22,
+      "plots_completed": true
+    }
+  ],
+  "wheel": {
+    "independent_installed_imports_verified": true,
+    "complete_case_source_comparison": {
+      "npz_files": {
+        "07_contact_pass_data.npz": 5,
+        "contact_plot_data.npz": 30,
+        "ltca/arrays.npz": 42,
+        "sensitivity/additional_misalignment/ltca/arrays.npz": 42,
+        "sensitivity/baseline/ltca/arrays.npz": 42,
+        "sensitivity/misalignment_and_crown/ltca/arrays.npz": 42
+      },
+      "array_count": 203,
+      "png_exact": {
+        "02_case_benchmarks.png": true,
+        "03_ltca_cycle.png": true,
+        "04_contact_pattern.png": true,
+        "05_contact_coordinates.png": true,
+        "06_modification_sensitivity.png": true,
+        "07_masta_native_contact.png": true,
+        "07_native_contact_comparison.png": true,
+        "07_project_contact_pass.png": true
+      },
+      "strength_equal": true
+    },
+    "replay_passed": true
+  },
+  "physical_validation": false,
+  "ltca_response_accuracy_verified": false,
+  "scope": "来源身份、同输入数值一致性、同环境图表和实际重新求解；不构成物理精度认证"
+}

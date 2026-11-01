@@ -1,6 +1,7 @@
 include README_EN.md gear-skills.project.json constraints.txt LICENSE
 recursive-include skills *.md *.py *.json *.yaml LICENSE
 recursive-include packages *.py *.md *.toml *.txt LICENSE
+recursive-include packages/cylindrical-gear-ltca/examples *.json *.npz *.png
 recursive-include docs *.json *.md
 recursive-include evaluations *.json
 recursive-include scripts *.py *.sh *.ps1

@@ -30,3 +30,5 @@ jobs:
       - run: ${{ matrix.runtime_python }} -m gear_transmission check skills/cylindrical-gear-analysis/assets/single_case.json
       - run: ${{ matrix.runtime_python }} -m gear_transmission run skills/cylindrical-gear-analysis/assets/single_case.json --output output/single --plots
       - run: ${{ matrix.runtime_python }} -m gear_transmission replay output/single --output output/replay
+      - run: ${{ matrix.runtime_python }} -m gear_transmission case --output output/helical_18_77 --plots
+      - run: ${{ matrix.runtime_python }} -m gear_transmission replay output/helical_18_77 --output output/helical_18_77_replay

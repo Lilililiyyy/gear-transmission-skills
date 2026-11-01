@@ -41,7 +41,18 @@ Snapshot identity is stored in [kernel_snapshot.json](../src/gear_transmission/k
 
 Make algorithm changes in the independent project first, then explicitly update the integrated snapshot, mappings, and acceptance records. Preserve formulas, data layouts, units, signs, and branches. Continued upstream development does not automatically replace an accepted snapshot, and formulas should not be maintained in two locations simultaneously.
 
-The current kernel is `0.2.0`, taken from the clean working tree at commit `c63030dc4314a67ba282a3899f7ec8a5f6950fe1`. This update preserves the bytes of 21 source files, refreshes function mappings, and adds regression checks for zero-load internal ISO analysis and extended-contact CSV output; see the [0.2.0 synchronization record](../evaluations/kernel-sync-0.2.0.json). Historical acceptance records retain their original versions and identities.
+Library `0.3.0` includes kernel `0.2.0` from clean commit `c63030dc4314a67ba282a3899f7ec8a5f6950fe1`, together with all case scripts, plotting helpers, case inputs, and public benchmark resources: 47 files in total. Generated results and caches are excluded. Historical records retain their original versions and identities.
+
+From the library root, with the actual upstream checkout path:
+
+```bash
+python scripts/sync_ltca_snapshot.py --source ../cylindrical-gear-ltca
+python scripts/sync_ltca_snapshot.py --source ../cylindrical-gear-ltca --check
+```
+
+The source checkout must be clean. The script maintains the complete runtime inventory, source bytes, hashes, and function locations; `--check` verifies them without writing. After syncing, reinstall and verify ordinary requests, the complete case, source comparisons, reruns, and the wheel. Copying new plotting files alone does not connect their entry points to the Skill.
+
+The wheel's `gear_ltca_snapshot` resource package preserves the original project layout so its case scripts can execute directly. Its kernel copy and the public `gear_contact` package are built from the same snapshot source and both verified. See the [0.3.0 full synchronization record](../evaluations/full-sync-0.3.0.json).
 
 See the [kernel snapshot README](../packages/cylindrical-gear-ltca/README.md) for integration details. Consult the independent project for models and complete interfaces. The bundled [model documentation](../packages/cylindrical-gear-ltca/docs/model.md) and [API documentation](../packages/cylindrical-gear-ltca/docs/api.md), currently in Chinese, correspond to the integrated version.
 

@@ -1,0 +1,23 @@
+{
+  "case_id": "helical_18_77",
+  "reference_name": "MASTA",
+  "image_file": "showcase_native_contact.png",
+  "image_sha256": "6f553658974589f45acf9fc50008b1b12e63b281a25d93a4489c04e99b2af7cb",
+  "arrays_file": "showcase_native_contact.npz",
+  "arrays_sha256": "6fb034e0d7c04bae2e178a2572914ee5206f8300edb413409588370a8591637f",
+  "image_width": 1200,
+  "image_height": 900,
+  "gear": "pinion",
+  "start_rotation_index": 0,
+  "roll_angle_count": 32,
+  "load_case": "100% rated torque",
+  "definition": "小轮一个齿通过程的最大接触压力分布，非单相位Hertz横向压力带",
+  "coordinates": {
+    "x": "齿宽从左端起算，m",
+    "y": "Roll Distance，m",
+    "pressure": "Pa，布局[x][y]"
+  },
+  "display_peak_pressure_pa": 186522329.40108263,
+  "raw_ltca_peak_pressure_pa": 186674351.79296312,
+  "limitation": "图片与显示面均由MASTA API导出；显示网格峰压与原接触端点峰压分别记录。"
+}

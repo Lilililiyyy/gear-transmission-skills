@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "kind": "MASTA对标数据文件清单",
+  "cases_file": "cases.json",
+  "cases_sha256": "90177fbb246826c377a48e65051c0be66855c23175313c67bc139f291695c8ed",
+  "case_count": 9,
+  "files": {
+    "cases.json": "90177fbb246826c377a48e65051c0be66855c23175313c67bc139f291695c8ed"
+  },
+  "masta_runtime_required": false,
+  "numerical_equivalence_claimed": false,
+  "physical_validation": false
+}

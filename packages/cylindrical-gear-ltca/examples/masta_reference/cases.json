@@ -1,0 +1,1750 @@
+{
+  "schema_version": 1,
+  "kind": "MASTA对标案例数据",
+  "units": {
+    "length": "m",
+    "force": "N",
+    "pressure": "Pa",
+    "angle": "rad",
+    "torque": "N*m"
+  },
+  "cases": [
+    {
+      "case_id": "helical_100_stage_1_external",
+      "label": "斜齿100% / 第1级外啮合",
+      "config": {
+        "pair": {
+          "pinion": {
+            "teeth": 18,
+            "normal_module_m": 0.002,
+            "face_width_m": 0.024,
+            "pressure_angle_rad": 0.392699081698724,
+            "helix_angle_rad": -0.41015237421866746,
+            "profile_shift": 0.32679994951588004,
+            "internal": false,
+            "tip_diameter_m": 0.04456307954415094,
+            "root_diameter_m": 0.03556307954415094,
+            "root_form_diameter_m": 0.036887473786745395,
+            "tip_form_diameter_m": 0.04456307954415094
+          },
+          "wheel": {
+            "teeth": 77,
+            "normal_module_m": 0.002,
+            "face_width_m": 0.024,
+            "pressure_angle_rad": 0.392699081698724,
+            "helix_angle_rad": 0.41015237421866746,
+            "profile_shift": -0.3267999495158864,
+            "internal": false,
+            "tip_diameter_m": 0.1706207302268636,
+            "root_diameter_m": 0.1616207302268636,
+            "root_form_diameter_m": 0.1628285581981177,
+            "tip_form_diameter_m": 0.1706207302268636
+          },
+          "center_distance_m": 0.10359190488550728,
+          "axial_offset_m": 0.0
+        },
+        "torque_n_m": 2.5361648083548416,
+        "material_pinion": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "material_wheel": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "modification_pinion": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 8.230316576566792e-07,
+              "lead_crown_m": 4.874995545711296e-07
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                -1.5881867761018131e-22,
+                -3.970466940254533e-22
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                -1.5881867761018131e-22
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "bounds": "extrapolate",
+              "coordinates": [
+                0.09999999999999998,
+                0.30000000000000004,
+                0.5,
+                0.7,
+                0.8999999999999999
+              ],
+              "removal_m": [
+                4.6987842879276434e-08,
+                2.8867652361613518e-08,
+                9.630013187570531e-09,
+                -2.4891169218597974e-08,
+                -6.059433920986232e-08
+              ]
+            }
+          ]
+        },
+        "modification_wheel": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 0.0,
+              "lead_crown_m": 0.0
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "phases": 32,
+        "strips": 40,
+        "elastic_mode": "iso_love",
+        "local_contact": false,
+        "iso_settings": {
+          "nominal_pinion_torque_n_m": 1.7188733991987786,
+          "application_factor": 1.0,
+          "material_reference_youngs_modulus_pa": 207000000000.0,
+          "dedendum_coeff_pinion": 1.2499999999998883,
+          "dedendum_coeff_wheel": 1.2500000000001108
+        },
+        "extended_contact_settings": {
+          "face_extension_factor": 0.14073562622070318,
+          "roll_extension_factor": 0.4
+        },
+        "phase_offset": 0.03693145477593697
+      },
+      "reference_common_values": {
+        "center_distance_m": 0.10359190488550728,
+        "base_pitch_m": 0.0062440575834709095,
+        "face_overlap_m": 0.024,
+        "normal_force_n": 152.5069448455186,
+        "pinion.reference_radius_m": 0.019627939873043485,
+        "pinion.base_radius_m": 0.017887907328476945,
+        "pinion.root_form_radius_m": 0.018443736893372698,
+        "pinion.tip_form_radius_m": 0.02228153977207547,
+        "wheel.reference_radius_m": 0.0839639650124638,
+        "wheel.base_radius_m": 0.07652049246070693,
+        "wheel.root_form_radius_m": 0.08141427909905885,
+        "wheel.tip_form_radius_m": 0.0853103651134318
+      },
+      "reference_ltca_metrics": {
+        "mean_normal_approach_m": 1.1067045847902377e-06,
+        "te_peak_to_peak_m": 3.4133914387656075e-08,
+        "max_endpoint_pressure_pa": 186674351.8004542,
+        "mean_mesh_stiffness_n_per_m": 220932698.40098312
+      },
+      "comparability": {
+        "input_mapping_complete": false,
+        "common_geometry_equivalent": true,
+        "ltca_model_equivalent": false,
+        "extended_tip_contact": true,
+        "comparable_pressure_definition": "N+1端点Hertz峰压",
+        "phase_geometrically_registered": true,
+        "iso_stiffness_and_love_coupling": true,
+        "microgeometry_mapping_complete": true,
+        "given_boundary_mapping_complete": true,
+        "microgeometry_sample_max_error_m": 1.0587911840678754e-21,
+        "notes": [
+          "采用ISO单齿等效刚度与Love条带耦合，Hertz只用于求解后的压力和半宽，不重复计入局部压陷。",
+          "已启用齿顶延伸接触，齿宽和展长候选范围因子均为显式输入。",
+          "本组几何输入采用顶形径作为实体齿顶边界；未生成刀具根部过渡。",
+          "实体根径由根高系数、变位与名义几何一致反算。",
+          "TE和间隙统一为法向量，保留修形与给定边界间隙的绝对零基准。",
+          "螺旋角符号表示所选受载面的展长与齿宽斜率。",
+          "给定节点失准作为小轮等效法向间隙输入，不包含轴与轴承系统的独立计算。",
+          "32个周期位置由普通接触线几何截距配准，未用TE或压力曲线拟合相位。",
+          "双方压力汇总统一采用N+1端点峰值；本项目另保留中心压力。",
+          "MASTA刚度采用0.1%接近量扰动，本项目刚度为当前活动分支的解析切线；边界切换处可能存在差异。",
+          "迭代退出条件及力平衡容差分别登记；数值接近不等于物理试验验证。"
+        ]
+      }
+    },
+    {
+      "case_id": "helical_100_stage_3_sun_planet",
+      "label": "斜齿100% / 第3级日轮—行星轮",
+      "config": {
+        "pair": {
+          "pinion": {
+            "teeth": 33,
+            "normal_module_m": 0.0025,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.3926990816987243,
+            "helix_angle_rad": -0.1308996938995747,
+            "profile_shift": 0.11892053971087524,
+            "internal": false,
+            "tip_diameter_m": 0.08880643232559536,
+            "root_diameter_m": 0.07755649194641726,
+            "root_form_diameter_m": 0.07929466246879341,
+            "tip_form_diameter_m": 0.08880643232559536
+          },
+          "wheel": {
+            "teeth": 63,
+            "normal_module_m": 0.0025,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.3926990816987243,
+            "helix_angle_rad": 0.1308996938995747,
+            "profile_shift": -0.1330987233938176,
+            "internal": false,
+            "tip_diameter_m": 0.1631935080535828,
+            "root_diameter_m": 0.15194356767440464,
+            "root_form_diameter_m": 0.1535403063657108,
+            "tip_form_diameter_m": 0.1631935080535828
+          },
+          "center_distance_m": 0.121,
+          "axial_offset_m": 0.0
+        },
+        "torque_n_m": 10.690945595545779,
+        "material_pinion": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "material_wheel": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "modification_pinion": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 0.0,
+              "lead_crown_m": 0.0
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "bounds": "extrapolate",
+              "coordinates": [
+                0.10000000000000092,
+                0.3000000000000005,
+                0.5,
+                0.6999999999999995,
+                0.899999999999999
+              ],
+              "removal_m": [
+                -8.169466968917167e-06,
+                -4.081991582482472e-06,
+                2.0502996780013555e-09,
+                4.083788994674242e-06,
+                8.165619257047398e-06
+              ]
+            }
+          ]
+        },
+        "modification_wheel": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 1.4280050967502584e-06,
+              "lead_crown_m": 2.3219563030712198e-06
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                2.088931365022076e-05,
+                2.0889313650220758e-05
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                -2.0889313650220758e-05
+              ]
+            }
+          ]
+        },
+        "phases": 32,
+        "strips": 40,
+        "elastic_mode": "iso_love",
+        "local_contact": false,
+        "iso_settings": {
+          "nominal_pinion_torque_n_m": 10.50208844900811,
+          "application_factor": 1.0,
+          "material_reference_youngs_modulus_pa": 207000000000.0,
+          "dedendum_coeff_pinion": 1.2499999999999447,
+          "dedendum_coeff_wheel": 1.2500000000000653
+        },
+        "extended_contact_settings": {
+          "face_extension_factor": 0.4,
+          "roll_extension_factor": 0.4
+        },
+        "phase_offset": 0.6680371698928906
+      },
+      "reference_common_values": {
+        "center_distance_m": 0.121,
+        "base_pitch_m": 0.007309474939898491,
+        "face_overlap_m": 0.009000000000000001,
+        "normal_force_n": 280.5283909422807,
+        "pinion.reference_radius_m": 0.0416059446239313,
+        "pinion.base_radius_m": 0.03839018924700892,
+        "pinion.root_form_radius_m": 0.039647331234396704,
+        "pinion.tip_form_radius_m": 0.04440321616279768,
+        "wheel.reference_radius_m": 0.07942953064568703,
+        "wheel.base_radius_m": 0.0732903612897443,
+        "wheel.root_form_radius_m": 0.0767701531828554,
+        "wheel.tip_form_radius_m": 0.0815967540267914
+      },
+      "reference_ltca_metrics": {
+        "mean_normal_approach_m": 1.349146125477461e-05,
+        "te_peak_to_peak_m": 1.0608015731040925e-06,
+        "max_endpoint_pressure_pa": 361466967.10523754,
+        "mean_mesh_stiffness_n_per_m": 157866726.74800903
+      },
+      "comparability": {
+        "input_mapping_complete": false,
+        "common_geometry_equivalent": true,
+        "ltca_model_equivalent": false,
+        "extended_tip_contact": true,
+        "comparable_pressure_definition": "N+1端点Hertz峰压",
+        "phase_geometrically_registered": true,
+        "iso_stiffness_and_love_coupling": true,
+        "microgeometry_mapping_complete": true,
+        "given_boundary_mapping_complete": true,
+        "microgeometry_sample_max_error_m": 1.6940658945086007e-20,
+        "notes": [
+          "采用ISO单齿等效刚度与Love条带耦合，Hertz只用于求解后的压力和半宽，不重复计入局部压陷。",
+          "已启用齿顶延伸接触，齿宽和展长候选范围因子均为显式输入。",
+          "本组几何输入采用顶形径作为实体齿顶边界；未生成刀具根部过渡。",
+          "实体根径由根高系数、变位与名义几何一致反算。",
+          "TE和间隙统一为法向量，保留修形与给定边界间隙的绝对零基准。",
+          "螺旋角符号表示所选受载面的展长与齿宽斜率。",
+          "给定节点失准作为小轮等效法向间隙输入，不包含轴与轴承系统的独立计算。",
+          "32个周期位置由普通接触线几何截距配准，未用TE或压力曲线拟合相位。",
+          "双方压力汇总统一采用N+1端点峰值；本项目另保留中心压力。",
+          "MASTA刚度采用0.1%接近量扰动，本项目刚度为当前活动分支的解析切线；边界切换处可能存在差异。",
+          "迭代退出条件及力平衡容差分别登记；数值接近不等于物理试验验证。"
+        ]
+      }
+    },
+    {
+      "case_id": "helical_100_stage_3_internal",
+      "label": "斜齿100% / 第3级内啮合",
+      "config": {
+        "pair": {
+          "pinion": {
+            "teeth": 63,
+            "normal_module_m": 0.0025,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.3926990816987243,
+            "helix_angle_rad": -0.1308996938995747,
+            "profile_shift": -0.1330987233938176,
+            "internal": false,
+            "tip_diameter_m": 0.1631935080535828,
+            "root_diameter_m": 0.15194356767440464,
+            "root_form_diameter_m": 0.1535403063657108,
+            "tip_form_diameter_m": 0.1631935080535828
+          },
+          "wheel": {
+            "teeth": 159,
+            "normal_module_m": 0.0025,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.3926990816987243,
+            "helix_angle_rad": -0.1308996938995747,
+            "profile_shift": 0.14727690707675994,
+            "internal": true,
+            "tip_diameter_m": 0.3956936272952266,
+            "root_diameter_m": 0.4064436272952266,
+            "root_form_diameter_m": 0.4056662966314291,
+            "tip_form_diameter_m": 0.3956936272952266
+          },
+          "center_distance_m": 0.121,
+          "axial_offset_m": 0.0
+        },
+        "torque_n_m": 20.81428687552381,
+        "material_pinion": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "material_wheel": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "modification_pinion": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 1.4280050967502764e-06,
+              "lead_crown_m": 2.3219563030712274e-06
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                -2.088931365022076e-05,
+                -2.0889313650220758e-05
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                2.088931365022076e-05
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "bounds": "extrapolate",
+              "coordinates": [
+                0.10000000000000092,
+                0.3000000000000005,
+                0.5,
+                0.6999999999999995,
+                0.899999999999999
+              ],
+              "removal_m": [
+                8.312061992430133e-06,
+                4.155893205998303e-06,
+                -1.0994904684977268e-10,
+                -4.155807422703665e-06,
+                -8.312037826677923e-06
+              ]
+            }
+          ]
+        },
+        "modification_wheel": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 0.0,
+              "lead_crown_m": 0.0
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "phases": 32,
+        "strips": 40,
+        "elastic_mode": "iso_love",
+        "local_contact": false,
+        "iso_settings": {
+          "nominal_pinion_torque_n_m": 20.049442231003674,
+          "application_factor": 1.0,
+          "material_reference_youngs_modulus_pa": 207000000000.0,
+          "dedendum_coeff_pinion": 1.2500000000000653,
+          "dedendum_coeff_wheel": 1.2499999999999345
+        },
+        "extended_contact_settings": {
+          "face_extension_factor": 0.4,
+          "roll_extension_factor": 0.4
+        },
+        "phase_offset": 0.8555388509992904
+      },
+      "reference_common_values": {
+        "center_distance_m": 0.121,
+        "base_pitch_m": 0.007309474939898491,
+        "face_overlap_m": 0.009000000000000001,
+        "normal_force_n": 286.08535579321034,
+        "pinion.reference_radius_m": 0.07942953064568703,
+        "pinion.base_radius_m": 0.0732903612897443,
+        "pinion.root_form_radius_m": 0.0767701531828554,
+        "pinion.tip_form_radius_m": 0.0815967540267914,
+        "wheel.reference_radius_m": 0.20046500591530536,
+        "wheel.base_radius_m": 0.18497091182649752,
+        "wheel.root_form_radius_m": 0.20283314831571456,
+        "wheel.tip_form_radius_m": 0.1978468136476133
+      },
+      "reference_ltca_metrics": {
+        "mean_normal_approach_m": -7.660293187152715e-06,
+        "te_peak_to_peak_m": 8.79933456860533e-07,
+        "max_endpoint_pressure_pa": 169799460.55502287,
+        "mean_mesh_stiffness_n_per_m": 186151090.8524537
+      },
+      "comparability": {
+        "input_mapping_complete": false,
+        "common_geometry_equivalent": true,
+        "ltca_model_equivalent": false,
+        "extended_tip_contact": true,
+        "comparable_pressure_definition": "N+1端点Hertz峰压",
+        "phase_geometrically_registered": true,
+        "iso_stiffness_and_love_coupling": true,
+        "microgeometry_mapping_complete": true,
+        "given_boundary_mapping_complete": true,
+        "microgeometry_sample_max_error_m": 1.1434944787933055e-20,
+        "notes": [
+          "采用ISO单齿等效刚度与Love条带耦合，Hertz只用于求解后的压力和半宽，不重复计入局部压陷。",
+          "已启用齿顶延伸接触，齿宽和展长候选范围因子均为显式输入。",
+          "本组几何输入采用顶形径作为实体齿顶边界；未生成刀具根部过渡。",
+          "实体根径由根高系数、变位与名义几何一致反算。",
+          "TE和间隙统一为法向量，保留修形与给定边界间隙的绝对零基准。",
+          "螺旋角符号表示所选受载面的展长与齿宽斜率。",
+          "给定节点失准作为小轮等效法向间隙输入，不包含轴与轴承系统的独立计算。",
+          "32个周期位置由普通接触线几何截距配准，未用TE或压力曲线拟合相位。",
+          "双方压力汇总统一采用N+1端点峰值；本项目另保留中心压力。",
+          "MASTA刚度采用0.1%接近量扰动，本项目刚度为当前活动分支的解析切线；边界切换处可能存在差异。",
+          "迭代退出条件及力平衡容差分别登记；数值接近不等于物理试验验证。"
+        ]
+      }
+    },
+    {
+      "case_id": "spur_100_stage_1_external",
+      "label": "直齿100% / 第1级外啮合",
+      "config": {
+        "pair": {
+          "pinion": {
+            "teeth": 18,
+            "normal_module_m": 0.0021808822081159428,
+            "face_width_m": 0.024,
+            "pressure_angle_rad": 0.4242463945771719,
+            "helix_angle_rad": -0.0,
+            "profile_shift": 0.2996951860120936,
+            "internal": false,
+            "tip_diameter_m": 0.04456307954415094,
+            "root_diameter_m": 0.03556307954415094,
+            "root_form_diameter_m": 0.03690477039335323,
+            "tip_form_diameter_m": 0.04456307954415094
+          },
+          "wheel": {
+            "teeth": 77,
+            "normal_module_m": 0.0021808822081159428,
+            "face_width_m": 0.024,
+            "pressure_angle_rad": 0.4242463945771719,
+            "helix_angle_rad": 0.0,
+            "profile_shift": -0.29969518601209943,
+            "internal": false,
+            "tip_diameter_m": 0.1706207302268636,
+            "root_diameter_m": 0.1616207302268636,
+            "root_form_diameter_m": 0.1628527237940545,
+            "tip_form_diameter_m": 0.1706207302268636
+          },
+          "center_distance_m": 0.10359190488550728,
+          "axial_offset_m": 0.0
+        },
+        "torque_n_m": 2.982538854756936,
+        "material_pinion": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "material_wheel": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "modification_pinion": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 8.852954370064101e-07,
+              "lead_crown_m": 5.24379745529192e-07
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                -1.0587911840678754e-22,
+                -3.970466940254533e-22
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                -1.5881867761018131e-22
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "bounds": "extrapolate",
+              "coordinates": [
+                0.09999999999999998,
+                0.30000000000000004,
+                0.5,
+                0.7,
+                0.8999999999999999
+              ],
+              "removal_m": [
+                -6.47389071635031e-07,
+                -3.1805554168538386e-07,
+                9.328038061397099e-09,
+                3.22222006321394e-07,
+                6.338945689376241e-07
+              ]
+            }
+          ]
+        },
+        "modification_wheel": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 0.0,
+              "lead_crown_m": 0.0
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "phases": 32,
+        "strips": 40,
+        "elastic_mode": "iso_love",
+        "local_contact": false,
+        "iso_settings": {
+          "nominal_pinion_torque_n_m": 1.7188733889362495,
+          "application_factor": 1.0,
+          "material_reference_youngs_modulus_pa": 207000000000.0,
+          "dedendum_coeff_pinion": 1.1463250929813085,
+          "dedendum_coeff_wheel": 1.1463250929815008
+        },
+        "extended_contact_settings": {
+          "face_extension_factor": 1.0,
+          "roll_extension_factor": 0.4
+        },
+        "phase_offset": 0.7984530785010104
+      },
+      "reference_common_values": {
+        "center_distance_m": 0.10359190488550728,
+        "base_pitch_m": 0.00624405758347091,
+        "face_overlap_m": 0.024,
+        "normal_force_n": 166.73492320752547,
+        "pinion.reference_radius_m": 0.019627939873043485,
+        "pinion.base_radius_m": 0.017887907328476945,
+        "pinion.root_form_radius_m": 0.018452385196676614,
+        "pinion.tip_form_radius_m": 0.02228153977207547,
+        "wheel.reference_radius_m": 0.0839639650124638,
+        "wheel.base_radius_m": 0.07652049246070693,
+        "wheel.root_form_radius_m": 0.08142636189702725,
+        "wheel.tip_form_radius_m": 0.0853103651134318
+      },
+      "reference_ltca_metrics": {
+        "mean_normal_approach_m": 1.1959533232756853e-06,
+        "te_peak_to_peak_m": 3.0417497665293434e-07,
+        "max_endpoint_pressure_pa": 248829382.2349037,
+        "mean_mesh_stiffness_n_per_m": 197910943.26861924
+      },
+      "comparability": {
+        "input_mapping_complete": false,
+        "common_geometry_equivalent": true,
+        "ltca_model_equivalent": false,
+        "extended_tip_contact": true,
+        "comparable_pressure_definition": "N+1端点Hertz峰压",
+        "phase_geometrically_registered": true,
+        "iso_stiffness_and_love_coupling": true,
+        "microgeometry_mapping_complete": true,
+        "given_boundary_mapping_complete": true,
+        "microgeometry_sample_max_error_m": 1.2705494208814505e-21,
+        "notes": [
+          "采用ISO单齿等效刚度与Love条带耦合，Hertz只用于求解后的压力和半宽，不重复计入局部压陷。",
+          "已启用齿顶延伸接触，齿宽和展长候选范围因子均为显式输入。",
+          "本组几何输入采用顶形径作为实体齿顶边界；未生成刀具根部过渡。",
+          "实体根径由根高系数、变位与名义几何一致反算。",
+          "TE和间隙统一为法向量，保留修形与给定边界间隙的绝对零基准。",
+          "螺旋角符号表示所选受载面的展长与齿宽斜率。",
+          "给定节点失准作为小轮等效法向间隙输入，不包含轴与轴承系统的独立计算。",
+          "32个周期位置由普通接触线几何截距配准，未用TE或压力曲线拟合相位。",
+          "双方压力汇总统一采用N+1端点峰值；本项目另保留中心压力。",
+          "MASTA刚度采用0.1%接近量扰动，本项目刚度为当前活动分支的解析切线；边界切换处可能存在差异。",
+          "迭代退出条件及力平衡容差分别登记；数值接近不等于物理试验验证。"
+        ]
+      }
+    },
+    {
+      "case_id": "spur_100_stage_3_sun_planet",
+      "label": "直齿100% / 第3级日轮—行星轮",
+      "config": {
+        "pair": {
+          "pinion": {
+            "teeth": 33,
+            "normal_module_m": 0.0025215724014503818,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.39574602016673516,
+            "helix_angle_rad": -0.0,
+            "profile_shift": 0.11790315800814609,
+            "internal": false,
+            "tip_diameter_m": 0.08880643232559536,
+            "root_diameter_m": 0.07755649194641726,
+            "root_form_diameter_m": 0.07929708281598194,
+            "tip_form_diameter_m": 0.08880643232559536
+          },
+          "wheel": {
+            "teeth": 63,
+            "normal_module_m": 0.0025215724014503818,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.39574602016673516,
+            "helix_angle_rad": 0.0,
+            "profile_shift": -0.1319600453642133,
+            "internal": false,
+            "tip_diameter_m": 0.1631935080535828,
+            "root_diameter_m": 0.15194356767440464,
+            "root_form_diameter_m": 0.15354318978354756,
+            "tip_form_diameter_m": 0.1631935080535828
+          },
+          "center_distance_m": 0.121,
+          "axial_offset_m": 0.0
+        },
+        "torque_n_m": 10.691567274138528,
+        "material_pinion": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "material_wheel": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "modification_pinion": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 0.0,
+              "lead_crown_m": 0.0
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "bounds": "extrapolate",
+              "coordinates": [
+                0.10000000000000092,
+                0.3000000000000005,
+                0.5,
+                0.6999999999999995,
+                0.899999999999999
+              ],
+              "removal_m": [
+                1.0730138011193979e-08,
+                7.22413620560031e-09,
+                2.4491305894818786e-09,
+                -5.561167249682287e-09,
+                -1.4842237556593033e-08
+              ]
+            }
+          ]
+        },
+        "modification_wheel": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 1.438502800439611e-06,
+              "lead_crown_m": 2.3390257164120617e-06
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                2.1042877405331234e-05,
+                2.104287740533123e-05
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                -2.1042877405331237e-05
+              ]
+            }
+          ]
+        },
+        "phases": 32,
+        "strips": 40,
+        "elastic_mode": "iso_love",
+        "local_contact": false,
+        "iso_settings": {
+          "nominal_pinion_torque_n_m": 10.501598700969211,
+          "application_factor": 1.0,
+          "material_reference_youngs_modulus_pa": 207000000000.0,
+          "dedendum_coeff_pinion": 1.2393060767172068,
+          "dedendum_coeff_wheel": 1.2393060767173292
+        },
+        "extended_contact_settings": {
+          "face_extension_factor": 1.0,
+          "roll_extension_factor": 0.4
+        },
+        "phase_offset": 0.7428218076015124
+      },
+      "reference_common_values": {
+        "center_distance_m": 0.121,
+        "base_pitch_m": 0.0073094749398984905,
+        "face_overlap_m": 0.009000000000000001,
+        "normal_force_n": 278.4973839370051,
+        "pinion.reference_radius_m": 0.0416059446239313,
+        "pinion.base_radius_m": 0.03839018924700892,
+        "pinion.root_form_radius_m": 0.03964854140799097,
+        "pinion.tip_form_radius_m": 0.04440321616279768,
+        "wheel.reference_radius_m": 0.07942953064568703,
+        "wheel.base_radius_m": 0.0732903612897443,
+        "wheel.root_form_radius_m": 0.07677159489177378,
+        "wheel.tip_form_radius_m": 0.0815967540267914
+      },
+      "reference_ltca_metrics": {
+        "mean_normal_approach_m": 1.0262271462018833e-05,
+        "te_peak_to_peak_m": 2.6105469936070833e-06,
+        "max_endpoint_pressure_pa": 598063394.0858622,
+        "mean_mesh_stiffness_n_per_m": 71891930.8886992
+      },
+      "comparability": {
+        "input_mapping_complete": false,
+        "common_geometry_equivalent": true,
+        "ltca_model_equivalent": false,
+        "extended_tip_contact": true,
+        "comparable_pressure_definition": "N+1端点Hertz峰压",
+        "phase_geometrically_registered": true,
+        "iso_stiffness_and_love_coupling": true,
+        "microgeometry_mapping_complete": true,
+        "given_boundary_mapping_complete": true,
+        "microgeometry_sample_max_error_m": 1.4399560103323106e-20,
+        "notes": [
+          "采用ISO单齿等效刚度与Love条带耦合，Hertz只用于求解后的压力和半宽，不重复计入局部压陷。",
+          "已启用齿顶延伸接触，齿宽和展长候选范围因子均为显式输入。",
+          "本组几何输入采用顶形径作为实体齿顶边界；未生成刀具根部过渡。",
+          "实体根径由根高系数、变位与名义几何一致反算。",
+          "TE和间隙统一为法向量，保留修形与给定边界间隙的绝对零基准。",
+          "螺旋角符号表示所选受载面的展长与齿宽斜率。",
+          "给定节点失准作为小轮等效法向间隙输入，不包含轴与轴承系统的独立计算。",
+          "32个周期位置由普通接触线几何截距配准，未用TE或压力曲线拟合相位。",
+          "双方压力汇总统一采用N+1端点峰值；本项目另保留中心压力。",
+          "MASTA刚度采用0.1%接近量扰动，本项目刚度为当前活动分支的解析切线；边界切换处可能存在差异。",
+          "迭代退出条件及力平衡容差分别登记；数值接近不等于物理试验验证。"
+        ]
+      }
+    },
+    {
+      "case_id": "spur_100_stage_3_internal",
+      "label": "直齿100% / 第3级内啮合",
+      "config": {
+        "pair": {
+          "pinion": {
+            "teeth": 63,
+            "normal_module_m": 0.0025215724014503818,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.39574602016673516,
+            "helix_angle_rad": -0.0,
+            "profile_shift": -0.1319600453642133,
+            "internal": false,
+            "tip_diameter_m": 0.1631935080535828,
+            "root_diameter_m": 0.15194356767440464,
+            "root_form_diameter_m": 0.15354318978354756,
+            "tip_form_diameter_m": 0.1631935080535828
+          },
+          "wheel": {
+            "teeth": 159,
+            "normal_module_m": 0.0025215724014503818,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.39574602016673516,
+            "helix_angle_rad": -0.0,
+            "profile_shift": 0.14601693272028052,
+            "internal": true,
+            "tip_diameter_m": 0.3956936272952266,
+            "root_diameter_m": 0.4064436272952266,
+            "root_form_diameter_m": 0.40566232221977033,
+            "tip_form_diameter_m": 0.3956936272952266
+          },
+          "center_distance_m": 0.121,
+          "axial_offset_m": 0.0
+        },
+        "torque_n_m": 20.818883100448048,
+        "material_pinion": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "material_wheel": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "modification_pinion": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 1.4385028004396241e-06,
+              "lead_crown_m": 2.3390257164120668e-06
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                -2.104287740533123e-05,
+                -2.104287740533123e-05
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                2.1042877405331224e-05
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "bounds": "extrapolate",
+              "coordinates": [
+                0.10000000000000092,
+                0.3000000000000005,
+                0.5,
+                0.6999999999999995,
+                0.899999999999999
+              ],
+              "removal_m": [
+                -1.1166678144633026e-08,
+                -5.557152472306415e-09,
+                -5.595975757125384e-11,
+                5.610216910319224e-09,
+                1.1169573464189778e-08
+              ]
+            }
+          ]
+        },
+        "modification_wheel": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 0.0,
+              "lead_crown_m": 0.0
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "phases": 32,
+        "strips": 40,
+        "elastic_mode": "iso_love",
+        "local_contact": false,
+        "iso_settings": {
+          "nominal_pinion_torque_n_m": 20.04850709293163,
+          "application_factor": 1.0,
+          "material_reference_youngs_modulus_pa": 207000000000.0,
+          "dedendum_coeff_pinion": 1.2393060767173292,
+          "dedendum_coeff_wheel": 1.2393060767171968
+        },
+        "extended_contact_settings": {
+          "face_extension_factor": 1.0,
+          "roll_extension_factor": 0.4
+        },
+        "phase_offset": 0.9303234887079123
+      },
+      "reference_common_values": {
+        "center_distance_m": 0.121,
+        "base_pitch_m": 0.0073094749398984905,
+        "face_overlap_m": 0.009000000000000001,
+        "normal_force_n": 284.0603148092539,
+        "pinion.reference_radius_m": 0.07942953064568703,
+        "pinion.base_radius_m": 0.0732903612897443,
+        "pinion.root_form_radius_m": 0.07677159489177378,
+        "pinion.tip_form_radius_m": 0.0815967540267914,
+        "wheel.reference_radius_m": 0.20046500591530536,
+        "wheel.base_radius_m": 0.18497091182649752,
+        "wheel.root_form_radius_m": 0.20283116110988517,
+        "wheel.tip_form_radius_m": 0.1978468136476133
+      },
+      "reference_ltca_metrics": {
+        "mean_normal_approach_m": -1.1639908619113781e-05,
+        "te_peak_to_peak_m": 7.104238406572528e-07,
+        "max_endpoint_pressure_pa": 263785418.133229,
+        "mean_mesh_stiffness_n_per_m": 83977748.11672164
+      },
+      "comparability": {
+        "input_mapping_complete": false,
+        "common_geometry_equivalent": true,
+        "ltca_model_equivalent": false,
+        "extended_tip_contact": true,
+        "comparable_pressure_definition": "N+1端点Hertz峰压",
+        "phase_geometrically_registered": true,
+        "iso_stiffness_and_love_coupling": true,
+        "microgeometry_mapping_complete": true,
+        "given_boundary_mapping_complete": true,
+        "microgeometry_sample_max_error_m": 6.776263578034403e-21,
+        "notes": [
+          "采用ISO单齿等效刚度与Love条带耦合，Hertz只用于求解后的压力和半宽，不重复计入局部压陷。",
+          "已启用齿顶延伸接触，齿宽和展长候选范围因子均为显式输入。",
+          "本组几何输入采用顶形径作为实体齿顶边界；未生成刀具根部过渡。",
+          "实体根径由根高系数、变位与名义几何一致反算。",
+          "TE和间隙统一为法向量，保留修形与给定边界间隙的绝对零基准。",
+          "螺旋角符号表示所选受载面的展长与齿宽斜率。",
+          "给定节点失准作为小轮等效法向间隙输入，不包含轴与轴承系统的独立计算。",
+          "32个周期位置由普通接触线几何截距配准，未用TE或压力曲线拟合相位。",
+          "双方压力汇总统一采用N+1端点峰值；本项目另保留中心压力。",
+          "MASTA刚度采用0.1%接近量扰动，本项目刚度为当前活动分支的解析切线；边界切换处可能存在差异。",
+          "迭代退出条件及力平衡容差分别登记；数值接近不等于物理试验验证。"
+        ]
+      }
+    },
+    {
+      "case_id": "helical_120_stage_1_external",
+      "label": "斜齿120% / 第1级外啮合",
+      "config": {
+        "pair": {
+          "pinion": {
+            "teeth": 18,
+            "normal_module_m": 0.002,
+            "face_width_m": 0.024,
+            "pressure_angle_rad": 0.392699081698724,
+            "helix_angle_rad": -0.41015237421866746,
+            "profile_shift": 0.32679994951588004,
+            "internal": false,
+            "tip_diameter_m": 0.04456307954415094,
+            "root_diameter_m": 0.03556307954415094,
+            "root_form_diameter_m": 0.036887473786745395,
+            "tip_form_diameter_m": 0.04456307954415094
+          },
+          "wheel": {
+            "teeth": 77,
+            "normal_module_m": 0.002,
+            "face_width_m": 0.024,
+            "pressure_angle_rad": 0.392699081698724,
+            "helix_angle_rad": 0.41015237421866746,
+            "profile_shift": -0.3267999495158864,
+            "internal": false,
+            "tip_diameter_m": 0.1706207302268636,
+            "root_diameter_m": 0.1616207302268636,
+            "root_form_diameter_m": 0.1628285581981177,
+            "tip_form_diameter_m": 0.1706207302268636
+          },
+          "center_distance_m": 0.10359190488550728,
+          "axial_offset_m": 0.0
+        },
+        "torque_n_m": 2.8997788656376167,
+        "material_pinion": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "material_wheel": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "modification_pinion": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 8.230316576566792e-07,
+              "lead_crown_m": 4.874995545711296e-07
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                -1.5881867761018131e-22,
+                -3.970466940254533e-22
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                -1.5881867761018131e-22
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "bounds": "extrapolate",
+              "coordinates": [
+                0.09999999999999998,
+                0.30000000000000004,
+                0.5,
+                0.7,
+                0.8999999999999999
+              ],
+              "removal_m": [
+                4.62908328114651e-08,
+                2.9611434704534737e-08,
+                1.138366848540192e-08,
+                -2.475490701443915e-08,
+                -6.25310289869626e-08
+              ]
+            }
+          ]
+        },
+        "modification_wheel": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 0.0,
+              "lead_crown_m": 0.0
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "phases": 32,
+        "strips": 40,
+        "elastic_mode": "iso_love",
+        "local_contact": false,
+        "iso_settings": {
+          "nominal_pinion_torque_n_m": 2.062648075638258,
+          "application_factor": 1.0,
+          "material_reference_youngs_modulus_pa": 207000000000.0,
+          "dedendum_coeff_pinion": 1.2499999999998883,
+          "dedendum_coeff_wheel": 1.2500000000001108
+        },
+        "extended_contact_settings": {
+          "face_extension_factor": 0.14073562622070318,
+          "roll_extension_factor": 0.4
+        },
+        "phase_offset": 0.03693145477593697
+      },
+      "reference_common_values": {
+        "center_distance_m": 0.10359190488550728,
+        "base_pitch_m": 0.0062440575834709095,
+        "face_overlap_m": 0.024,
+        "normal_force_n": 174.3721125966056,
+        "pinion.reference_radius_m": 0.019627939873043485,
+        "pinion.base_radius_m": 0.017887907328476945,
+        "pinion.root_form_radius_m": 0.018443736893372698,
+        "pinion.tip_form_radius_m": 0.02228153977207547,
+        "wheel.reference_radius_m": 0.0839639650124638,
+        "wheel.base_radius_m": 0.07652049246070693,
+        "wheel.root_form_radius_m": 0.08141427909905885,
+        "wheel.tip_form_radius_m": 0.0853103651134318
+      },
+      "reference_ltca_metrics": {
+        "mean_normal_approach_m": 1.1709127710238342e-06,
+        "te_peak_to_peak_m": 2.42709533177461e-08,
+        "max_endpoint_pressure_pa": 196276814.74854717,
+        "mean_mesh_stiffness_n_per_m": 232677781.0843839
+      },
+      "comparability": {
+        "input_mapping_complete": false,
+        "common_geometry_equivalent": true,
+        "ltca_model_equivalent": false,
+        "extended_tip_contact": true,
+        "comparable_pressure_definition": "N+1端点Hertz峰压",
+        "phase_geometrically_registered": true,
+        "iso_stiffness_and_love_coupling": true,
+        "microgeometry_mapping_complete": true,
+        "given_boundary_mapping_complete": true,
+        "microgeometry_sample_max_error_m": 1.0587911840678754e-21,
+        "notes": [
+          "采用ISO单齿等效刚度与Love条带耦合，Hertz只用于求解后的压力和半宽，不重复计入局部压陷。",
+          "已启用齿顶延伸接触，齿宽和展长候选范围因子均为显式输入。",
+          "本组几何输入采用顶形径作为实体齿顶边界；未生成刀具根部过渡。",
+          "实体根径由根高系数、变位与名义几何一致反算。",
+          "TE和间隙统一为法向量，保留修形与给定边界间隙的绝对零基准。",
+          "螺旋角符号表示所选受载面的展长与齿宽斜率。",
+          "给定节点失准作为小轮等效法向间隙输入，不包含轴与轴承系统的独立计算。",
+          "32个周期位置由普通接触线几何截距配准，未用TE或压力曲线拟合相位。",
+          "双方压力汇总统一采用N+1端点峰值；本项目另保留中心压力。",
+          "MASTA刚度采用0.1%接近量扰动，本项目刚度为当前活动分支的解析切线；边界切换处可能存在差异。",
+          "迭代退出条件及力平衡容差分别登记；数值接近不等于物理试验验证。"
+        ]
+      }
+    },
+    {
+      "case_id": "helical_120_stage_3_sun_planet",
+      "label": "斜齿120% / 第3级日轮—行星轮",
+      "config": {
+        "pair": {
+          "pinion": {
+            "teeth": 33,
+            "normal_module_m": 0.0025,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.3926990816987243,
+            "helix_angle_rad": -0.1308996938995747,
+            "profile_shift": 0.11892053971087524,
+            "internal": false,
+            "tip_diameter_m": 0.08880643232559536,
+            "root_diameter_m": 0.07755649194641726,
+            "root_form_diameter_m": 0.07929466246879341,
+            "tip_form_diameter_m": 0.08880643232559536
+          },
+          "wheel": {
+            "teeth": 63,
+            "normal_module_m": 0.0025,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.3926990816987243,
+            "helix_angle_rad": 0.1308996938995747,
+            "profile_shift": -0.1330987233938176,
+            "internal": false,
+            "tip_diameter_m": 0.1631935080535828,
+            "root_diameter_m": 0.15194356767440464,
+            "root_form_diameter_m": 0.1535403063657108,
+            "tip_form_diameter_m": 0.1631935080535828
+          },
+          "center_distance_m": 0.121,
+          "axial_offset_m": 0.0
+        },
+        "torque_n_m": 12.797902006745776,
+        "material_pinion": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "material_wheel": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "modification_pinion": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 0.0,
+              "lead_crown_m": 0.0
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "bounds": "extrapolate",
+              "coordinates": [
+                0.10000000000000092,
+                0.3000000000000005,
+                0.5,
+                0.6999999999999995,
+                0.899999999999999
+              ],
+              "removal_m": [
+                -8.448559754021615e-06,
+                -4.221052967522869e-06,
+                2.3873893294861203e-09,
+                4.223181332793857e-06,
+                8.444043999421144e-06
+              ]
+            }
+          ]
+        },
+        "modification_wheel": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 1.4280050967502584e-06,
+              "lead_crown_m": 2.3219563030712198e-06
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                2.088931365022076e-05,
+                2.0889313650220758e-05
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                -2.0889313650220758e-05
+              ]
+            }
+          ]
+        },
+        "phases": 32,
+        "strips": 40,
+        "elastic_mode": "iso_love",
+        "local_contact": false,
+        "iso_settings": {
+          "nominal_pinion_torque_n_m": 12.602685795201635,
+          "application_factor": 1.0,
+          "material_reference_youngs_modulus_pa": 207000000000.0,
+          "dedendum_coeff_pinion": 1.2499999999999447,
+          "dedendum_coeff_wheel": 1.2500000000000653
+        },
+        "extended_contact_settings": {
+          "face_extension_factor": 0.4,
+          "roll_extension_factor": 0.4
+        },
+        "phase_offset": 0.6680371698928906
+      },
+      "reference_common_values": {
+        "center_distance_m": 0.121,
+        "base_pitch_m": 0.007309474939898491,
+        "face_overlap_m": 0.009000000000000001,
+        "normal_force_n": 335.81452878080023,
+        "pinion.reference_radius_m": 0.0416059446239313,
+        "pinion.base_radius_m": 0.03839018924700892,
+        "pinion.root_form_radius_m": 0.039647331234396704,
+        "pinion.tip_form_radius_m": 0.04440321616279768,
+        "wheel.reference_radius_m": 0.07942953064568703,
+        "wheel.base_radius_m": 0.0732903612897443,
+        "wheel.root_form_radius_m": 0.0767701531828554,
+        "wheel.tip_form_radius_m": 0.0815967540267914
+      },
+      "reference_ltca_metrics": {
+        "mean_normal_approach_m": 1.3762609531706243e-05,
+        "te_peak_to_peak_m": 1.2663006377996513e-06,
+        "max_endpoint_pressure_pa": 389942367.4241243,
+        "mean_mesh_stiffness_n_per_m": 169032086.67417562
+      },
+      "comparability": {
+        "input_mapping_complete": false,
+        "common_geometry_equivalent": true,
+        "ltca_model_equivalent": false,
+        "extended_tip_contact": true,
+        "comparable_pressure_definition": "N+1端点Hertz峰压",
+        "phase_geometrically_registered": true,
+        "iso_stiffness_and_love_coupling": true,
+        "microgeometry_mapping_complete": true,
+        "given_boundary_mapping_complete": true,
+        "microgeometry_sample_max_error_m": 1.6940658945086007e-20,
+        "notes": [
+          "采用ISO单齿等效刚度与Love条带耦合，Hertz只用于求解后的压力和半宽，不重复计入局部压陷。",
+          "已启用齿顶延伸接触，齿宽和展长候选范围因子均为显式输入。",
+          "本组几何输入采用顶形径作为实体齿顶边界；未生成刀具根部过渡。",
+          "实体根径由根高系数、变位与名义几何一致反算。",
+          "TE和间隙统一为法向量，保留修形与给定边界间隙的绝对零基准。",
+          "螺旋角符号表示所选受载面的展长与齿宽斜率。",
+          "给定节点失准作为小轮等效法向间隙输入，不包含轴与轴承系统的独立计算。",
+          "32个周期位置由普通接触线几何截距配准，未用TE或压力曲线拟合相位。",
+          "双方压力汇总统一采用N+1端点峰值；本项目另保留中心压力。",
+          "MASTA刚度采用0.1%接近量扰动，本项目刚度为当前活动分支的解析切线；边界切换处可能存在差异。",
+          "迭代退出条件及力平衡容差分别登记；数值接近不等于物理试验验证。"
+        ]
+      }
+    },
+    {
+      "case_id": "helical_120_stage_3_internal",
+      "label": "斜齿120% / 第3级内啮合",
+      "config": {
+        "pair": {
+          "pinion": {
+            "teeth": 63,
+            "normal_module_m": 0.0025,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.3926990816987243,
+            "helix_angle_rad": -0.1308996938995747,
+            "profile_shift": -0.1330987233938176,
+            "internal": false,
+            "tip_diameter_m": 0.1631935080535828,
+            "root_diameter_m": 0.15194356767440464,
+            "root_form_diameter_m": 0.1535403063657108,
+            "tip_form_diameter_m": 0.1631935080535828
+          },
+          "wheel": {
+            "teeth": 159,
+            "normal_module_m": 0.0025,
+            "face_width_m": 0.009000000000000001,
+            "pressure_angle_rad": 0.3926990816987243,
+            "helix_angle_rad": -0.1308996938995747,
+            "profile_shift": 0.14727690707675994,
+            "internal": true,
+            "tip_diameter_m": 0.3956936272952266,
+            "root_diameter_m": 0.4064436272952266,
+            "root_form_diameter_m": 0.4056662966314291,
+            "tip_form_diameter_m": 0.3956936272952266
+          },
+          "center_distance_m": 0.121,
+          "axial_offset_m": 0.0
+        },
+        "torque_n_m": 24.848880235989736,
+        "material_pinion": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "material_wheel": {
+          "youngs_modulus_pa": 207000000000,
+          "poisson_ratio": 0.3
+        },
+        "modification_pinion": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 1.4280050967502764e-06,
+              "lead_crown_m": 2.3219563030712274e-06
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                -2.088931365022076e-05,
+                -2.0889313650220758e-05
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                2.088931365022076e-05
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "bounds": "extrapolate",
+              "coordinates": [
+                0.10000000000000092,
+                0.3000000000000005,
+                0.5,
+                0.6999999999999995,
+                0.899999999999999
+              ],
+              "removal_m": [
+                8.592813935663006e-06,
+                4.29624147276104e-06,
+                -1.3990268636743956e-10,
+                -4.2961387866036915e-06,
+                -8.592776719133987e-06
+              ]
+            }
+          ]
+        },
+        "modification_wheel": {
+          "kind": "composite",
+          "components": [
+            {
+              "kind": "parameters",
+              "profile_crown_m": 0.0,
+              "lead_crown_m": 0.0
+            },
+            {
+              "kind": "curve",
+              "axis": "profile",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "curve",
+              "axis": "lead",
+              "coordinates": [
+                0.0,
+                1.0
+              ],
+              "removal_m": [
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "phases": 32,
+        "strips": 40,
+        "elastic_mode": "iso_love",
+        "local_contact": false,
+        "iso_settings": {
+          "nominal_pinion_torque_n_m": 24.059673624582697,
+          "application_factor": 1.0,
+          "material_reference_youngs_modulus_pa": 207000000000.0,
+          "dedendum_coeff_pinion": 1.2500000000000653,
+          "dedendum_coeff_wheel": 1.2499999999999345
+        },
+        "extended_contact_settings": {
+          "face_extension_factor": 0.4,
+          "roll_extension_factor": 0.4
+        },
+        "phase_offset": 0.8555388509992904
+      },
+      "reference_common_values": {
+        "center_distance_m": 0.121,
+        "base_pitch_m": 0.007309474939898491,
+        "face_overlap_m": 0.009000000000000001,
+        "normal_force_n": 341.5394813134618,
+        "pinion.reference_radius_m": 0.07942953064568703,
+        "pinion.base_radius_m": 0.0732903612897443,
+        "pinion.root_form_radius_m": 0.0767701531828554,
+        "pinion.tip_form_radius_m": 0.0815967540267914,
+        "wheel.reference_radius_m": 0.20046500591530536,
+        "wheel.base_radius_m": 0.18497091182649752,
+        "wheel.root_form_radius_m": 0.20283314831571456,
+        "wheel.tip_form_radius_m": 0.1978468136476133
+      },
+      "reference_ltca_metrics": {
+        "mean_normal_approach_m": -7.445342088374716e-06,
+        "te_peak_to_peak_m": 9.536924001478482e-07,
+        "max_endpoint_pressure_pa": 180596907.67110398,
+        "mean_mesh_stiffness_n_per_m": 199545185.23823684
+      },
+      "comparability": {
+        "input_mapping_complete": false,
+        "common_geometry_equivalent": true,
+        "ltca_model_equivalent": false,
+        "extended_tip_contact": true,
+        "comparable_pressure_definition": "N+1端点Hertz峰压",
+        "phase_geometrically_registered": true,
+        "iso_stiffness_and_love_coupling": true,
+        "microgeometry_mapping_complete": true,
+        "given_boundary_mapping_complete": true,
+        "microgeometry_sample_max_error_m": 1.1434944787933055e-20,
+        "notes": [
+          "采用ISO单齿等效刚度与Love条带耦合，Hertz只用于求解后的压力和半宽，不重复计入局部压陷。",
+          "已启用齿顶延伸接触，齿宽和展长候选范围因子均为显式输入。",
+          "本组几何输入采用顶形径作为实体齿顶边界；未生成刀具根部过渡。",
+          "实体根径由根高系数、变位与名义几何一致反算。",
+          "TE和间隙统一为法向量，保留修形与给定边界间隙的绝对零基准。",
+          "螺旋角符号表示所选受载面的展长与齿宽斜率。",
+          "给定节点失准作为小轮等效法向间隙输入，不包含轴与轴承系统的独立计算。",
+          "32个周期位置由普通接触线几何截距配准，未用TE或压力曲线拟合相位。",
+          "双方压力汇总统一采用N+1端点峰值；本项目另保留中心压力。",
+          "MASTA刚度采用0.1%接近量扰动，本项目刚度为当前活动分支的解析切线；边界切换处可能存在差异。",
+          "迭代退出条件及力平衡容差分别登记；数值接近不等于物理试验验证。"
+        ]
+      }
+    }
+  ]
+}
