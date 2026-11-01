@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cylindrical-gear-ltca"
-version = "0.1.0"
+version = "0.2.0"
 description = "渐开线圆柱齿轮半解析准静态承载齿面接触分析（LTCA）"
 readme = "README.md"
 requires-python = ">=3.10"

@@ -1,0 +1,119 @@
+{
+  "schema": "gear_kernel_sync_acceptance_v1",
+  "date": "2026-11-01",
+  "source_repository": "https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA",
+  "source_commit": "c63030dc4314a67ba282a3899f7ec8a5f6950fe1",
+  "identity": {
+    "kernel_files": {
+      "__init__.py": "a6bf5d04d1fb112226e446bfd293b6b05811489ca813e98e2af54674fc067bc3",
+      "__main__.py": "d7edbd907ef0f1795469903dbd22078d47e204da2a2bf59d9c416d5860882b74",
+      "analysis.py": "d096c5d46fe461da91e783a849e6bf5fe63d55b2cb1f956e76b9ca9417c8d2fc",
+      "config.py": "850f4ca8b125bb986706d18a4c0159eb9e6dbbff3bf3bf3416516b977fe5c946",
+      "contact_pressure.py": "de5b10add5d9784f6f0e6c87d3aab0f33dc02899ac3d7430ba2acadc63cb1bc7",
+      "design.py": "24a73a80f8852d619c2ee7f0c5e7fc59402331491bf49d22d014d6be004593a0",
+      "elasticity.py": "4a3f5ef03b3f51779f3b3daadd386777313e1d710b17e3d813a2f31d1efe2d4c",
+      "extended_contact.py": "a07dda04acba2583ab949aaef19ccb30ee52551367f555cfc3f3da4deb213898",
+      "geometry.py": "c2a543660a675c0fd56137fcd77e3f9b2944ededcbc787fe8319f11927251e76",
+      "hertz.py": "42d176167c94ddccb75e0c12feb1ac4fe7146638ad68c4acf29b350bd6c36aef",
+      "io.py": "a2e89171846d6ffa9a18c4334887ac231b5919065f636778e7d2dc5f4fc9e271",
+      "iso_contact.py": "431b8ce1e7c685070fa710bd6f4e8d1015767238e6504d890a250f7e720a94fb",
+      "plotting.py": "6bd22bb334676cc7cff721695aabf8814168b64b477c5eefa58b2c476166c416",
+      "solver.py": "98437bd348e0f37e20072f5c391654d8a337af69c1dc12be19071501db54399c",
+      "strength.py": "28e9a6cd9b4de68d99edd90d1a4e003085d0e0bb24b89d7cbf1ff982a131993a",
+      "surfaces.py": "1f0a582d451f0d4a6c57e0e9b0fae416af92ddaf678b226a489a0c6d9df5b05a"
+    },
+    "snapshot_sha256": "9eb36a1b22d7cedcfee615e819d616fe066e50e444a2206556a396e03756a7ec",
+    "workflow_files": {
+      "__init__.py": "70df9f851f5a398a627a4bd35a38e8866757010241511047e6a2a6edc6852666",
+      "__main__.py": "3d94b262e9c4bb1fbd10bddd7d2b831e960ee10e9a8d195d304afb3d48279d6b",
+      "cli.py": "9c7c0c09068d30ab2ed0b686b3403acd6665e9be717355d885a59f9632c498ff",
+      "protocol.py": "a181058c832162adecb580e46b7a00f303b836a78d2ca56671acf18dd84e69b1",
+      "workflow.py": "2b2d115c71fe9d13201ccebf864b82bf81d69431d92f1b8f351bfc5d16e46682"
+    },
+    "versions": {
+      "workflow": "0.2.0",
+      "kernel": "0.2.0",
+      "python": "3.10.11",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1"
+    }
+  },
+  "cases": [
+    {
+      "name": "single",
+      "solves": 1,
+      "source_arrays_identical": 22,
+      "replay_arrays_passed": 22,
+      "replay_passed": true,
+      "plots": true
+    },
+    {
+      "name": "study",
+      "solves": 9,
+      "source_arrays_identical": 198,
+      "replay_arrays_passed": 198,
+      "replay_passed": true,
+      "plots": false
+    },
+    {
+      "name": "iso_zero",
+      "solves": 1,
+      "source_arrays_identical": 22,
+      "replay_arrays_passed": 22,
+      "replay_passed": true,
+      "plots": false
+    },
+    {
+      "name": "iso_extended",
+      "solves": 1,
+      "source_arrays_identical": 42,
+      "replay_arrays_passed": 42,
+      "replay_passed": true,
+      "plots": false
+    }
+  ],
+  "scope": "当前来源与集成快照的行为一致性和独立复算；不新增物理精度或原厂组件对标结论",
+  "library_version": "0.2.0",
+  "kernel_version": "0.2.0",
+  "source_file_count": 21,
+  "source_files_identical": true,
+  "source_worktree_clean": true,
+  "source_file_hashes": {
+    "LICENSE": "79735a75d0274d2a5dcc240d11a0f81e34cfc3533939b7fce8e84e35a150a238",
+    "constraints.txt": "ef54f6e6e8cd0dbf90afd08a3b75bcb98cb794811e8fcba9298ef3a3b740a0bc",
+    "docs/api.md": "bade85c77c891f54d476d8866e0f2ce224a1de31164a828d8907c81d01e95582",
+    "docs/model.md": "f688da85cfff678fe70bc7787e8e86ab1fcb76a341993e752fa237e75d6aeabe",
+    "gear_contact/__init__.py": "a6bf5d04d1fb112226e446bfd293b6b05811489ca813e98e2af54674fc067bc3",
+    "gear_contact/__main__.py": "d7edbd907ef0f1795469903dbd22078d47e204da2a2bf59d9c416d5860882b74",
+    "gear_contact/analysis.py": "d096c5d46fe461da91e783a849e6bf5fe63d55b2cb1f956e76b9ca9417c8d2fc",
+    "gear_contact/config.py": "850f4ca8b125bb986706d18a4c0159eb9e6dbbff3bf3bf3416516b977fe5c946",
+    "gear_contact/contact_pressure.py": "de5b10add5d9784f6f0e6c87d3aab0f33dc02899ac3d7430ba2acadc63cb1bc7",
+    "gear_contact/design.py": "24a73a80f8852d619c2ee7f0c5e7fc59402331491bf49d22d014d6be004593a0",
+    "gear_contact/elasticity.py": "4a3f5ef03b3f51779f3b3daadd386777313e1d710b17e3d813a2f31d1efe2d4c",
+    "gear_contact/extended_contact.py": "a07dda04acba2583ab949aaef19ccb30ee52551367f555cfc3f3da4deb213898",
+    "gear_contact/geometry.py": "c2a543660a675c0fd56137fcd77e3f9b2944ededcbc787fe8319f11927251e76",
+    "gear_contact/hertz.py": "42d176167c94ddccb75e0c12feb1ac4fe7146638ad68c4acf29b350bd6c36aef",
+    "gear_contact/io.py": "a2e89171846d6ffa9a18c4334887ac231b5919065f636778e7d2dc5f4fc9e271",
+    "gear_contact/iso_contact.py": "431b8ce1e7c685070fa710bd6f4e8d1015767238e6504d890a250f7e720a94fb",
+    "gear_contact/plotting.py": "6bd22bb334676cc7cff721695aabf8814168b64b477c5eefa58b2c476166c416",
+    "gear_contact/solver.py": "98437bd348e0f37e20072f5c391654d8a337af69c1dc12be19071501db54399c",
+    "gear_contact/strength.py": "28e9a6cd9b4de68d99edd90d1a4e003085d0e0bb24b89d7cbf1ff982a131993a",
+    "gear_contact/surfaces.py": "1f0a582d451f0d4a6c57e0e9b0fae416af92ddaf678b226a489a0c6d9df5b05a",
+    "pyproject.toml": "bc18b8175cff86aa4c4a149fa136ef5340e60e47c5ecac25664a43420d6a392e"
+  },
+  "automated_checks": {
+    "workflow": 16,
+    "installer": 9,
+    "total_passed": 25
+  },
+  "installation": {
+    "isolated_skill_sync": "passed",
+    "runtime_identity_check": "passed"
+  },
+  "maximum_replay_absolute_difference": 0.0,
+  "source_comparison_method": "每个Skill工况保存input.json；另一Python进程从独立圆柱齿轮项目导入analyze_config重新求解、导出，逐项核对汇总量和全部NPZ数组。",
+  "regression_cases": {
+    "iso_zero": "tests/test_workflow.py:test_zero_load_internal_iso_keeps_unloaded_curvature_out_of_pressure",
+    "iso_extended": "tests/test_workflow.py:test_extended_contact_csv_preserves_flags_and_endpoint_layout"
+  }
+}

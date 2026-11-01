@@ -1,9 +1,9 @@
 ---
 name: cylindrical-gear-analysis
 description: 调用保留的独立计算内核，分析圆柱齿轮单副的修形、给定失准、承载传递误差TE、法向啮合刚度和Hertz压力，比较给定候选与工况并保存可复算结果。适用于直齿或斜齿、内或外啮合的LTCA计算与修形方案比较。锥齿轮、整套轴承箱体系统、标准强度或疲劳寿命不能由本Skill直接给出。
-license: MIT
+license: AGPL-3.0-only
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # 圆柱齿轮承载接触分析

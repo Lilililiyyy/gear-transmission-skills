@@ -41,6 +41,8 @@ Skill 可先通过显式请求验证，再补充自动触发、缺失信息追�
 
 算法变更先在独立工程完成，再显式更新集成快照、对应记录和验收。保留原公式、数据布局、单位、符号与分支。原工程继续更新时，本库不会自动替换已验收快照，也不在两个位置同时修改算法。
 
+当前集成内核为 `0.2.0`，来源为干净工作树提交 `c63030dc4314a67ba282a3899f7ec8a5f6950fe1`。本次按原字节同步 21 个文件，更新函数映射，并增加 ISO 零载荷内啮合及延伸接触 CSV 回归检查；验收见 [0.2.0 同步记录](../evaluations/kernel-sync-0.2.0.json)。历史验收保持原版本和身份，不用新版本结果改写旧记录。
+
 集成说明见 [内核快照 README](../packages/cylindrical-gear-ltca/README.md)。模型与完整接口优先查阅独立项目；随快照保留的 [模型说明](../packages/cylindrical-gear-ltca/docs/model.md) 和 [接口说明](../packages/cylindrical-gear-ltca/docs/api.md) 对应当前集成版本。
 
 ## 本地检查

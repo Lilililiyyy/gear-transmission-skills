@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gear-transmission-skills"
-version = "0.1.0"
+version = "0.2.0"
 description = "齿轮传动设计 Skill 库：保留独立计算内核与可复算工程流程"
 readme = "README.md"
 requires-python = ">=3.10"

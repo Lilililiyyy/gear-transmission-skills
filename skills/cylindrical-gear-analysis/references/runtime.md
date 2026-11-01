@@ -2,6 +2,8 @@
 
 本Skill需要可执行本地Python的宿主，以及完整 `gear-transmission-skills` 项目提供的两个包：新写 `gear_transmission` 与保留内核 `gear_contact`。Skill文本本身不提供数值执行环境。
 
+当前库与集成内核版本均为 `0.2.0`；内核来源提交及逐文件身份见项目的 `kernel_snapshot.json`。独立内核项目更新不会自动改变本Skill使用的快照，用户通过本库安装脚本更新已发布版本。
+
 建议Python 3.10／3.11；首版在Python 3.10.11、NumPy 1.26.4、SciPy 1.14.1、Matplotlib 3.7.1下验收。先尝试导入，不在已有可用环境中无故重新安装依赖。
 
 未安装时，在完整项目根执行：

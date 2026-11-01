@@ -96,9 +96,12 @@ def export_result(result, output_dir):
         names = ("phase", "tooth_pair_index", "face_coordinate_m", "roll_pinion_m", "roll_wheel_m", "widths_m",
                  "gaps_m", "forces_n", "line_load_n_per_m", "pressure_pa", "half_width_m",
                  "residual_gaps_m", "active_mask")
-        writer.writerow(names)
+        additional_names = (("eligible", "extended_pinion", "extended_wheel", "additional_gap_m")
+                            if extended and extended[0] is not None else ())
+        writer.writerow((*names, *additional_names))
         phase = np.repeat(result.phase, np.diff(offsets))
-        writer.writerows(zip(phase, *(series[name] for name in names[1:])))
+        writer.writerows(zip(phase, *(series[name] for name in names[1:]),
+                             *(series[name] for name in additional_names)))
     if extended and extended[0] is not None:
         with (output/"endpoint_cells.csv").open("w", encoding="utf-8-sig", newline="") as stream:
             writer = csv.writer(stream)
@@ -112,7 +115,7 @@ def export_result(result, output_dir):
     if extended and extended[0] is not None:
         files += ("endpoint_cells.csv",)
     manifest = {
-        "module": "gear_contact", "version": "0.1.0", "implementation": "新写物理模型计算内核",
+        "module": "gear_contact", "version": "0.2.0", "implementation": "新写物理模型计算内核",
         "units": {"length": "m", "angle": "rad", "force": "N", "torque": "N m",
                   "pressure": "Pa", "compliance": "m/N", "normal_stiffness": "N/m"},
         "array_layout": "cell_offsets[k]:cell_offsets[k+1] 对应phase[k]的原始接触单元",

@@ -4,7 +4,9 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL--3.0--only-blue.svg)](LICENSE)
 
- gear transmission design, connecting natural-language requests to independent computational kernels for parameter studies, design comparisons, and reproducible calculations.
+Agent Skills for gear transmission design, connecting natural-language requests to independent computational kernels for parameter studies, design comparisons, and reproducible calculations.
+
+The library and integrated LTCA kernel are both **0.2.0**, with the kernel pinned to independent-project commit `c63030d`.
 
 ## Contents
 
@@ -112,9 +114,9 @@ Output directories must be new. Bundled inputs: [single condition](skills/cylind
 - `run.json` and `cases/`: inputs, code identity, raw arrays, and solver diagnostics.
 - `replay.json`: input, summary, and complete array comparisons after recomputation.
 
-Existing evidence includes 14 computational workflow checks, 9 installation checks, a benchmark against the original project, and single- and multi-condition reruns. See the [computational acceptance record](evaluations/acceptance.json) and [installation record](evaluations/installation.json). Numerical reproducibility, discretization convergence, and physical validation are recorded separately; consult the independent project for model accuracy limits.
+There are currently 16 computational workflow checks and 9 installation checks. See the [kernel 0.2.0 synchronization record](evaluations/kernel-sync-0.2.0.json) for the current source comparisons and reruns. The original [computational acceptance record](evaluations/acceptance.json) and [installation record](evaluations/installation.json) retain evidence for their recorded older versions. Numerical reproducibility, discretization convergence, and physical validation are recorded separately; consult the independent project for model accuracy limits.
 
-Fresh-environment installation, actual calculations, and independent reruns passed all four Windows / Linux × Python 3.10 / 3.11 [CI checks](evaluations/ci.json).
+Installation, actual calculations, and independent reruns across Windows / Linux × Python 3.10 / 3.11 are covered by [continuous integration](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml). The initial release results remain in the [CI record](evaluations/ci.json).
 
 ## Documentation and development
 
@@ -130,6 +132,11 @@ Fresh-environment installation, actual calculations, and independent reruns pass
 This project is licensed under [AGPL-3.0-only](LICENSE). For proprietary or closed-source integration, [contact the author](https://github.com/Lilililiyyy) to discuss a commercial license.
 
 ## Changelog
+
+- **2026-11-01 · v0.2.0**
+  - Integrate cylindrical gear kernel `0.2.0`, refreshing 21 files, source hashes, and function mappings from the clean working tree at commit `c63030d`.
+  - Include ISO curvature handling for unloaded contact points and extended-contact CSV flags, with regression coverage for both.
+  - Align library, skill, and kernel versions; correct the skill entry's license identifier and difference diagnostics for matching infinities, then repeat installation, source-consistency, and independent-rerun checks.
 
 - **2026-10-30 · v0.1.0**
   - First runnable skill, `cylindrical-gear-analysis`: preserved cylindrical gear LTCA kernel, single-condition analysis, modification comparisons, reports, plots, and independent reruns.

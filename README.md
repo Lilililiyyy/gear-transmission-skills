@@ -6,6 +6,8 @@
 
 齿轮传动设计的 Agent Skills 库，通过自然语言调用独立计算内核，完成参数分析、方案比较和结果复算。
 
+当前库版本与集成 LTCA 内核版本均为 **0.2.0**，内核固定至独立项目提交 `c63030d`。
+
 ## 目录
 
 - [可用技能](#可用技能)
@@ -110,9 +112,9 @@ python -m gear_transmission replay output/example --output output/example_replay
 - `run.json` 与 `cases/`：输入、代码身份、原始数组和求解诊断。
 - `replay.json`：重新求解后的输入、汇总量与全数组比较。
 
-已有 14 项计算工作流检查、9 项安装检查，以及原工程基准对比和单／多工况复算记录，见[计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
+当前有 16 项计算工作流检查和 9 项安装检查，本次来源对比与复算见[内核 0.2.0 同步验收](evaluations/kernel-sync-0.2.0.json)。首版记录保存在[计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)，对应其各自登记的旧版本。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
 
-Windows／Linux × Python 3.10／3.11 的全新环境安装、实际计算与独立复算已全部通过 [CI 验收](evaluations/ci.json)。
+Windows／Linux × Python 3.10／3.11 的安装、实际计算和独立复算纳入[持续验收](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml)，首版结果见 [CI 记录](evaluations/ci.json)。
 
 ## 文档与开发
 
@@ -128,6 +130,11 @@ Windows／Linux × Python 3.10／3.11 的全新环境安装、实际计算与独
 本项目采用 [AGPL-3.0-only](LICENSE)。如需闭源集成，可[联系作者](https://github.com/Lilililiyyy)获取商业授权。
 
 ## 更新记录
+
+- **2026-11-01 · v0.2.0**
+  - 集成独立圆柱齿轮项目 `0.2.0`，按提交 `c63030d` 的干净工作树更新 21 个文件、来源哈希和函数映射。
+  - 同步 ISO 未承载接触点的曲率处理与延伸接触 CSV 标记导出，并补充对应回归检查。
+  - 统一库、Skill 和内核版本，修正 Skill 入口的许可标记及复算中相同无穷值的差值诊断；重新验证安装、来源一致性与独立复算。
 
 - **2026-10-30 · v0.1.0**
   - 首个可运行技能 `cylindrical-gear-analysis`：保留圆柱齿轮 LTCA 内核，支持单工况、修形方案比较、报告、图表与独立复算。

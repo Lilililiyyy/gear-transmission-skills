@@ -168,7 +168,13 @@ def _compare_arrays(reference, current):
             passed = left.shape == right.shape and left.dtype == right.dtype
             passed = bool(passed and (np.array_equal(left, right) if exact else
                                       np.allclose(left, right, rtol=1e-10, atol=atol, equal_nan=False)))
-            delta = float(np.max(np.abs(left.astype(float) - right.astype(float)))) if left.shape == right.shape else None
+            delta = None
+            if left.shape == right.shape:
+                left_float, right_float = left.astype(float), right.astype(float)
+                finite = np.isfinite(left_float) & np.isfinite(right_float)
+                # 同号无穷值可一致，但不能直接相减；不匹配的非有限值保留无法量化状态。
+                if np.all(finite | (left_float == right_float)):
+                    delta = float(np.max(np.abs(left_float[finite] - right_float[finite]), initial=0.0))
             rows.append({'name': name, 'shape': list(left.shape), 'passed': passed,
                          'maximum_absolute_difference': delta, 'exact_required': exact,
                          'absolute_tolerance': 0 if exact else atol, 'relative_tolerance': 0 if exact else 1e-10})

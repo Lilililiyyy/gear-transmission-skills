@@ -1,4 +1,5 @@
 """新写适配验收：验证单位、原数组、真实参数变化、失败及独立复算，不认证物理精度。"""
+import csv
 import os
 from pathlib import Path
 import tempfile
@@ -106,6 +107,46 @@ class WorkflowTests(unittest.TestCase):
         run = run_request(request, self.directory / 'iso')
         self.assertEqual(run['cases'][0]['summary']['elastic_mode'], 'iso')
         self.assertTrue(replay_run(self.directory / 'iso', self.directory / 'iso_replay')['passed'])
+
+    def test_zero_load_internal_iso_keeps_unloaded_curvature_out_of_pressure(self):
+        """零载荷内啮合 ISO 请求不应因未承载点的奇异曲率而失败。"""
+        request = self.request()
+        for gear in request['case']['pair'].values():
+            gear.update(normal_module_mm=2, face_width_mm=20)
+        request['case']['pair']['pinion']['teeth'] = 20
+        request['case']['pair']['wheel'].update(teeth=60, internal=True)
+        request['case'].update(torque_n_m=0, elastic_mode='iso', local_contact=False,
+                               iso_settings={'nominal_pinion_torque_n_m': 0})
+        run = run_request(request, self.directory / 'zero_iso')
+        self.assertEqual(run['cases'][0]['summary']['max_pressure_pa'], 0)
+        with np.load(self.directory / 'zero_iso/cases/case_001/arrays.npz', allow_pickle=False) as arrays:
+            np.testing.assert_array_equal(arrays['forces_n'], 0)
+        replay = replay_run(self.directory / 'zero_iso', self.directory / 'zero_iso_replay')
+        self.assertTrue(replay['passed'])
+        self.assertTrue(all(row['maximum_absolute_difference'] == 0 for row in replay['cases'][0]['arrays']))
+
+    def test_extended_contact_csv_preserves_flags_and_endpoint_layout(self):
+        """延伸接触的 CSV 与原数组保持逐行一致，并能独立复算。"""
+        request = self.request()
+        request['case']['pair']['pinion']['helix_angle_deg'] = 15
+        request['case']['pair']['wheel']['helix_angle_deg'] = -15
+        request['case'].update(elastic_mode='iso_love', local_contact=False, phase_offset=0.13,
+                               iso_settings={'nominal_pinion_torque_n_m': 80},
+                               extended_contact_settings={'face_extension_factor': 0.14, 'roll_extension_factor': 0.4})
+        run_request(request, self.directory / 'extended')
+        case = self.directory / 'extended/cases/case_001'
+        with (case / 'contact_cells.csv').open(encoding='utf-8-sig', newline='') as stream:
+            rows = list(csv.DictReader(stream))
+        with np.load(case / 'arrays.npz', allow_pickle=False) as arrays:
+            self.assertEqual(len(rows), len(arrays['forces_n']))
+            for name in ('eligible', 'extended_pinion', 'extended_wheel'):
+                np.testing.assert_array_equal([row[name] == 'True' for row in rows], arrays[name])
+            np.testing.assert_array_equal([float(row['additional_gap_m']) for row in rows], arrays['additional_gap_m'])
+            np.testing.assert_array_equal(np.diff(arrays['line_endpoint_offsets']), np.diff(arrays['line_cell_offsets']) + 1)
+            self.assertTrue(np.any(arrays['extended_pinion'] | arrays['extended_wheel']))
+            self.assertTrue(np.all(arrays['forces_n'][~arrays['eligible']] == 0))
+        self.assertTrue((case / 'endpoint_cells.csv').is_file())
+        self.assertTrue(replay_run(self.directory / 'extended', self.directory / 'extended_replay')['passed'])
 
     def test_wrong_material_and_boolean_geometry_rejected(self):
         request = self.request()

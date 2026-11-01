@@ -41,6 +41,8 @@ Snapshot identity is stored in [kernel_snapshot.json](../src/gear_transmission/k
 
 Make algorithm changes in the independent project first, then explicitly update the integrated snapshot, mappings, and acceptance records. Preserve formulas, data layouts, units, signs, and branches. Continued upstream development does not automatically replace an accepted snapshot, and formulas should not be maintained in two locations simultaneously.
 
+The current kernel is `0.2.0`, taken from the clean working tree at commit `c63030dc4314a67ba282a3899f7ec8a5f6950fe1`. This update preserves the bytes of 21 source files, refreshes function mappings, and adds regression checks for zero-load internal ISO analysis and extended-contact CSV output; see the [0.2.0 synchronization record](../evaluations/kernel-sync-0.2.0.json). Historical acceptance records retain their original versions and identities.
+
 See the [kernel snapshot README](../packages/cylindrical-gear-ltca/README.md) for integration details. Consult the independent project for models and complete interfaces. The bundled [model documentation](../packages/cylindrical-gear-ltca/docs/model.md) and [API documentation](../packages/cylindrical-gear-ltca/docs/api.md), currently in Chinese, correspond to the integrated version.
 
 ## Local checks

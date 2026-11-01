@@ -153,7 +153,7 @@ def analyze_pair(pair: GearPair, *, torque_n_m: float,
         extended = (extended_contact_grid(pair, float(phase), strips=strips, settings=extended_contact_settings)
                     if extended_contact_settings is not None else None)
         grid = extended.grid if extended is not None else contact_grid(pair, float(phase), strips=strips)
-        if extended is None and (np.any(~np.isfinite(grid.curvature_per_m)) or np.any(grid.curvature_per_m <= 0)
+        if not iso_mode and (np.any(~np.isfinite(grid.curvature_per_m)) or np.any(grid.curvature_per_m <= 0)
                 or np.any(grid.radius_pinion_m <= 0) or np.any(grid.radius_wheel_m <= 0)):
             raise ValueError("接触网格含基圆尖点或非正组合曲率，局部线接触近似不适用；"
                              "请明确给定实际有效根形径并检查啮合干涉，不能用微小半径替代")
@@ -181,14 +181,14 @@ def analyze_pair(pair: GearPair, *, torque_n_m: float,
             local_law = _LocalLaw(grid, material_pinion, material_wheel, local_reference_depths_m) if local_contact else None
             solution = solve_contact(gaps, compliance, force, local_law=local_law)
         line_load = solution.forces_n/grid.widths_m
-        if extended is None:
+        if not iso_mode:
             pressure = hertz_line_contact(line_load, grid.curvature_per_m, material_pinion, material_wheel)
             pressure_values = np.asarray(pressure.maximum_pressure_pa)
             half_width_values = np.asarray(pressure.half_width_m)
         else:
             loaded = solution.forces_n > 0
             if np.any(loaded & (~np.isfinite(grid.curvature_per_m) | (grid.curvature_per_m <= 0))):
-                raise ValueError("承载的延伸接触点曲率无效，不能计算Hertz压力")
+                raise ValueError("承载接触点曲率无效，不能计算Hertz压力")
             pressure_values, half_width_values = np.zeros_like(line_load), np.zeros_like(line_load)
             if np.any(loaded):
                 pressure = hertz_line_contact(line_load[loaded], grid.curvature_per_m[loaded], material_pinion, material_wheel)

@@ -16,4 +16,4 @@ from .strength import MeshRatingFactors, GearRatingFactors, StressLimits, evalua
 from .iso_contact import ISOContactSettings, iso_single_tooth_stiffness, build_iso_compliance
 from .extended_contact import ExtendedContactSettings, extended_contact_grid
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

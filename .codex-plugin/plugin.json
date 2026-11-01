@@ -1,6 +1,6 @@
 {
   "name": "gear-transmission-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "齿轮传动设计Skill库：圆柱齿轮承载接触、修形比较与可复算结果",
   "skills": "./skills/"
 }
