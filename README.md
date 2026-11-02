@@ -2,13 +2,9 @@
 
 [中文](README.md) · [English](README_EN.md)
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL--3.0--only-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL--3.0--only-blue.svg)](LICENSE) [![GitHub Release](https://img.shields.io/github/v/release/Lilililiyyy/gear-transmission-skills)](https://github.com/Lilililiyyy/gear-transmission-skills/releases)
 
 齿轮传动设计的 Agent Skills 库，通过自然语言调用独立计算内核，完成参数分析、方案比较和结果复算。
-
-<!-- library-version:start -->
-当前库版本为 **0.5.0**。所有 Skill 随库统一发布；所用内核版本见下表。
-<!-- library-version:end -->
 
 ## 目录
 
@@ -24,8 +20,8 @@
 <!-- skills:start -->
 | Skill | 主要能力 | 内核版本（固定提交） | 状态 | 独立计算项目 |
 |---|---|---|---|---|
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标 | 0.2.1 ([cb2e1ec](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA/commit/cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f)) | 可用 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
-| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | 零偏置直齿／弧齿的几何、啮合力、名义强度及分阶段CAD／TCA／节点FE-LTCA，结果独立复算 | 0.10.0 ([05da3ac](https://github.com/Lilililiyyy/Bevel-Gear-Design/commit/05da3ac166a750a6326907af5bd0dba8aa6ab034)) | 可用；接触需可选依赖 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标 | 0.2.1 | 可用 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | 零偏置直齿／弧齿的几何、啮合力、名义强度及分阶段CAD／TCA／节点FE-LTCA，结果独立复算 | 0.10.0 | 可用 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
 <!-- skills:end -->
 
 计算模型、完整接口和案例由独立项目维护。本库提供智能体工作流、输入适配、报告与复算交付。
