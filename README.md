@@ -18,13 +18,13 @@
 ## 可用技能
 
 <!-- skills:start -->
-| Skill | 主要能力 | 内核版本（固定提交） | 状态 | 独立计算项目 |
-|---|---|---|---|---|
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标 | 0.2.1 | 可用 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
-| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | 零偏置直齿／弧齿的几何、啮合力、名义强度及分阶段CAD／TCA／节点FE-LTCA，结果独立复算 | 0.10.0 | 可用 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
-<!-- skills:end -->
 
-计算模型、完整接口和案例由独立项目维护。本库提供智能体工作流、输入适配、报告与复算交付。
+| Skill                                                                  | 主要能力                                                                            | 内核版本 | 独立计算项目                                                                  |
+| ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------- |
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标       | 0.2.1    | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [bevel-gear-design](skills/bevel-gear-design/SKILL.md)                 | 零偏置直齿／弧齿的几何、啮合力、名义强度及分阶段CAD／TCA／节点FE-LTCA，结果独立复算 | 0.10.0   | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design)         |
+
+<!-- skills:end -->
 
 ## 安装
 
@@ -77,12 +77,12 @@ python -m pip install -c constraints.txt -e ".[plots]"
 
 随后注册 `skills/` 下所需的完整技能目录。默认安装器同时注册圆柱与锥齿轮技能；锥齿轮显式调用为 `$bevel-gear-design`：
 
-| 智能体 | 注册方式 | 显式调用 |
-|---|---|---|
-| Codex | 用户级 `~/.agents/skills/` | `$cylindrical-gear-analysis` |
-| Claude Code | 用户级 `~/.claude/skills/` | `/cylindrical-gear-analysis` |
-| WorkBuddy | 技能管理界面导入本地技能包，并启用 | 自然语言点名 |
-| Cursor | 可通过 `npx skills` 选择 `cursor` 目标 | 自然语言点名或技能选择器 |
+| 智能体      | 注册方式                               | 显式调用                     |
+| ----------- | -------------------------------------- | ---------------------------- |
+| Codex       | 用户级 `~/.agents/skills/`             | `$cylindrical-gear-analysis` |
+| Claude Code | 用户级 `~/.claude/skills/`             | `/cylindrical-gear-analysis` |
+| WorkBuddy   | 技能管理界面导入本地技能包，并启用     | 自然语言点名                 |
+| Cursor      | 可通过 `npx skills` 选择 `cursor` 目标 | 自然语言点名或技能选择器     |
 
 平台命令、可选的 Skills CLI 和 WorkBuddy 接入说明见 [安装指南](docs/installation.md)。技能注册与 Python 环境安装均须完成。
 
@@ -149,17 +149,12 @@ python -m gear_transmission.bevel_cli replay output/bevel --output output/bevel_
 
 完整 `case` 另存 `workflow_summary.json`、`strength.json`、`ltca/` 与 `sensitivity/`；所有结果以 `run.json.cases` 登记的目录为准。
 
-当前共 43 项工作流与安装检查；版本管理迁移见[0.5.0 验收](evaluations/version-policy-0.5.0.json)。接触显示域、源工程一致性、重绘与复算见[0.4.1 验收](evaluations/contact-display-0.4.1.json)。早期的完整资源、图表来源对比与复算见[0.3.0 同步验收](evaluations/full-sync-0.3.0.json)。[0.2.0 内核验收](evaluations/kernel-sync-0.2.0.json)、[首版计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)保留各自版本记录。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
-
-Windows／Linux × Python 3.10／3.11 的安装、实际计算和独立复算纳入[持续验收](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml)，首版结果见 [CI 记录](evaluations/ci.json)。
-
-0.4.0 新增锥齿轮5项行为检查后，当时本地共35项通过。锥齿轮直齿／弧齿强度、同工况参照、安装后及wheel调用与复算、直齿单相位CAD／TCA／节点FE-LTCA及独立请求前向验证见[锥齿轮技能验收](evaluations/bevel-skill-0.1.0.json)。单相位求解及复现通过不代表全周期、离散峰压收敛或物理试验验证。
-
 ## 文档与开发
 
-
 - [安装指南](docs/installation.md)：环境、宿主注册、自然语言安装与复算检查。
+
 - [开发说明](docs/development.md)：目录职责、内核快照与新增 Skill 的约定。
+
 - [输入契约](skills/cylindrical-gear-analysis/references/input-contract.md) · [结果定义](skills/cylindrical-gear-analysis/references/results.md)。
 
 - [锥齿轮输入与单位](skills/bevel-gear-design/references/input-contract.md) · [结果与限制](skills/bevel-gear-design/references/results.md) · [来源映射](docs/bevel-source-map.json)。
@@ -173,33 +168,38 @@ Windows／Linux × Python 3.10／3.11 的安装、实际计算和独立复算纳
 ## 更新记录
 
 - **2026-11-02 · v0.5.0**
+
   - 全库统一发布版本，取消单个 Skill 的独立编号；版本只在根 `pyproject.toml` 维护，运行时读取发行版元数据。
   - 中英文技能表格展示实际集成的内核版本与固定提交，从现有快照清单自动同步；内核继续独立发布和验证。
   - 增加版本一致性检查与发布工具；主分支提交通过全部 CI 后自动创建版本标签和中英文 GitHub Release，历史标签及验收记录保留。
 
 - **2026-11-02 · v0.4.1**
+
   - 修正圆柱接触图把完整渐开线范围误作实际啮合范围的问题；中心条带的显示支撑仅延拓到其自身积分边界，原压力与 PPTE 不变。
   - 单图、源项目案例与多方案比较共用源工程 `contact_display`，统一色带、等压线与坐标；标准流程自动生成统一色标的接触比较图。
   - 新增 `plot`：先校验保存结果，再只读原数组重绘；明确区分重绘与重新求解／复算。修复验收见 [0.4.1 记录](evaluations/contact-display-0.4.1.json)。
 
 - **2026-11-02 · v0.4.0**
+
   - 新增 `bevel-gear-design`，接入0.10.0锥齿轮重建内核、两组原生案例和制造输入，保留逐文件哈希与函数行段来源。
   - 新增 `gear-bevel` 及校验、分阶段计算、绘图、同工况参照比较与实际独立复算；安装器同步两个完整Skill。
   - 直齿／弧齿几何强度、来源及文件篡改检查纳入自动验收。CAD、TCA、LTCA及不同高级接触路线的端到端状态分别记录，不由强度案例通过推断。
 
-
 - **2026-11-02 · v0.3.0**
+
   - 补齐独立项目的案例编排、绘图后处理及公开对标输入，完整登记 47 个来源文件并在运行时校验。
   - 新增 `case` 完整案例入口，直接调用原项目新版工作流，支持显式因子强度、同相位接触对标、整齿压力和敏感性分析。
   - 普通工况接入新版绘图，区分中心压力、独立端点压力、瞬时压力带与通过程包络；保留三周期原样展开及 SI 复绘数据。
   - 增加全资源同步／校验脚本、全数组及强度复算、图表来源对比和 wheel 分发验收。
 
 - **2026-11-01 · v0.2.0**
+
   - 集成独立圆柱齿轮项目 `0.2.0`，按提交 `c63030d` 的干净工作树更新 21 个文件、来源哈希和函数映射。
   - 同步 ISO 未承载接触点的曲率处理与延伸接触 CSV 标记导出，并补充对应回归检查。
   - 统一库、Skill 和内核版本，修正 Skill 入口的许可标记及复算中相同无穷值的差值诊断；重新验证安装、来源一致性与独立复算。
 
 - **2026-10-30 · v0.1.0**
+
   - 首个可运行技能 `cylindrical-gear-analysis`：保留圆柱齿轮 LTCA 内核，支持单工况、修形方案比较、报告、图表与独立复算。
   - 增加跨平台 Codex 安装入口：`--pull` 更新并安装，`--check` 校验完整资源与运行环境，保护已有同名技能和本地修改。
   - 提供中英双语 README、安装与开发说明；详细计算模型链接至独立项目。

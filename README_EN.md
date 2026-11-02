@@ -18,13 +18,13 @@ Agent Skills for gear transmission design, connecting natural-language requests 
 ## Available skills
 
 <!-- skills:start -->
-| Skill | Capabilities | Kernel version (pinned commit) | Status | Independent computational project |
-|---|---|---|---|---|
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases | 0.2.1 | Available | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
-| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | Zero-offset straight / spiral bevel geometry, forces, nominal strength, staged CAD / TCA / nodal FE-LTCA, and independent reruns | 0.10.0 | Available | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
-<!-- skills:end -->
 
-The independent project maintains the computational models, complete API, and examples. This library provides agent workflows, input adaptation, reports, and reproducibility checks.
+| Skill                                                                  | Capabilities                                                                                                                     | Version | Independent computational project                                             |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------- |
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases           | 0.2.1   | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [bevel-gear-design](skills/bevel-gear-design/SKILL.md)                 | Zero-offset straight / spiral bevel geometry, forces, nominal strength, staged CAD / TCA / nodal FE-LTCA, and independent reruns | 0.10.0  | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design)         |
+
+<!-- skills:end -->
 
 ## Installation
 
@@ -78,12 +78,12 @@ python -m pip install -c constraints.txt -e ".[plots]"
 
 Then register the complete `skills/cylindrical-gear-analysis/` directory:
 
-| Agent | Registration | Explicit invocation |
-|---|---|---|
-| Codex | User-level `~/.agents/skills/` | `$cylindrical-gear-analysis` |
-| Claude Code | User-level `~/.claude/skills/` | `/cylindrical-gear-analysis` |
-| WorkBuddy | Import a local skill package through skill management and enable it | Mention the skill in natural language |
-| Cursor | Select the `cursor` target with `npx skills` | Mention the skill or use the skill selector |
+| Agent       | Registration                                                        | Explicit invocation                         |
+| ----------- | ------------------------------------------------------------------- | ------------------------------------------- |
+| Codex       | User-level `~/.agents/skills/`                                      | `$cylindrical-gear-analysis`                |
+| Claude Code | User-level `~/.claude/skills/`                                      | `/cylindrical-gear-analysis`                |
+| WorkBuddy   | Import a local skill package through skill management and enable it | Mention the skill in natural language       |
+| Cursor      | Select the `cursor` target with `npx skills`                        | Mention the skill or use the skill selector |
 
 See the [installation guide](docs/installation_EN.md) for platform commands, the optional Skills CLI, and WorkBuddy integration. Both skill registration and Python environment setup are required.
 
@@ -136,12 +136,7 @@ Ordinary `run --plots` also produces the updated geometry, cycle, instantaneous-
 
 The complete `case` workflow also exports `workflow_summary.json`, `strength.json`, `ltca/`, and `sensitivity/`. Actual solve directories are listed in `run.json.cases`.
 
-There are now 43 workflow and installation checks; the [0.5.0 version-policy record](evaluations/version-policy-0.5.0.json) documents this migration; see the [0.4.1 display, replot and replay record](evaluations/contact-display-0.4.1.json). The [0.3.0 acceptance record](evaluations/full-sync-0.3.0.json) covers complete resources, source figure comparisons, and independent reruns. The [0.2.0 kernel record](evaluations/kernel-sync-0.2.0.json), [initial computation record](evaluations/acceptance.json), and [installation record](evaluations/installation.json) retain their original versioned evidence. Numerical reproducibility, discretization convergence, and physical validation remain separate; consult the independent project for model accuracy limits.
-
-Installation, actual calculations, and independent reruns across Windows / Linux × Python 3.10 / 3.11 are covered by [continuous integration](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml). The initial release results remain in the [CI record](evaluations/ci.json).
-
 ## Documentation and development
-
 
 - [Installation guide](docs/installation_EN.md): environment setup, agent registration, natural-language installation, and reproducibility checks.
 - [Development guide](docs/development_EN.md): directory responsibilities, kernel snapshots, and conventions for adding skills.
@@ -156,27 +151,32 @@ This project is licensed under [AGPL-3.0-only](LICENSE). For proprietary or clos
 ## Changelog
 
 - **2026-11-02 · v0.5.0**
+
   - Release all skills under one library version; remove per-skill versions. Maintain the version only in the root `pyproject.toml` and read it from distribution metadata at runtime.
   - Generate the integrated kernel version and pinned commit in both skill tables from the existing snapshot manifests. Kernels retain their independent releases and validation.
   - Add metadata consistency checks and release tooling. Successful main-branch CI creates the version tag and bilingual GitHub Release while preserving historical tags and acceptance records.
 
 - **2026-11-02 · v0.4.1**
+
   - Correct the contact display interval and retain finite centre-cell display support without changing raw pressure or PPTE.
   - Share the upstream contact display code across ordinary plots, benchmark cases and common-scale design comparisons.
   - Add hash-verified, read-only `plot` replotting, separate from solving and numerical replay. See the [0.4.1 acceptance record](evaluations/contact-display-0.4.1.json).
 
 - **2026-11-02 · v0.3.0**
+
   - Include complete case orchestration, plotting helpers, and public benchmark inputs; record and verify all 47 upstream runtime files.
   - Add `case`, directly invoking the preserved upstream workflow for explicit-factor strength, instantaneous comparisons, tooth-pass pressure maps, and sensitivity cases.
   - Apply updated plotting to ordinary inputs, keeping centre pressure, endpoint pressure, instantaneous bands, and cycle envelopes distinct, with three-cycle display and SI plotting data.
   - Add complete-resource synchronization checks, array and strength reruns, source figure comparisons, and wheel distribution checks.
 
 - **2026-11-01 · v0.2.0**
+
   - Integrate cylindrical gear kernel `0.2.0`, refreshing 21 files, source hashes, and function mappings from the clean working tree at commit `c63030d`.
   - Include ISO curvature handling for unloaded contact points and extended-contact CSV flags, with regression coverage for both.
   - Align library, skill, and kernel versions; correct the skill entry's license identifier and difference diagnostics for matching infinities, then repeat installation, source-consistency, and independent-rerun checks.
 
 - **2026-10-30 · v0.1.0**
+
   - First runnable skill, `cylindrical-gear-analysis`: preserved cylindrical gear LTCA kernel, single-condition analysis, modification comparisons, reports, plots, and independent reruns.
   - Cross-platform Codex installation: `--pull` updates and installs; `--check` verifies complete resources and the runtime, while protecting existing same-named skills and local changes.
   - Bilingual READMEs, installation guides, and development notes; detailed computational models remain documented in the independent project.
