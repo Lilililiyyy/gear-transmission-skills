@@ -1,0 +1,33 @@
+{
+  "schema": "gear_library_release_policy_v1",
+  "date": "2026-11-02",
+  "library_version": "0.5.0",
+  "authoritative_version": "pyproject.toml:project.version",
+  "independent_skill_versions": false,
+  "runtime_version_source": "发行版安装元数据",
+  "kernels": {
+    "cylindrical-gear-analysis": {
+      "version": "0.2.1",
+      "commit": "cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f",
+      "repository": "https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA"
+    },
+    "bevel-gear-design": {
+      "version": "0.10.0",
+      "commit": "05da3ac166a750a6326907af5bd0dba8aa6ab034",
+      "repository": "https://github.com/Lilililiyyy/Bevel-Gear-Design"
+    }
+  },
+  "snapshot_contents_changed": false,
+  "bilingual_tables_verified": true,
+  "generated_metadata_verified": true,
+  "installed_metadata_verified": true,
+  "skill_frontmatter_validation_passed": 2,
+  "tests_passed": 43,
+  "new_version_policy_tests": 5,
+  "release_workflow": "主分支push的完整CI通过后，对验证提交创建vX.Y.Z与中英文Release；不覆盖旧版本",
+  "historical_acceptance_rewritten": false,
+  "wheel_installed_metadata_verified": true,
+  "isolated_bevel_sync_verified": true,
+  "ltca_sync_readonly_check_passed": true,
+  "release_workflow_yaml_valid": true
+}

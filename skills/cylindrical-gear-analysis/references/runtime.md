@@ -2,7 +2,7 @@
 
 本Skill需要可执行本地Python的宿主，以及完整 `gear-transmission-skills` 项目提供的两个包：新写 `gear_transmission` 与保留内核 `gear_contact`。Skill文本本身不提供数值执行环境。
 
-当前库版本为 `0.4.1`，圆柱 Skill 为 `0.3.1`，集成内核为 `0.2.1`（提交 `cb2e1ec`）。`gear_ltca_snapshot` 随源码安装和 wheel 分发完整运行资源；运行时核验全部 48 个来源文件及实际导入内核的哈希。通用图、比较图及案例图共用源工程显示代码，独立项目后续更新仍须显式同步。
+本Skill随整个库统一发布，不独立编号。库版本通过 `gear_transmission.__version__` 查询；集成内核版本及固定提交见 README 技能表格和 `kernel_snapshot.json`。`gear_ltca_snapshot` 分发完整运行资源，运行时核验清单与实际导入内核的哈希。通用图、比较图及案例图共用源工程显示代码，独立项目后续更新仍须显式同步。
 
 建议Python 3.10／3.11；首版在Python 3.10.11、NumPy 1.26.4、SciPy 1.14.1、Matplotlib 3.7.1下验收。先尝试导入，不在已有可用环境中无故重新安装依赖。
 

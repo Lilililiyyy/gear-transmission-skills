@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 
 
 def selected_files(source):
@@ -75,6 +76,7 @@ def main():
                         runtime_scope='完整计算模块、案例编排、绘图后处理、案例输入及公开对标资源；不含生成结果和缓存')
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
         mapping_path.write_text(json.dumps(mapping, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    subprocess.run([sys.executable, str(root/'scripts/release.py'), '--check' if args.check else '--sync'], check=True)
     print(json.dumps({'checked': args.check, 'source_commit': git('rev-parse', 'HEAD'), 'files': len(files)}, ensure_ascii=False))
 
 

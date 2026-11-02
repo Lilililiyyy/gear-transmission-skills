@@ -1,6 +1,6 @@
 # 新版完整案例与绘图
 
-库版本 `0.4.1` 保留独立内核 `0.2.1` 提交 `cb2e1ec` 的完整运行资源；圆柱 Skill 为 `0.3.1`。通用工况、候选比较及案例对标共用源工程 `gear_contact.contact_display`，公式与材料坐标显示不在 Skill 适配层重复实现。
+本Skill随库统一发布，实际内核版本与固定提交见 README 技能表格和 `kernel_snapshot.json`。通用工况、候选比较及案例对标共用源工程 `gear_contact.contact_display`，公式与材料坐标显示不在 Skill 适配层重复实现。
 
 多方案默认交付 `plots/point_NNN/07_contact_pass_comparison.png` 和同目录的三周期曲线。比较图统一压力色标与实际啮合区坐标；SI 显示数据和压力定义另存。
 

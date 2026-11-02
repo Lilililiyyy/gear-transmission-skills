@@ -6,7 +6,9 @@
 
 齿轮传动设计的 Agent Skills 库，通过自然语言调用独立计算内核，完成参数分析、方案比较和结果复算。
 
-当前库版本为 **0.4.1**。圆柱 LTCA 内核 **0.2.1** 固定至 `cb2e1ec`，包含统一的接触图与重绘接口；锥齿轮内核 0.10.0 固定至 `05da3ac`。
+<!-- library-version:start -->
+当前库版本为 **0.5.0**。所有 Skill 随库统一发布；所用内核版本见下表。
+<!-- library-version:end -->
 
 ## 目录
 
@@ -19,10 +21,12 @@
 
 ## 可用技能
 
-| Skill | 主要能力 | 状态 | 独立计算项目 |
-|---|---|---|---|
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标 | 可用 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
-| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | 零偏置直齿／弧齿的几何、啮合力、名义强度及分阶段CAD／TCA／节点FE-LTCA，结果独立复算 | 可用；接触需可选依赖 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
+<!-- skills:start -->
+| Skill | 主要能力 | 内核版本（固定提交） | 状态 | 独立计算项目 |
+|---|---|---|---|---|
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标 | 0.2.1 ([cb2e1ec](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA/commit/cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f)) | 可用 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | 零偏置直齿／弧齿的几何、啮合力、名义强度及分阶段CAD／TCA／节点FE-LTCA，结果独立复算 | 0.10.0 ([05da3ac](https://github.com/Lilililiyyy/Bevel-Gear-Design/commit/05da3ac166a750a6326907af5bd0dba8aa6ab034)) | 可用；接触需可选依赖 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
+<!-- skills:end -->
 
 计算模型、完整接口和案例由独立项目维护。本库提供智能体工作流、输入适配、报告与复算交付。
 
@@ -149,7 +153,7 @@ python -m gear_transmission.bevel_cli replay output/bevel --output output/bevel_
 
 完整 `case` 另存 `workflow_summary.json`、`strength.json`、`ltca/` 与 `sensitivity/`；所有结果以 `run.json.cases` 登记的目录为准。
 
-当前共 38 项工作流与安装检查；接触显示域、源工程一致性、重绘与复算见[0.4.1 验收](evaluations/contact-display-0.4.1.json)。早期的完整资源、图表来源对比与复算见[0.3.0 同步验收](evaluations/full-sync-0.3.0.json)。[0.2.0 内核验收](evaluations/kernel-sync-0.2.0.json)、[首版计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)保留各自版本记录。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
+当前共 43 项工作流与安装检查；版本管理迁移见[0.5.0 验收](evaluations/version-policy-0.5.0.json)。接触显示域、源工程一致性、重绘与复算见[0.4.1 验收](evaluations/contact-display-0.4.1.json)。早期的完整资源、图表来源对比与复算见[0.3.0 同步验收](evaluations/full-sync-0.3.0.json)。[0.2.0 内核验收](evaluations/kernel-sync-0.2.0.json)、[首版计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)保留各自版本记录。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
 
 Windows／Linux × Python 3.10／3.11 的安装、实际计算和独立复算纳入[持续验收](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml)，首版结果见 [CI 记录](evaluations/ci.json)。
 
@@ -171,6 +175,11 @@ Windows／Linux × Python 3.10／3.11 的安装、实际计算和独立复算纳
 本项目采用 [AGPL-3.0-only](LICENSE)。如需闭源集成，可[联系作者](https://github.com/Lilililiyyy)获取商业授权。
 
 ## 更新记录
+
+- **2026-11-02 · v0.5.0**
+  - 全库统一发布版本，取消单个 Skill 的独立编号；版本只在根 `pyproject.toml` 维护，运行时读取发行版元数据。
+  - 中英文技能表格展示实际集成的内核版本与固定提交，从现有快照清单自动同步；内核继续独立发布和验证。
+  - 增加版本一致性检查与发布工具；主分支提交通过全部 CI 后自动创建版本标签和中英文 GitHub Release，历史标签及验收记录保留。
 
 - **2026-11-02 · v0.4.1**
   - 修正圆柱接触图把完整渐开线范围误作实际啮合范围的问题；中心条带的显示支撑仅延拓到其自身积分边界，原压力与 PPTE 不变。

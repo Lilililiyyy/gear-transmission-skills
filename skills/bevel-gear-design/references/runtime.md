@@ -1,5 +1,7 @@
 # 环境与计算路线
 
+本Skill随库统一发布，不独立编号；实际内核版本与固定提交见 README 技能表格及 `bevel_snapshot.json`。
+
 保留完整仓库，并在独立Python 3.10／3.11环境安装 `python -m pip install -e ".[plots]"`，或使用库的 `scripts/update-codex-skills.ps1`／`.sh`。安装器会登记两个Skill并校验锥齿轮内核哈希。只复制SKILL.md不够；Skill脚本也不包含Python运行时。
 
 几何和名义强度不需要CAD。统一入口的 `cad`、`tca`、`ltca` 按需安装：

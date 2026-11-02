@@ -1,0 +1,51 @@
+name: 发布技能库
+on:
+  workflow_run:
+    workflows: ['齿轮传动Skill验收']
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: publish-release
+  cancel-in-progress: false
+jobs:
+  release:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 校验版本及内核表格
+        run: python -B scripts/release.py --check
+      - name: 创建版本标签及Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERIFIED_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          version="$(python -B scripts/release.py --version)"
+          tag="v${version}"
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "版本 $tag 已发布，保留原标签和Release。"
+            exit 0
+          fi
+          existing="$(git ls-remote origin "refs/tags/$tag" "refs/tags/$tag^{}")"
+          if [ -n "$existing" ]; then
+            target="$(printf '%s\n' "$existing" | tail -1 | cut -f1)"
+            if [ "$target" != "$VERIFIED_SHA" ]; then
+              echo "已有标签指向其他提交，停止发布；请递增库版本。" >&2
+              exit 1
+            fi
+          fi
+          python -B scripts/release.py --notes > "$RUNNER_TEMP/release-notes.md"
+          gh release create "$tag" --repo "$GITHUB_REPOSITORY" --target "$VERIFIED_SHA" --title "$tag" --notes-file "$RUNNER_TEMP/release-notes.md"

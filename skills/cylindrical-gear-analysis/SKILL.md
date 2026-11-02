@@ -2,8 +2,6 @@
 name: cylindrical-gear-analysis
 description: 调用独立内核完成圆柱齿轮 LTCA、修形及失准比较，输出 TE、刚度、瞬时压力带与整齿通过程接触图，保存可复算结果；支持新版完整案例和显式因子标准强度复算。适用于直齿或斜齿、内或外啮合。不能独立选取完整标准因子、预测材料寿命或分析整套轴承箱体系统。
 license: AGPL-3.0-only
-metadata:
-  version: "0.3.1"
 ---
 
 # 圆柱齿轮承载接触分析

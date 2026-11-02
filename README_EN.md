@@ -6,7 +6,9 @@
 
 Agent Skills for gear transmission design, connecting natural-language requests to independent computational kernels for parameter studies, design comparisons, and reproducible calculations.
 
-Library **0.4.1** integrates LTCA **0.2.1** at commit `cb2e1ec`, including shared contact plotting and verified replotting, alongside the existing bevel-gear integration.
+<!-- library-version:start -->
+Library version: **0.5.0**. All skills ship together; integrated kernel versions are listed below.
+<!-- library-version:end -->
 
 ## Contents
 
@@ -19,10 +21,12 @@ Library **0.4.1** integrates LTCA **0.2.1** at commit `cb2e1ec`, including share
 
 ## Available skills
 
-| Skill | Capabilities | Status | Independent computational project |
-|---|---|---|---|
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, updated contact plots, explicit-factor strength calculations, and complete benchmark cases | Available | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
-| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | 零偏置直齿／弧齿几何、名义强度、分阶段CAD／TCA／节点FE-LTCA与独立复算 | 可用；接触需可选依赖 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
+<!-- skills:start -->
+| Skill | Capabilities | Kernel version (pinned commit) | Status | Independent computational project |
+|---|---|---|---|---|
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases | 0.2.1 ([cb2e1ec](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA/commit/cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f)) | Available | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | Zero-offset straight / spiral bevel geometry, forces, nominal strength, staged CAD / TCA / nodal FE-LTCA, and independent reruns | 0.10.0 ([05da3ac](https://github.com/Lilililiyyy/Bevel-Gear-Design/commit/05da3ac166a750a6326907af5bd0dba8aa6ab034)) | Available; contact requires optional dependencies | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
+<!-- skills:end -->
 
 The independent project maintains the computational models, complete API, and examples. This library provides agent workflows, input adaptation, reports, and reproducibility checks.
 
@@ -136,7 +140,7 @@ Ordinary `run --plots` also produces the updated geometry, cycle, instantaneous-
 
 The complete `case` workflow also exports `workflow_summary.json`, `strength.json`, `ltca/`, and `sensitivity/`. Actual solve directories are listed in `run.json.cases`.
 
-There are now 38 workflow and installation checks; see the [0.4.1 display, replot and replay record](evaluations/contact-display-0.4.1.json). The [0.3.0 acceptance record](evaluations/full-sync-0.3.0.json) covers complete resources, source figure comparisons, and independent reruns. The [0.2.0 kernel record](evaluations/kernel-sync-0.2.0.json), [initial computation record](evaluations/acceptance.json), and [installation record](evaluations/installation.json) retain their original versioned evidence. Numerical reproducibility, discretization convergence, and physical validation remain separate; consult the independent project for model accuracy limits.
+There are now 43 workflow and installation checks; the [0.5.0 version-policy record](evaluations/version-policy-0.5.0.json) documents this migration; see the [0.4.1 display, replot and replay record](evaluations/contact-display-0.4.1.json). The [0.3.0 acceptance record](evaluations/full-sync-0.3.0.json) covers complete resources, source figure comparisons, and independent reruns. The [0.2.0 kernel record](evaluations/kernel-sync-0.2.0.json), [initial computation record](evaluations/acceptance.json), and [installation record](evaluations/installation.json) retain their original versioned evidence. Numerical reproducibility, discretization convergence, and physical validation remain separate; consult the independent project for model accuracy limits.
 
 Installation, actual calculations, and independent reruns across Windows / Linux × Python 3.10 / 3.11 are covered by [continuous integration](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml). The initial release results remain in the [CI record](evaluations/ci.json).
 
@@ -154,6 +158,11 @@ Installation, actual calculations, and independent reruns across Windows / Linux
 This project is licensed under [AGPL-3.0-only](LICENSE). For proprietary or closed-source integration, [contact the author](https://github.com/Lilililiyyy) to discuss a commercial license.
 
 ## Changelog
+
+- **2026-11-02 · v0.5.0**
+  - Release all skills under one library version; remove per-skill versions. Maintain the version only in the root `pyproject.toml` and read it from distribution metadata at runtime.
+  - Generate the integrated kernel version and pinned commit in both skill tables from the existing snapshot manifests. Kernels retain their independent releases and validation.
+  - Add metadata consistency checks and release tooling. Successful main-branch CI creates the version tag and bilingual GitHub Release while preserving historical tags and acceptance records.
 
 - **2026-11-02 · v0.4.1**
   - Correct the contact display interval and retain finite centre-cell display support without changing raw pressure or PPTE.

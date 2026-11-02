@@ -4,6 +4,23 @@
 
 This library maintains agent workflows and access to computational capabilities. Independent projects maintain models, algorithms, complete APIs, and examples. The currently integrated project is [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA).
 
+## Versions and releases
+
+The library has one public version, maintained only in the root `pyproject.toml` under `project.version`. Skills ship with the library and have no independent version in `SKILL.md`. Runtime versions come from distribution metadata. Kernels keep their own versions, pinned commits and file hashes in the existing snapshot manifests; both README skill tables display those versions automatically.
+
+After changing the library version or synchronizing a kernel:
+
+```bash
+python scripts/release.py --sync
+python scripts/release.py --check
+```
+
+`--sync` updates the project marker, plugin manifest, library introductions and kernel-version table cells. Capability and status text remains editable in each language's table. Both kernel synchronization scripts also invoke the tool. CI uses read-only checks and `--check-installed` to verify installed and imported versions.
+
+Use patch increments for compatible fixes and minor increments for new skills, interfaces or features. During `0.x`, incompatible changes also increment the minor version and document migration. Establish `1.0.0` when the public interface is stable, then use major increments for incompatible changes. Kernel updates explain whether numerical results change and which validation applies.
+
+Successful main-branch CI creates `vX.Y.Z` and a bilingual GitHub Release from the exact verified commit. Existing releases are preserved; a tag pointing elsewhere stops publication. Historical acceptance versions and hashes remain intact.
+
 ## Code ownership
 
 | Location | Responsibility |
@@ -41,7 +58,7 @@ Snapshot identity is stored in [kernel_snapshot.json](../src/gear_transmission/k
 
 Make algorithm changes in the independent project first, then explicitly update the integrated snapshot, mappings, and acceptance records. Preserve formulas, data layouts, units, signs, and branches. Continued upstream development does not automatically replace an accepted snapshot, and formulas should not be maintained in two locations simultaneously.
 
-Library `0.4.1` includes kernel `0.2.1` from clean commit `cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f`: 48 runtime files. Ordinary cases and benchmarks share the upstream `gear_contact/contact_display.py` implementation. The adapter calls this code directly. Historical records retain their original versions and identities.
+The README skill tables show the integrated versions; snapshot manifests identify the exact source commits and files. Ordinary cases and benchmarks share the upstream `gear_contact/contact_display.py` implementation. Historical records retain their original versions and identities.
 
 From the library root, with the actual upstream checkout path:
 

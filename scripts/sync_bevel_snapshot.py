@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 
 
 def root_path():
@@ -20,6 +21,8 @@ def sync(source):
     if git('status', '--porcelain'):
         raise ValueError('来源工程含未提交修改，不能登记为干净提交快照')
     commit = git('rev-parse', 'HEAD')
+    version = next(ast.literal_eval(node.value) for node in ast.parse((source/'bevel_gear/__init__.py').read_text(encoding='utf-8-sig')).body
+                   if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == '__version__' for t in node.targets))
     destination = root / 'packages/bevel-gear-design'
     selected = sorted(p for p in source.rglob('*') if p.is_file() and
         (p.relative_to(source).parts[0] == 'bevel_gear' and p.suffix in ('.py', '.html') or
@@ -49,12 +52,13 @@ def sync(source):
                  'spiral_17_47_reference.json'):
         shutil.copyfile(source / 'examples' / name, assets / name)
     identity = dict(schema=1, source_repository='https://github.com/Lilililiyyy/Bevel-Gear-Design',
-        source_commit=commit, source_clean=True, source_version='0.10.0',
+        source_commit=commit, source_clean=True, source_version=version,
         snapshot_path='packages/bevel-gear-design', files=files,
         implementation='公开重建计算内核快照；Skill工作流为新写适配，非厂商原始源码')
     for path, value in ((root/'src/gear_transmission/bevel_snapshot.json', identity),
                         (root/'docs/bevel-source-map.json', dict(**identity, functions=functions))):
         path.write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    subprocess.run([sys.executable, str(root/'scripts/release.py'), '--sync'], check=True)
     print(json.dumps(dict(commit=commit, files=len(files), functions=len(functions)), ensure_ascii=False))
 
 
