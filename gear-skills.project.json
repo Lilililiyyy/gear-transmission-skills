@@ -1,7 +1,13 @@
 {
   "name": "gear-transmission-skills",
-  "version": "0.3.0",
-  "skills": ["skills/cylindrical-gear-analysis"],
-  "kernels": ["packages/cylindrical-gear-ltca"],
+  "version": "0.4.0",
+  "skills": [
+    "skills/cylindrical-gear-analysis",
+    "skills/bevel-gear-design"
+  ],
+  "kernels": [
+    "packages/cylindrical-gear-ltca",
+    "packages/bevel-gear-design"
+  ],
   "implementation": "新写Skill适配与复算流程；复用逐字节保留的现有重建计算内核"
 }

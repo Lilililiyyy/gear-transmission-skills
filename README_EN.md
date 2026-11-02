@@ -22,6 +22,7 @@ Library **0.3.0** integrates the complete LTCA **0.2.0** runtime at independent-
 | Skill | Capabilities | Status | Independent computational project |
 |---|---|---|---|
 | [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, updated contact plots, explicit-factor strength calculations, and complete benchmark cases | Available | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | 零偏置直齿／弧齿几何、名义强度、分阶段CAD／TCA／节点FE-LTCA与独立复算 | 可用；接触需可选依赖 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
 
 The independent project maintains the computational models, complete API, and examples. This library provides agent workflows, input adaptation, reports, and reproducibility checks.
 

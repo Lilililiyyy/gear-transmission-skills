@@ -1,0 +1,26 @@
+{
+  "machine": {
+    "reference_cone_distance_m": 0.0999599919967984,
+    "dedendum_m": 0.00272,
+    "vertical_setting_m": 0.0,
+    "axial_setting_m": 0.0,
+    "horizontal_setting_m": 0.0,
+    "machine_root_angle_rad": 0.324107642095347,
+    "pitch_cone_angle_rad": 0.3470616035394905,
+    "roll_ratio": 2.939,
+    "cradle_horizontal_m": 0.041424077620409776,
+    "cradle_vertical_m": 0.06253632812449357,
+    "direction": -1,
+    "cutter_diameter_m": 0.1524,
+    "blade_point_width_m": 0.00164,
+    "inner_pressure_angle_rad": 0.37088246604879505,
+    "outer_pressure_angle_rad": 0.3272492347489368,
+    "inner_tip_radius_m": 0.001004,
+    "outer_tip_radius_m": 0.000944
+  },
+  "tooth_count": 17,
+  "module_m": 0.004,
+  "face_width_m": 0.029988,
+  "addendum_m": 0.004844,
+  "tip_cone_angle_rad": 0.40046579687009887
+}

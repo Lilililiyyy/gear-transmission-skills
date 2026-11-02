@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE__ · 三维装配</title>
+<style>
+:root{color-scheme:light;--ink:#223945;--muted:#5d717c;--line:#ccd9df;--paper:#f7fafb;--blue:#2166AC;--bronze:#B2182B;--accent:#305d72}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font-family:"Segoe UI","Microsoft YaHei",sans-serif;font-size:14px}
+header{height:86px;display:flex;align-items:center;justify-content:space-between;padding:18px 30px;background:white;border-bottom:1px solid var(--line);gap:20px}
+.brand{font:600 12px Bahnschrift,Consolas,monospace;letter-spacing:.12em;color:var(--blue);margin-bottom:6px}h1{font-size:21px;font-weight:600;margin:0;letter-spacing:.02em}.level{font-size:12px;border-left:3px solid var(--bronze);padding-left:12px;line-height:1.8;color:var(--muted);max-width:290px}
+main{display:grid;grid-template-columns:minmax(0,1fr) 308px;min-height:calc(100vh - 86px)}.viewport{position:relative;background:#edf3f6;min-width:0;overflow:hidden}canvas{width:100%;height:calc(100vh - 86px);min-height:510px;display:block;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}
+.views{position:absolute;top:20px;left:22px;display:flex;flex-wrap:wrap;gap:5px;max-width:calc(100% - 44px)}button,select{font:inherit;color:var(--ink);border:1px solid #bdcdd5;background:#fff;padding:8px 11px;border-radius:4px;cursor:pointer}button:hover{background:#e7eff3;border-color:var(--blue)}button[aria-pressed=true]{color:white;background:var(--accent);border-color:var(--accent)}button:focus-visible,select:focus-visible,input:focus-visible,canvas:focus-visible{outline:3px solid #B2182B;outline-offset:3px}
+.view-title{position:absolute;top:76px;left:24px;font-size:12px;line-height:1.8;color:var(--muted);pointer-events:none}.view-title strong{font-size:15px;color:var(--ink);font-weight:600;display:block}.bottom{position:absolute;left:24px;bottom:18px;right:24px;display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:12px;pointer-events:none}.readout{font-family:Consolas,monospace;font-variant-numeric:tabular-nums}.hint{line-height:1.8}
+aside{background:#fff;border-left:1px solid var(--line);padding:22px 22px 20px;overflow:auto}section+section{border-top:1px solid #dce4e8;margin-top:20px;padding-top:18px}h2{font-size:13px;letter-spacing:.04em;margin:0 0 13px;font-weight:600}.gear-title{display:flex;gap:8px;align-items:center;margin:14px 0 8px;font-weight:600}.swatch{width:10px;height:10px;border-radius:2px;display:inline-block}.pinion{background:var(--blue)}.wheel{background:var(--bronze)}dl{display:grid;grid-template-columns:1fr auto;gap:7px 12px;margin:0;font-size:12px}dt{color:var(--muted)}dd{margin:0;text-align:right;font-family:Consolas,"Microsoft YaHei",monospace;font-variant-numeric:tabular-nums}.toggles{display:grid;grid-template-columns:1fr 1fr;gap:12px 8px}.toggles label{display:flex;align-items:center;gap:7px;font-size:12px;cursor:pointer}input{accent-color:var(--blue);margin:0;width:15px;height:15px}select{width:100%;font-size:12px;padding:8px;margin-top:13px}.forces{margin-top:13px;font-size:12px;line-height:1.9;color:var(--muted)}.force-legend{display:flex;gap:12px;font:12px Consolas,monospace;margin-top:10px}.note{font-size:12px;line-height:1.9;color:var(--muted);margin:0}.status{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.8}.export{width:100%;margin-top:14px;font-size:12px;background:#f1f6f8}.noscript{padding:24px;color:#963f3f}footer{font-size:11px;color:var(--muted);margin-top:20px}
+@media(max-width:800px){header{height:auto;min-height:82px;padding:16px 20px}.level{display:none}main{grid-template-columns:1fr}.viewport{height:62vh;min-height:440px}canvas{height:100%;min-height:0}aside{border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:20px}section+section{margin-top:0;padding-top:0;border-top:0}.bottom{bottom:12px}.hint{max-width:190px}.readout{font-size:10px}}
+@media(max-width:480px){aside{grid-template-columns:1fr}.views{left:14px;top:14px;gap:4px}.views button{font-size:12px;padding:7px 9px}.views #fit{display:none}.view-title{top:65px;left:16px}.bottom{left:16px;right:16px}.readout{display:none}h1{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.pose{margin-top:15px;padding-top:12px;border-top:1px solid var(--line);font-size:12px}.pose label{display:flex;justify-content:space-between}.pose input{display:block;width:100%;height:20px;margin-top:10px}.level{white-space:pre-line}
+</style>
+</head>
+<body>
+<header><div><div class="brand">BEVEL GEAR DESIGN / ASSEMBLY</div><h1 id="model-heading">节锥与齿部包络</h1></div><div class="level" id="model-level">宏观几何 · 规范装配<br>未生成实际齿面，观察旋转不代表啮合仿真</div></header>
+<main>
+<div class="viewport">
+ <canvas id="assembly" tabindex="0" aria-label="三维锥齿轮节锥和齿高包络；方向键旋转，滚轮缩放，R复位">浏览器需要支持Canvas才能显示三维视图。</canvas>
+ <div class="views" aria-label="标准视角"><button data-view="iso" aria-pressed="true">轴测</button><button data-view="xz" aria-pressed="false">装配平面</button><button data-view="xy" aria-pressed="false">沿小轮轴</button><button data-view="yz" aria-pressed="false">侧视</button><button id="fit">适应窗口</button></div>
+ <div class="view-title"><strong id="design-name"></strong><span id="design-summary"></span></div>
+ <div class="bottom"><div class="hint">拖动旋转 · 滚轮缩放<br>Shift＋拖动平移 · R复位</div><div id="camera-readout" class="readout" aria-live="off"></div></div>
+</div>
+<aside>
+ <section><h2>装配参数</h2><dl id="assembly-values"></dl><div class="gear-title"><i class="swatch pinion"></i>小轮</div><dl id="pinion-values"></dl><div class="gear-title"><i class="swatch wheel"></i>大轮</div><dl id="wheel-values"></dl></section>
+ <section><h2>显示图层</h2><div class="toggles"><label><input id="show-pinion" type="checkbox" checked>显示小轮</label><label><input id="show-wheel" type="checkbox" checked>显示大轮</label><label><input id="envelopes" type="checkbox" checked>齿高包络</label><label><input id="pitch" type="checkbox" checked>节锥线框</label><label><input id="mean" type="checkbox">平均截面</label><label><input id="axes" type="checkbox" checked>轴线与原点</label><label><input id="forces" type="checkbox" checked>啮合力</label><label><input id="labels" type="checkbox" checked>标注</label></div>
+ <label class="status"><input id="surfaces" type="checkbox"> 显示理想直齿解析齿面</label><div class="pose" id="motion-controls" hidden><label for="pinion-angle">理想小轮转角 <output id="pose-value">0°</output></label><input id="pinion-angle" type="range" min="0" max="360" step="1" value="0"><p class="note" id="motion-readout">按齿数比联动；不求接触对齐或传动误差。</p></div>
+ <select id="force-mode" aria-label="力显示方式"><option value="pinion">小轮合力</option><option value="wheel">大轮合力</option><option value="both">两轮合力</option><option value="components">小轮分量</option></select><div class="force-legend"><span style="color:#2166AC">Fₜ</span><span style="color:#616970">Fᵣ</span><span style="color:#67A9CF">Fₐ</span><span style="color:#B2182B">合力</span></div><dl class="forces" id="force-values"></dl><div class="status" id="balance"></div>
+ <button class="export" id="save-png">保存当前视图 PNG</button></section>
+ <section><h2>几何层级</h2><p class="note" id="scope-first">由齿顶、齿根的内外端尺寸旋转生成封闭包络。节锥线框与平均截面使用同一组计算结果。</p><p class="note" id="scope-second" style="margin-top:9px">未建齿、孔或轮毂。两轮包络可能交叠，不能据此判断实体干涉或接触斑。</p><footer>坐标与尺寸：mm · 力：N<br>规范装配：全局Z沿小轮轴，另一轴位于XZ平面；轴向力正方向指向共同锥顶。</footer></section>
+</aside>
+</main>
+<noscript><p class="noscript">请启用JavaScript显示交互视图；原始网格和力数据仍可从同目录的assembly_scene.json读取。</p></noscript>
+<script id="scene-data" type="application/json">__SCENE_JSON__</script>
+<script>
+"use strict";
+(() => {
+const scene = JSON.parse(document.getElementById("scene-data").textContent);
+const canvas = document.getElementById("assembly"), ctx = canvas.getContext("2d");
+const $ = id => document.getElementById(id);
+const add = (a,b) => a.map((v,i)=>v+b[i]), sub=(a,b)=>a.map((v,i)=>v-b[i]);
+const mul = (a,s) => a.map(v=>v*s), dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const norm=a=>Math.hypot(...a), unit=a=>mul(a,1/(norm(a)||1));
+const degrees=a=>a*180/Math.PI, format=(v,d=2)=>Number(v).toLocaleString("zh-CN",{minimumFractionDigits:d,maximumFractionDigits:d});
+const bounds=scene.bounds, center=mul(add(bounds.min_m,bounds.max_m),.5);
+const reach=norm(scene.common_generator_outer_m);
+const state={yaw:-.85,pitch:.48,zoom:1,pan:[0,0],toothAngle:0};
+const hasSurfaces=scene.gears.every(g=>g.surface_mesh);
+$("surfaces").checked=hasSurfaces;$("surfaces").disabled=!hasSurfaces;$("motion-controls").hidden=!hasSurfaces;
+if(hasSurfaces){
+ $("envelopes").checked=false;$("pitch").checked=false;
+ $("model-heading").textContent="理想直齿解析齿面";
+ $("model-level").textContent="球面渐开线 · 有效双齿面\n未包含根圆角、轮体或真实刀具包络";
+ $("scope-first").textContent="解析球面渐开线及单位法向，按齿距严格周期阵列。基圆以下的根过渡、孔和轮体均未生成。";
+ $("scope-second").textContent="转角遵循理想刚性齿数比；不求实际接触对齐、传动误差或干涉。力仍标在平均节点。";
+}
+let width=1,height=1,scale=1,dpr=1,frame=0,drag=null;
+let viewCenterY=1;
+const fitPoints=[scene.origin_m,...scene.gears.flatMap(g=>g.mesh.vertices_m),
+ ...scene.gears.map(g=>mul(g.frame.shaft_outward,reach*1.17))];
+for(const gear of scene.gears)if(gear.forces)fitPoints.push(add(gear.forces.origin_m,mul(gear.forces.resultant_n,scene.force_display_scale_m_per_n)));
+const light=unit([-.4,-.6,1]);
+const faces=[];
+for(const gear of scene.gears)for(const [kind,mesh] of [["envelopes",gear.mesh],["surfaces",gear.surface_mesh]])if(mesh)for(const indices of mesh.triangles){
+ const points=indices.map(i=>mesh.vertices_m[i]);
+ const normal=unit(cross(sub(points[1],points[0]),sub(points[2],points[0])));
+ const rgb=gear.color.match(/\w\w/g).map(v=>parseInt(v,16));
+ faces.push({points,normal,rgb,kind,role:gear.id,axis:gear.frame.shaft_outward,rotationRatio:gear.rotation_ratio||0});
+}
+function rotate(point,axis,angle){return angle===0?point:add(add(mul(point,Math.cos(angle)),mul(cross(axis,point),Math.sin(angle))),mul(axis,dot(axis,point)*(1-Math.cos(angle))));}
+function camera(){
+ const c=Math.cos(state.yaw),s=Math.sin(state.yaw),p=Math.sin(state.pitch),q=Math.cos(state.pitch);
+ return {right:[-s,c,0],up:[-p*c,-p*s,q],eye:[q*c,q*s,p]};
+}
+function projection(point,cam){
+ const p=sub(point,center);
+ return [width*.5+state.pan[0]+dot(p,cam.right)*scale,viewCenterY+state.pan[1]-dot(p,cam.up)*scale,dot(p,cam.eye)];
+}
+function path(points,cam,color,lineWidth=1,dashed=false,closed=false){
+ ctx.beginPath();points.forEach((p,i)=>{const v=projection(p,cam);i?ctx.lineTo(v[0],v[1]):ctx.moveTo(v[0],v[1]);});
+ if(closed)ctx.closePath();ctx.strokeStyle=color;ctx.lineWidth=lineWidth;ctx.setLineDash(dashed?[5,5]:[]);ctx.stroke();ctx.setLineDash([]);
+}
+function text(value,point,cam,color="#334d5b",dx=7,dy=-7){
+ if(!$("labels").checked)return;
+ const p=projection(point,cam);ctx.font='12px "Microsoft YaHei","Segoe UI",sans-serif';
+ const x=Math.max(10,Math.min(width-ctx.measureText(value).width-10,p[0]+dx)),y=Math.max(15,Math.min(height-12,p[1]+dy));
+ ctx.lineWidth=4;ctx.strokeStyle="rgba(247,250,251,.92)";ctx.strokeText(value,x,y);ctx.fillStyle=color;ctx.fillText(value,x,y);
+}
+function arrow(origin,vector,cam,color,label){
+ if(norm(vector)<1e-12)return;
+ const end=add(origin,mul(vector,scene.force_display_scale_m_per_n)),a=projection(origin,cam),b=projection(end,cam);
+ const dx=b[0]-a[0],dy=b[1]-a[1],length=Math.hypot(dx,dy);
+ path([origin,end],cam,color,2.6);
+ if(length>3){const u=[dx/length,dy/length];ctx.beginPath();ctx.moveTo(b[0],b[1]);ctx.lineTo(b[0]-9*u[0]+4*u[1],b[1]-9*u[1]-4*u[0]);ctx.lineTo(b[0]-9*u[0]-4*u[1],b[1]-9*u[1]+4*u[0]);ctx.closePath();ctx.fillStyle=color;ctx.fill();}
+ text(label,end,cam,color,dx>=0?9:-Math.min(145,ctx.measureText(label).width+9),dy>=0?17:-9);
+}
+function draw(){
+ frame=0;const cam=camera(),topPad=width>600?118:96,bottomPad=105;
+ const projected=fitPoints.map(p=>sub(p,center));
+ const maxX=Math.max(...projected.map(p=>Math.abs(dot(p,cam.right)))),maxY=Math.max(...projected.map(p=>Math.abs(dot(p,cam.up))));
+ scale=Math.min((width-100)/(2*maxX),(height-topPad-bottomPad)/(2*maxY))*state.zoom;
+ viewCenterY=(topPad+height-bottomPad)/2;
+ ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle="#edf3f6";ctx.fillRect(0,0,width,height);
+ // 固定在全局XY平面的细网格提供深度参照，不参与几何计算。
+ const step=reach/4;
+ for(let i=-4;i<=4;i++){
+  path([[i*step,-reach,-reach*.08],[i*step,reach,-reach*.08]],cam,"#dfe8ed",.7);
+  path([[-reach,i*step,-reach*.08],[reach,i*step,-reach*.08]],cam,"#dfe8ed",.7);
+ }
+ if($("envelopes").checked||$("surfaces").checked){
+  const ordered=faces.filter(f=>$("show-"+f.role).checked&&$(f.kind).checked).map(f=>{
+   const angle=f.kind==="surfaces"?state.toothAngle*f.rotationRatio:0,normal=rotate(f.normal,f.axis,angle),shade=.73+.25*dot(normal,light);
+   return {...f,color:`rgb(${f.rgb.map(v=>Math.round(Math.min(255,v*shade+20))).join(",")})`,projected:f.points.map(p=>projection(rotate(p,f.axis,angle),cam))};
+  });
+  ordered.sort((a,b)=>a.projected.reduce((s,p)=>s+p[2],0)-b.projected.reduce((s,p)=>s+p[2],0));
+  for(const face of ordered){ctx.beginPath();face.projected.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();ctx.fillStyle=face.color;ctx.fill();ctx.strokeStyle=face.color;ctx.lineWidth=.55;ctx.stroke();}
+ }
+ for(const gear of scene.gears){
+  if(!$("show-"+gear.id).checked)continue;
+  const rings=gear.pitch_rings_m;
+  if($("pitch").checked){
+   for(const end of ["inner","outer"])path(rings[end],cam,gear.color,1.25,false,true);
+   const stride=Math.max(1,Math.round(scene.segments/12));
+   for(let i=0;i<scene.segments;i+=stride)path([rings.inner[i],rings.outer[i]],cam,gear.color,.7);
+  }
+  if($("mean").checked)path(rings.mean,cam,gear.color,1.4,true,true);
+  if($("axes").checked){
+   const tip=mul(gear.frame.shaft_outward,reach*1.17);
+   path([mul(gear.frame.shaft_outward,-reach*.13),tip],cam,gear.color,1.5,true);
+   text(gear.label+"轴",tip,cam,gear.color);
+  }
+ }
+ if($("axes").checked){
+  path([scene.origin_m,scene.common_generator_outer_m],cam,"#657a86",1,true);
+  const p=projection(scene.origin_m,cam);ctx.beginPath();ctx.arc(p[0],p[1],4,0,Math.PI*2);ctx.fillStyle="#334d5b";ctx.fill();
+  text("共同锥顶 O",scene.origin_m,cam,"#334d5b",8,20);
+ }
+ const contact=scene.mean_contact_point_m,cp=projection(contact,cam);
+ ctx.beginPath();ctx.arc(cp[0],cp[1],4,0,Math.PI*2);ctx.fillStyle="#B2182B";ctx.fill();
+ if($("forces").checked&&scene.gears[0].forces){
+  const mode=$("force-mode").value;
+  if(mode==="components"){
+   const values=scene.gears[0].forces.components;
+   if($("show-pinion").checked)for(const [key,symbol,color] of [["tangential","Fₜ₁","#2166AC"],["radial","Fᵣ₁","#616970"],["axial","Fₐ₁","#67A9CF"]])arrow(contact,values[key].vector_n,cam,color,`${symbol} ${format(values[key].value_n,0)} N`);
+  }else{
+   for(const [i,gear] of scene.gears.entries())if($("show-"+gear.id).checked&&(mode==="both"||mode===gear.id))arrow(contact,gear.forces.resultant_n,cam,i?"#B2182B":"#B2182B",`${gear.label}合力 ${format(gear.forces.magnitude_n,0)} N`);
+  }
+ }
+ text("平均截面作用点",contact,cam,"#7c4047",9,20);
+ // 左下角标尺按当前正交投影比例更新，单位统一为mm。
+ const desired=90/scale,base=10**Math.floor(Math.log10(desired));
+ const bar=[1,2,5,10].map(v=>v*base).reduce((a,b)=>Math.abs(a-desired)<Math.abs(b-desired)?a:b),px=bar*scale;
+ const bx=25,by=height-87;ctx.strokeStyle="#6b808d";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(bx,by-4);ctx.lineTo(bx,by+4);ctx.moveTo(bx,by);ctx.lineTo(bx+px,by);ctx.moveTo(bx+px,by-4);ctx.lineTo(bx+px,by+4);ctx.stroke();ctx.fillStyle="#5d717c";ctx.font="11px Consolas,monospace";ctx.fillText(`${format(bar*1000,bar*1000<1?2:0)} mm`,bx,by-10);
+ // 固定方位指示器使用同一相机基向量。
+ const origin=[width-55,height-79],colors=["#B2182B","#616970","#2166AC"];
+ [[1,0,0],[0,1,0],[0,0,1]].forEach((axis,i)=>{const end=[origin[0]+dot(axis,cam.right)*24,origin[1]-dot(axis,cam.up)*24];ctx.beginPath();ctx.moveTo(...origin);ctx.lineTo(...end);ctx.strokeStyle=colors[i];ctx.stroke();ctx.fillStyle=colors[i];ctx.fillText("XYZ"[i],end[0]+3,end[1]-3);});
+ $("camera-readout").textContent=`方位 ${format(degrees(state.yaw),0)}° / 仰角 ${format(degrees(state.pitch),0)}° / ${format(state.zoom,2)}×`;
+}
+function requestDraw(){if(!frame)frame=requestAnimationFrame(draw);}
+function fit(){state.zoom=1;state.pan=[0,0];requestDraw();}
+function view(name){
+ const presets={iso:[-.85,.48],xz:[-Math.PI/2,0],xy:[-Math.PI/2,Math.PI/2],yz:[0,0]};
+ [state.yaw,state.pitch]=presets[name];document.querySelectorAll("[data-view]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.view===name)));fit();
+}
+function custom(){document.querySelectorAll("[data-view]").forEach(b=>b.setAttribute("aria-pressed","false"));}
+function resize(){const r=canvas.getBoundingClientRect();width=r.width;height=r.height;dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);requestDraw();}
+new ResizeObserver(resize).observe(canvas);
+canvas.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,pan:e.shiftKey||e.button===2};canvas.setPointerCapture(e.pointerId);canvas.focus({preventScroll:true});});
+canvas.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(drag.pan){state.pan[0]+=dx;state.pan[1]+=dy;}else{state.yaw-=dx*.008;state.pitch=Math.max(-Math.PI/2+.001,Math.min(Math.PI/2-.001,state.pitch+dy*.008));custom();}drag.x=e.clientX;drag.y=e.clientY;requestDraw();});
+canvas.addEventListener("pointerup",()=>drag=null);canvas.addEventListener("pointercancel",()=>drag=null);canvas.addEventListener("contextmenu",e=>e.preventDefault());
+canvas.addEventListener("wheel",e=>{e.preventDefault();state.zoom=Math.max(.25,Math.min(6,state.zoom*Math.exp(-e.deltaY*.001)));requestDraw();},{passive:false});
+canvas.addEventListener("keydown",e=>{if(e.key.toLowerCase()==="r"){view("iso");e.preventDefault();}else if(e.key.startsWith("Arrow")){e.preventDefault();if(e.key==="ArrowLeft")state.yaw+=.1;if(e.key==="ArrowRight")state.yaw-=.1;if(e.key==="ArrowUp")state.pitch=Math.min(Math.PI/2,state.pitch+.1);if(e.key==="ArrowDown")state.pitch=Math.max(-Math.PI/2,state.pitch-.1);custom();requestDraw();}else if(e.key==="+"||e.key==="="){state.zoom=Math.min(6,state.zoom*1.1);requestDraw();}else if(e.key==="-"){state.zoom=Math.max(.25,state.zoom/1.1);requestDraw();}});
+document.querySelectorAll("[data-view]").forEach(button=>button.addEventListener("click",()=>view(button.dataset.view)));
+$("fit").addEventListener("click",fit);
+document.querySelectorAll("input,select").forEach(input=>input.addEventListener("change",requestDraw));
+$("pinion-angle").addEventListener("input",()=>{state.toothAngle=Number($("pinion-angle").value)*Math.PI/180;$("pose-value").textContent=format(degrees(state.toothAngle),0)+"°";$("motion-readout").textContent=`相对初始装配：大轮 ${format(-degrees(state.toothAngle)*scene.gears[0].teeth/scene.gears[1].teeth,1)}°；不求接触对齐。`;requestDraw();});
+$("save-png").addEventListener("click",()=>{draw();const a=document.createElement("a");a.download="bevel-assembly.png";a.href=canvas.toDataURL("image/png");a.click();});
+function details(id,rows){const target=$(id);for(const [label,value] of rows){const term=document.createElement("dt"),definition=document.createElement("dd");term.textContent=label;definition.textContent=value;target.append(term,definition);}}
+$("design-name").textContent=scene.name;
+$("design-summary").textContent=`${scene.gears[0].teeth} / ${scene.gears[1].teeth} 齿 · 轴交角 ${format(degrees(scene.shaft_angle_rad),1)}°`;
+details("assembly-values",[["轴交角 Σ",`${format(degrees(scene.shaft_angle_rad),1)}°`],["齿宽 b",`${format(scene.face_width_m*1000)} mm`],["中点螺旋角 β",`${format(degrees(scene.spiral_angle_rad),1)}°`]]);
+for(const gear of scene.gears)details(gear.id+"-values",[["齿数 z",gear.teeth],["节锥角 δ",`${format(degrees(gear.pitch_angle_rad))}°`],["外端节圆 dₑ",`${format(gear.outer_pitch_diameter_m*1000)} mm`],["中点节圆 dₘ",`${format(gear.mean_pitch_diameter_m*1000)} mm`]]);
+if(scene.gears[0].forces){
+ const c=scene.gears[0].forces.components;
+ details("force-values",[["小轮 Fₜ",`${format(c.tangential.value_n)} N`],["小轮 Fᵣ",`${format(c.radial.value_n)} N`],["小轮 Fₐ",`${format(c.axial.value_n)} N`]]);
+ $("balance").textContent=`规范装配全局力平衡残差：${scene.force_balance_residual_n.toExponential(2)} N。各箭头共用长度比例。`;
+}else{$("forces").checked=false;$("forces").disabled=true;$("force-mode").disabled=true;$("force-values").textContent="本场景仅包含几何，未提供载荷。";}
+resize();
+})();
+</script>
+</body>
+</html>

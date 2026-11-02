@@ -1,0 +1,175 @@
+{
+  "schema": "bevel_analysis_case_v1",
+  "name": "17/47弧齿锥齿轮副",
+  "kind": "spiral",
+  "description": "外端端面模数4mm，零偏置圆弧齿线；名义标准面与实际左右制造面分别核对",
+  "geometry": {
+    "pinion_teeth": 17,
+    "wheel_teeth": 47,
+    "wheel_outer_pitch_diameter_m": 0.188,
+    "face_width_m": 0.029988,
+    "shaft_angle_rad": 1.5707963267948966,
+    "spiral_angle_rad": 0.6108652381980153,
+    "pressure_angle_rad": 0.3490658503988659,
+    "addendum_coefficient": 1.0373466252578787,
+    "dedendum_coefficient": 1.2671394922714723,
+    "pinion_profile_shift_coefficient": 0.4141168297193543,
+    "tooth_thickness_modification_coefficient": 0.06359782481907869,
+    "backlash_m": 0.00034094000378765435,
+    "cutter_radius_m": 0.0762,
+    "depth_taper": "custom",
+    "tooth_trace": "circular_arc",
+    "offset_m": 0.0,
+    "root_fillet_radius_pinion_m": null,
+    "root_fillet_radius_wheel_m": null,
+    "cutter_group_count": 0,
+    "wheel_addendum_taper_angle_rad": 0.02295396144414341,
+    "wheel_dedendum_taper_angle_rad": 0.05340419333060842
+  },
+  "materials": {
+    "pinion": {
+      "young_modulus_pa": 210000000000.0,
+      "poisson_ratio": 0.3,
+      "density_kg_m3": 7800,
+      "heat_treatment": "case_hardened",
+      "contact_stress_number_pa": 1500000000.0
+    },
+    "wheel": {
+      "young_modulus_pa": 210000000000.0,
+      "poisson_ratio": 0.3,
+      "density_kg_m3": 7800,
+      "heat_treatment": "case_hardened",
+      "contact_stress_number_pa": 1500000000.0
+    }
+  },
+  "load": {
+    "pinion_torque_n_m": 64.0,
+    "pinion_speed_rpm": 1500.0,
+    "ltca_torque_sign": -1
+  },
+  "force_convention": {
+    "flank": "coast",
+    "spiral_hand": 1
+  },
+  "strength": {
+    "pinion_pitch_deviation_m": 1.8e-05,
+    "wheel_pitch_deviation_m": 1.8e-05,
+    "pinion_cutter_tip_radius_m": 0.001004,
+    "wheel_cutter_tip_radius_m": 0.001088,
+    "pinion_opposite_cutter_tip_radius_m": 0.000944,
+    "wheel_opposite_cutter_tip_radius_m": 0.00114,
+    "application_factor": 1.25,
+    "face_load_factor": 1.2,
+    "effective_face_width_ratio": 0.85,
+    "profile_crowning": "low",
+    "working_flank": "coast"
+  },
+  "stress_limits": {
+    "contact_stress_limit_pa": 1500000000.0,
+    "pinion_root_stress_limit_pa": 450000000.0,
+    "wheel_root_stress_limit_pa": 450000000.0,
+    "minimum_contact_safety": 1.1,
+    "minimum_root_safety": 1.5,
+    "basis": "合成案例的显式设计应力限值；不代表已自动推导ISO2014材料/寿命/润滑容量"
+  },
+  "binding_tolerances": {
+    "length_absolute_m": 2e-08,
+    "length_relative": 1e-07,
+    "angle_absolute_rad": 1e-09,
+    "nominal_spiral_angle_rad": 0.017453292519943295,
+    "nominal_pressure_angle_rad": 0.017453292519943295
+  },
+  "manufacturing": {
+    "pinion": {
+      "request_file": "spiral_17_47_pinion_manufacturing.json",
+      "blank": {
+        "bore_diameter_m": 0.012,
+        "root_height_policy": "compatible"
+      }
+    },
+    "wheel": {
+      "request_file": "spiral_17_47_wheel_manufacturing.json",
+      "blank": {
+        "bore_diameter_m": 0.032,
+        "root_height_policy": "compatible"
+      }
+    }
+  },
+  "cad_sampling": {
+    "width_count": 25,
+    "profile_count": 25
+  },
+  "analysis": {
+    "driver_angles_rad": [
+      -0.18479956785822313,
+      -0.16939960387003786,
+      -0.1539996398818526,
+      -0.13859967589366734,
+      -0.1231997119054821,
+      -0.10779974791729681,
+      -0.09239978392911156,
+      -0.07699981994092629,
+      -0.06159985595274105,
+      -0.04619989196455578,
+      -0.030799927976370513,
+      -0.015399963988185265,
+      0.0,
+      0.015399963988185246,
+      0.03079992797637053,
+      0.04619989196455578,
+      0.06159985595274103,
+      0.07699981994092632,
+      0.09239978392911156,
+      0.10779974791729681,
+      0.1231997119054821,
+      0.13859967589366734,
+      0.15399963988185258,
+      0.16939960387003788,
+      0.18479956785822313
+    ],
+    "tooth_offsets": [
+      -1,
+      0,
+      1
+    ],
+    "load_sweep_torques_nm": [
+      32.0,
+      64.0,
+      128.0
+    ]
+  },
+  "finite_element": {
+    "element_size_m": 0.004,
+    "contact_refined_size_m": 0.0008,
+    "refinement_radius_m": 0.004,
+    "maximum_nodes": 120000,
+    "refinement_driving_angles_rad": [
+      -0.18479956785822313,
+      -0.1539996398818526,
+      -0.1231997119054821,
+      -0.09239978392911156,
+      -0.06159985595274105,
+      -0.030799927976370513,
+      0.0,
+      0.03079992797637053,
+      0.06159985595274103,
+      0.09239978392911156,
+      0.1231997119054821,
+      0.15399963988185258,
+      0.18479956785822313
+    ],
+    "refinement_tooth_offsets": [
+      -1,
+      0,
+      1
+    ]
+  },
+  "loaded_contact": {
+    "maximum_distance_m": 0.0008,
+    "matching_tolerance_m": 8e-07,
+    "mesh_phase_tolerance_m": 4e-09,
+    "maximum_channels": 2048,
+    "maximum_loaded_angle_rad": 0.005,
+    "maximum_pinion_torque_relative_residual": 0.02
+  }
+}

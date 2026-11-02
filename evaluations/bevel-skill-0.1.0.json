@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "date": "2026-11-02",
+  "skill": "bevel-gear-design",
+  "skill_version": "0.1.0",
+  "library_version": "0.4.0",
+  "source_commit": "05da3ac166a750a6326907af5bd0dba8aa6ab034",
+  "source_version": "0.10.0",
+  "source_files": 115,
+  "source_functions": 997,
+  "local_unit_tests": {
+    "passed": 35,
+    "failed": 0,
+    "command": "python -B -m unittest discover -s tests -v",
+    "note": "Git安装测试临时目录设置在项目output/tests"
+  },
+  "skill_validation": {
+    "passed": true,
+    "command": "skill-creator/scripts/quick_validate.py skills/bevel-gear-design"
+  },
+  "straight_single_phase": {
+    "source_case": "skills/bevel-gear-design/assets/straight_16_32_case.json",
+    "overrides": {
+      "analysis.driver_angles_rad": [
+        0.0
+      ],
+      "analysis.load_sweep_torques_nm": [
+        40.0
+      ]
+    },
+    "completed_stages": [
+      "geometry",
+      "strength",
+      "cad",
+      "tca",
+      "ltca"
+    ],
+    "converged": true,
+    "status": "converged",
+    "contact_representation": "facets",
+    "pressure_peak_validated": false,
+    "discretization_converged": null,
+    "include_fields": true,
+    "physical_validation": false
+  },
+  "install": {
+    "passed": true,
+    "read_only_check": true,
+    "skills": [
+      "cylindrical-gear-analysis",
+      "bevel-gear-design"
+    ],
+    "destination_scope": "隔离output目录；未修改用户全局技能"
+  },
+  "wheel": {
+    "built": true,
+    "kernel_python_modules": 104,
+    "viewer_asset_included": true,
+    "run_and_replay": true,
+    "library_version": "0.4.0"
+  },
+  "forward_test": {
+    "independent_agent": true,
+    "input": "18/36齿，de2=0.144m，b=0.022m，90°轴交角，20°压力角，40N·m，1500rpm；材料与评级设置采用明确标注的演示假设",
+    "run_and_plots": true,
+    "replay_passed": true,
+    "scope_review": [
+      "准双曲面最终寿命不能由本Skill给出",
+      "实际弧齿面与LTCA缺少制造输入时应追问"
+    ],
+    "independent_arithmetic_checks_passed": 27,
+    "report_improvement": "独立前向验证发现自动报告未列主数值和假设；最终适配已补齐几何、力、应力、安全系数、限值依据、输入说明及完整默认几何。"
+  },
+  "unverified": [
+    "锥齿轮全周期接触验收",
+    "弧齿CAD／TCA／LTCA的本Skill端到端复算",
+    "高级分布牵引FE及半解析API的Skill复算协议",
+    "网格与相位峰压收敛",
+    "物理试验验证"
+  ],
+  "provenance": "重建内核按原字节保留；适配层与Skill为新写实现，厂商组件不参与运行",
+  "base_commit": "fb32bd8bf993fd90df8bc595bc7b20918524acfe",
+  "initial_integration": {
+    "library_version": "0.3.0",
+    "checks": {
+      "tca-replay": {
+        "passed": true,
+        "differences": [],
+        "compared_groups": [
+          "case",
+          "case_fingerprint",
+          "kind",
+          "completed_stages",
+          "analysis_completed",
+          "geometry",
+          "forces",
+          "standard_rating",
+          "strength_assessment",
+          "manufacturing_binding",
+          "tca",
+          "ltca",
+          "quality"
+        ],
+        "rtol": 1e-08,
+        "atol": 1e-12
+      },
+      "ltca-replay": {
+        "passed": true,
+        "differences": [],
+        "compared_groups": [
+          "case",
+          "case_fingerprint",
+          "kind",
+          "completed_stages",
+          "analysis_completed",
+          "geometry",
+          "forces",
+          "standard_rating",
+          "strength_assessment",
+          "manufacturing_binding",
+          "tca",
+          "ltca",
+          "quality"
+        ],
+        "rtol": 1e-08,
+        "atol": 1e-12
+      },
+      "installed-replay": {
+        "passed": true,
+        "differences": [],
+        "compared_groups": [
+          "case",
+          "case_fingerprint",
+          "kind",
+          "completed_stages",
+          "analysis_completed",
+          "geometry",
+          "forces",
+          "standard_rating",
+          "strength_assessment",
+          "manufacturing_binding",
+          "tca",
+          "ltca",
+          "quality",
+          "masta_benchmark"
+        ],
+        "rtol": 1e-08,
+        "atol": 1e-12
+      },
+      "wheel-replay": {
+        "passed": true,
+        "differences": [],
+        "compared_groups": [
+          "case",
+          "case_fingerprint",
+          "kind",
+          "completed_stages",
+          "analysis_completed",
+          "geometry",
+          "forces",
+          "standard_rating",
+          "strength_assessment",
+          "manufacturing_binding",
+          "tca",
+          "ltca",
+          "quality"
+        ],
+        "rtol": 1e-08,
+        "atol": 1e-12
+      }
+    }
+  },
+  "integration": {
+    "straight_single_phase_ltca": {
+      "passed": true,
+      "differences": [],
+      "compared_groups": [
+        "case",
+        "case_fingerprint",
+        "kind",
+        "completed_stages",
+        "analysis_completed",
+        "geometry",
+        "forces",
+        "standard_rating",
+        "strength_assessment",
+        "manufacturing_binding",
+        "tca",
+        "ltca",
+        "quality"
+      ],
+      "rtol": 1e-08,
+      "atol": 1e-12
+    },
+    "installed_spiral_strength": {
+      "passed": true,
+      "differences": [],
+      "compared_groups": [
+        "case",
+        "case_fingerprint",
+        "kind",
+        "completed_stages",
+        "analysis_completed",
+        "geometry",
+        "forces",
+        "standard_rating",
+        "strength_assessment",
+        "manufacturing_binding",
+        "tca",
+        "ltca",
+        "quality",
+        "masta_benchmark"
+      ],
+      "rtol": 1e-08,
+      "atol": 1e-12
+    },
+    "wheel_strength": {
+      "passed": true,
+      "differences": [],
+      "compared_groups": [
+        "case",
+        "case_fingerprint",
+        "kind",
+        "completed_stages",
+        "analysis_completed",
+        "geometry",
+        "forces",
+        "standard_rating",
+        "strength_assessment",
+        "manufacturing_binding",
+        "tca",
+        "ltca",
+        "quality"
+      ],
+      "rtol": 1e-08,
+      "atol": 1e-12
+    }
+  },
+  "identity": {
+    "source_commit": "05da3ac166a750a6326907af5bd0dba8aa6ab034",
+    "versions": {
+      "python": "3.10.11",
+      "kernel": "0.10.0",
+      "gear-transmission-skills": "0.4.0",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.7.1",
+      "cadquery-ocp": "7.7.2",
+      "gmsh": "4.13.1",
+      "vtk": "9.3.1",
+      "shapely": "2.0.6"
+    },
+    "snapshot_sha256": "4654b9be86d1b34a6c872fad7f6c9e91e4912a7c8f3914ea592f584f293d8403",
+    "adapter_sha256": "e38ada390621831b7639151c4ec044671b82ec650a7d044d32d911712c3f28e6"
+  },
+  "environment_change_rejection": {
+    "status": "failed_as_expected",
+    "reason": "预发布时重建包元数据改变环境身份，原运行被身份守卫拒绝；固定0.4.0环境后新目录求解及复算通过",
+    "failed_output": "output/final-ltca",
+    "successful_output": "output/final-v040-ltca"
+  }
+}

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gear-transmission-skills"
-version = "0.3.0"
+version = "0.4.0"
 description = "齿轮传动设计 Skill 库：保留独立计算内核与可复算工程流程"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -14,18 +14,22 @@ dependencies = ["numpy>=1.24", "scipy>=1.10"]
 
 [project.optional-dependencies]
 plots = ["matplotlib>=3.6"]
+bevel-contact = ["cadquery-ocp>=7.7.2,<7.8", "gmsh>=4.13,<4.14", "vtk>=9.3,<9.4", "shapely>=2.0,<3", "psutil>=5.9"]
 
 [project.scripts]
 gear-design = "gear_transmission.cli:main"
+gear-bevel = "gear_transmission.bevel_cli:main"
 
 [tool.setuptools]
-packages = ["gear_transmission", "gear_contact", "gear_ltca_snapshot"]
+packages = ["gear_transmission", "gear_contact", "gear_ltca_snapshot", "bevel_gear"]
 
 [tool.setuptools.package-dir]
 gear_transmission = "src/gear_transmission"
 gear_contact = "packages/cylindrical-gear-ltca/gear_contact"
 gear_ltca_snapshot = "packages/cylindrical-gear-ltca"
+bevel_gear = "packages/bevel-gear-design/bevel_gear"
 
 [tool.setuptools.package-data]
-gear_transmission = ["kernel_snapshot.json"]
+gear_transmission = ["kernel_snapshot.json", "bevel_snapshot.json"]
+bevel_gear = ["assets/*.html"]
 gear_ltca_snapshot = ["LICENSE", "pyproject.toml", "constraints.txt", "gear_contact/*.py", "docs/*.md", "examples/*.py", "examples/*.json", "examples/masta_reference/*"]

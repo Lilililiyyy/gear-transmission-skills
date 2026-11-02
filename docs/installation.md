@@ -4,6 +4,8 @@
 
 安装包含计算环境和宿主技能注册两部分。以下操作基于完整的本地项目；技能文件、资源和计算包均须保留。
 
+当前安装器同步 `cylindrical-gear-analysis` 和 `bevel-gear-design` 两个完整Skill，并校验各自内核。默认依赖可运行锥齿轮几何与强度；需要CAD、TCA或LTCA时，在安装器返回的同一Python环境另执行 `python -m pip install -e ".[bevel-contact,plots]"`。用该解释器运行锥齿轮[示例和复算命令](../README.md#使用)，或完整Skill的 `scripts/run_bevel.py`。
+
 ## 环境要求
 
 | 组件 | 要求 |

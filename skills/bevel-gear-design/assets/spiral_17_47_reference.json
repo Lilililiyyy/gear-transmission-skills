@@ -1,0 +1,978 @@
+{
+  "schema": "bevel_workflow_reference_v1",
+  "description": "17/47圆弧齿轮，4mm外端横模数；真实侧隙/齿厚与双侧刀尖的名义标准链参照",
+  "reference_inputs": {
+    "kind": "spiral",
+    "geometry": {
+      "pinion_teeth": 17,
+      "wheel_teeth": 47,
+      "wheel_outer_pitch_diameter_m": 0.188,
+      "face_width_m": 0.029988,
+      "shaft_angle_rad": 1.5707963267948966,
+      "spiral_angle_rad": 0.6108652381980153,
+      "pressure_angle_rad": 0.3490658503988659,
+      "addendum_coefficient": 1.0373466252578787,
+      "dedendum_coefficient": 1.2671394922714723,
+      "pinion_profile_shift_coefficient": 0.4141168297193543,
+      "tooth_thickness_modification_coefficient": 0.06359782481907869,
+      "backlash_m": 0.00034094000378765435,
+      "cutter_radius_m": 0.0762,
+      "depth_taper": "custom",
+      "tooth_trace": "circular_arc",
+      "offset_m": 0.0,
+      "root_fillet_radius_pinion_m": null,
+      "root_fillet_radius_wheel_m": null,
+      "cutter_group_count": 0,
+      "wheel_addendum_taper_angle_rad": 0.02295396144414341,
+      "wheel_dedendum_taper_angle_rad": 0.05340419333060842
+    },
+    "materials": {
+      "pinion": {
+        "young_modulus_pa": 210000000000.0,
+        "poisson_ratio": 0.3,
+        "density_kg_m3": 7800,
+        "heat_treatment": "case_hardened",
+        "contact_stress_number_pa": 1500000000.0
+      },
+      "wheel": {
+        "young_modulus_pa": 210000000000.0,
+        "poisson_ratio": 0.3,
+        "density_kg_m3": 7800,
+        "heat_treatment": "case_hardened",
+        "contact_stress_number_pa": 1500000000.0
+      }
+    },
+    "load": {
+      "pinion_torque_n_m": 64.0,
+      "pinion_speed_rpm": 1500.0,
+      "ltca_torque_sign": -1
+    },
+    "strength": {
+      "pinion_pitch_deviation_m": 1.8e-05,
+      "wheel_pitch_deviation_m": 1.8e-05,
+      "pinion_cutter_tip_radius_m": 0.001004,
+      "wheel_cutter_tip_radius_m": 0.001088,
+      "pinion_opposite_cutter_tip_radius_m": 0.000944,
+      "wheel_opposite_cutter_tip_radius_m": 0.00114,
+      "application_factor": 1.25,
+      "face_load_factor": 1.2,
+      "effective_face_width_ratio": 0.85,
+      "profile_crowning": "low",
+      "working_flank": "coast"
+    },
+    "force_convention": {
+      "flank": "coast",
+      "spiral_hand": 1
+    }
+  },
+  "geometry_rows": [
+    {
+      "result_path": "geometry.outer_cone_distance_m",
+      "unit": "m",
+      "reference": 0.09995999199679839,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.mean_cone_distance_m",
+      "unit": "m",
+      "reference": 0.08496599199679838,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.outer_transverse_module_m",
+      "unit": "m",
+      "reference": 0.004,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.mean_normal_module_m",
+      "unit": "m",
+      "reference": 0.0027851169112317947,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.normal_clearance_m",
+      "unit": "m",
+      "reference": 0.0006399999999999982,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.mean_whole_tooth_depth_m",
+      "unit": "m",
+      "reference": 0.006418263257629897,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.mean_working_tooth_depth_m",
+      "unit": "m",
+      "reference": 0.005778263257629899,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.pitch_cone_angle_rad",
+      "unit": "rad",
+      "reference": 0.34706160353949045,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.tip_cone_angle_rad",
+      "unit": "rad",
+      "reference": 0.40046579687009887,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.root_cone_angle_rad",
+      "unit": "rad",
+      "reference": 0.32410764209534704,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.addendum_taper_angle_rad",
+      "unit": "rad",
+      "reference": 0.05340419333060842,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.dedendum_taper_angle_rad",
+      "unit": "rad",
+      "reference": 0.02295396144414341,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.outer_pitch_diameter_m",
+      "unit": "m",
+      "reference": 0.068,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.mean_pitch_diameter_m",
+      "unit": "m",
+      "reference": 0.05779999918334671,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.outer_tip_diameter_m",
+      "unit": "m",
+      "reference": 0.0771103648750709,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.outer_root_diameter_m",
+      "unit": "m",
+      "reference": 0.06288435333191726,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.inner_tip_diameter_m",
+      "unit": "m",
+      "reference": 0.05369549981359746,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.inner_root_diameter_m",
+      "unit": "m",
+      "reference": 0.04377918264441852,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.outer_addendum_m",
+      "unit": "m",
+      "reference": 0.004844,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.outer_dedendum_m",
+      "unit": "m",
+      "reference": 0.002719999999999998,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.mean_addendum_m",
+      "unit": "m",
+      "reference": 0.00404249541449202,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.mean_dedendum_m",
+      "unit": "m",
+      "reference": 0.0023757678431378768,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.mean_normal_tooth_thickness_m",
+      "unit": "m",
+      "reference": 0.005387275956344334,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.mean_transverse_tooth_thickness_m",
+      "unit": "m",
+      "reference": 0.006576649590150734,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.outer_spiral_angle_rad",
+      "unit": "rad",
+      "reference": 0.7336078175455532,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.mean_spiral_angle_rad",
+      "unit": "rad",
+      "reference": 0.6108652381980153,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.pinion.inner_spiral_angle_rad",
+      "unit": "rad",
+      "reference": 0.4990952545358945,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.pitch_cone_angle_rad",
+      "unit": "rad",
+      "reference": 1.223734723255406,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.tip_cone_angle_rad",
+      "unit": "rad",
+      "reference": 1.2466886846995495,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.root_cone_angle_rad",
+      "unit": "rad",
+      "reference": 1.1703305299247977,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.addendum_taper_angle_rad",
+      "unit": "rad",
+      "reference": 0.02295396144414341,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.dedendum_taper_angle_rad",
+      "unit": "rad",
+      "reference": 0.05340419333060842,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.outer_pitch_diameter_m",
+      "unit": "m",
+      "reference": 0.188,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.mean_pitch_diameter_m",
+      "unit": "m",
+      "reference": 0.15979999774219383,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.outer_tip_diameter_m",
+      "unit": "m",
+      "reference": 0.18941496609968247,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.outer_root_diameter_m",
+      "unit": "m",
+      "reference": 0.18426938745641414,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.inner_tip_diameter_m",
+      "unit": "m",
+      "reference": 0.132546618476012,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.inner_root_diameter_m",
+      "unit": "m",
+      "reference": 0.1289598654573728,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.outer_addendum_m",
+      "unit": "m",
+      "reference": 0.0020800000000000003,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.outer_dedendum_m",
+      "unit": "m",
+      "reference": 0.005483999999999998,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.mean_addendum_m",
+      "unit": "m",
+      "reference": 0.0017357678431378786,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.mean_dedendum_m",
+      "unit": "m",
+      "reference": 0.004682495414492019,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.mean_normal_tooth_thickness_m",
+      "unit": "m",
+      "reference": 0.0029996060975914923,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.mean_transverse_tooth_thickness_m",
+      "unit": "m",
+      "reference": 0.00366184290023361,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.outer_spiral_angle_rad",
+      "unit": "rad",
+      "reference": 0.7336078175455532,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.mean_spiral_angle_rad",
+      "unit": "rad",
+      "reference": 0.6108652381980153,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "geometry.wheel.inner_spiral_angle_rad",
+      "unit": "rad",
+      "reference": 0.4990952545358945,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    }
+  ],
+  "strength_rows": [
+    {
+      "result_path": "standard_rating.stress_pa.H0",
+      "unit": "Pa",
+      "reference": 403686128.2355561,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1.0
+    },
+    {
+      "result_path": "standard_rating.stress_pa.H",
+      "unit": "Pa",
+      "reference": 759052841.8756877,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1.0
+    },
+    {
+      "result_path": "standard_rating.stress_pa.F01",
+      "unit": "Pa",
+      "reference": 54134265.75806695,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1.0
+    },
+    {
+      "result_path": "standard_rating.stress_pa.F1",
+      "unit": "Pa",
+      "reference": 186127366.6650905,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1.0
+    },
+    {
+      "result_path": "standard_rating.stress_pa.F02",
+      "unit": "Pa",
+      "reference": 63529458.73360212,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1.0
+    },
+    {
+      "result_path": "standard_rating.stress_pa.F2",
+      "unit": "Pa",
+      "reference": 218430428.38318777,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1.0
+    },
+    {
+      "result_path": "standard_rating.coefficients.Z_K",
+      "unit": "1",
+      "reference": 0.85,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.Z_E_sqrt_pa",
+      "unit": "sqrt(Pa)",
+      "reference": 191645.67250641843,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.Z_MB",
+      "unit": "1",
+      "reference": 0.9405963750430192,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.Z_LS",
+      "unit": "1",
+      "reference": 0.8130575373822475,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.Y_LS",
+      "unit": "1",
+      "reference": 0.6610625590940848,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.Y_epsilon",
+      "unit": "1",
+      "reference": 0.625,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.Y_BS",
+      "unit": "1",
+      "reference": 1.2778167197931054,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.a_BS",
+      "unit": "1",
+      "reference": 1.7892170709742061,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.b_BS",
+      "unit": "1",
+      "reference": 0.9079134565554098,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.c_BS",
+      "unit": "1",
+      "reference": 0.8621567564864911,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.K_A",
+      "unit": "1",
+      "reference": 1.25,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.K_v",
+      "unit": "1",
+      "reference": 1.086265242621351,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.K_Hbeta",
+      "unit": "1",
+      "reference": 1.2,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.K_Fbeta",
+      "unit": "1",
+      "reference": 1.1669785122823846,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.K_F0",
+      "unit": "1",
+      "reference": 1.0282965687628915,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.K_Halpha",
+      "unit": "1",
+      "reference": 2.1698475711597776,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.K_Falpha",
+      "unit": "1",
+      "reference": 2.1698475711597776,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.coefficients.K_alpha_raw",
+      "unit": "1",
+      "reference": 2.1698475711597776,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.max_pitch_deviation_m",
+      "unit": "m",
+      "reference": 1.8e-05,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.dynamic.effective_pitch_deviation_m",
+      "unit": "m",
+      "reference": 1.665e-05,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.dynamic.running_in_m",
+      "unit": "m",
+      "reference": 1.3499999999999998e-06,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.dynamic.reduced_mass_kg_m",
+      "unit": "kg/m",
+      "reference": 10.248063361916596,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.resonance_rad_s",
+      "unit": "rad/s",
+      "reference": 2598.6343537951757,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.relative_speed",
+      "unit": "1",
+      "reference": 0.060446993033122454,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.stiffness_correction",
+      "unit": "1",
+      "reference": 1,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.mesh_stiffness_n_m2",
+      "unit": "N/m2",
+      "reference": 20000000000,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.single_stiffness_n_m2",
+      "unit": "N/m2",
+      "reference": 14000000000,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.subcritical",
+      "unit": "1",
+      "reference": 1.086265242621351,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.main_resonance",
+      "unit": "1",
+      "reference": 2.642409530692502,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.intermediate",
+      "unit": "1",
+      "reference": -1.1664601645236354,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.supercritical",
+      "unit": "1",
+      "reference": 3.4428929208627297,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.cv.0",
+      "unit": "1",
+      "reference": 0.32,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.cv.1",
+      "unit": "1",
+      "reference": 0.21726786477594687,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.cv.2",
+      "unit": "1",
+      "reference": 0.0704075738479433,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.cv.3",
+      "unit": "1",
+      "reference": 0.28569495515443355,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.cv.4",
+      "unit": "1",
+      "reference": 0.47,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.cv.5",
+      "unit": "1",
+      "reference": 0.10139505439808412,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.dynamic.cv.6",
+      "unit": "1",
+      "reference": 1,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.geometry.path_length_m",
+      "unit": "m",
+      "reference": 0.012226292255288125,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.geometry.relative_curvature_m",
+      "unit": "m",
+      "reference": 0.013100928561237379,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.geometry.normal_curvature_m",
+      "unit": "m",
+      "reference": -0.013852307489679843,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.geometry.face_width_m",
+      "unit": "m",
+      "reference": 0.029988,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.geometry.effective_face_width_m",
+      "unit": "m",
+      "reference": 0.0254898,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.geometry.epsilon_alpha",
+      "unit": "1",
+      "reference": 1.252535937127085,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.geometry.epsilon_beta",
+      "unit": "1",
+      "reference": 1.6709537381076809,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.geometry.epsilon_virtual",
+      "unit": "1",
+      "reference": 2.923489675234766,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.contact_lines.contact.position_m.0",
+      "unit": "m",
+      "reference": 0.008222031181272915,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.contact.length_m.0",
+      "unit": "m",
+      "reference": 0.007886348703095633,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.contact.position_m.1",
+      "unit": "m",
+      "reference": 0,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.contact.length_m.1",
+      "unit": "m",
+      "reference": 0.02091351912955526,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.contact.position_m.2",
+      "unit": "m",
+      "reference": -0.008222031181272915,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.contact.length_m.2",
+      "unit": "m",
+      "reference": 0.007886348703095637,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.root.position_m.0",
+      "unit": "m",
+      "reference": 0.008222031181272915,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.root.length_m.0",
+      "unit": "m",
+      "reference": 0.007886348703095633,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.root.position_m.1",
+      "unit": "m",
+      "reference": 0,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.root.length_m.1",
+      "unit": "m",
+      "reference": 0.02091351912955526,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.root.position_m.2",
+      "unit": "m",
+      "reference": -0.008222031181272915,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.contact_lines.root.length_m.2",
+      "unit": "m",
+      "reference": 0.007886348703095637,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.0.Y_Fa",
+      "unit": "1",
+      "reference": 2.097303956790597,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.root_sections.0.Y_Sa",
+      "unit": "1",
+      "reference": 1.843862473387743,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.root_sections.0.theta_rad",
+      "unit": "rad",
+      "reference": 0.9082295108218226,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.0.thickness_m",
+      "unit": "m",
+      "reference": 0.00640006004706221,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.0.fillet_radius_m",
+      "unit": "m",
+      "reference": 0.0011762189803981075,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.0.lever_arm_m",
+      "unit": "m",
+      "reference": 0.005559153585122445,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.0.E_m",
+      "unit": "m",
+      "reference": 0.00011349628889353153,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.0.G",
+      "unit": "1",
+      "reference": -0.4925351024245424,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.root_sections.0.H",
+      "unit": "1",
+      "reference": -0.9488189561292382,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.root_sections.1.Y_Fa",
+      "unit": "1",
+      "reference": 2.7018791690675656,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.root_sections.1.Y_Sa",
+      "unit": "1",
+      "reference": 1.6796812848006453,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.root_sections.1.theta_rad",
+      "unit": "rad",
+      "reference": 1.0176365445465143,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.1.thickness_m",
+      "unit": "m",
+      "reference": 0.0058304857000064225,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.1.fillet_radius_m",
+      "unit": "m",
+      "reference": 0.0013469165621347503,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.1.lever_arm_m",
+      "unit": "m",
+      "reference": 0.005519843071960407,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.1.E_m",
+      "unit": "m",
+      "reference": 0.00040893361052626246,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "result_path": "standard_rating.root_sections.1.G",
+      "unit": "1",
+      "reference": -1.2906084480677167,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-08
+    },
+    {
+      "result_path": "standard_rating.root_sections.1.H",
+      "unit": "1",
+      "reference": -1.035219153618094,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-08
+    }
+  ],
+  "tolerance_basis": "根部双侧平均截面与精细二分，相对于参照残差停止1e-8的求根有非零误差；本夹具根部相对1e-6，其他1e-10；应力绝对1Pa包括系统作用扭矩与64Nm输入的有限求解差。",
+  "limits": "名义几何和名义/修正应力参照；不含自动容量、寿命、实际制造双侧角度相同或外部LTCA一致性结论",
+  "input_fingerprint": "24816511492d6932c13a756f8fc8537e5811d07a05380c9d631d7945a6dd6e23"
+}

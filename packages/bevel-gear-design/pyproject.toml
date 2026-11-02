@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bevel-gear-design"
+version = "0.10.0"
+description = "Straight and spiral bevel gear geometry, CAD, strength, TCA, FE loaded contact and semi-analytical surface contact"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+license = "AGPL-3.0-only"
+license-files = ["LICENSE"]
+keywords = ["bevel-gears", "geometry", "gear-design", "fatigue-strength", "mechanical-engineering"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering",
+]
+
+[project.optional-dependencies]
+plots = ["numpy>=1.24", "matplotlib>=3.6", "shapely>=2.0,<3", "scipy>=1.10,<2"]
+cad = ["cadquery-ocp>=7.7.2,<7.8"]
+render3d = ["vtk>=9.3,<9.4"]
+ltca = ["numpy>=1.24", "scipy>=1.10,<2", "gmsh>=4.13,<4.14", "cadquery-ocp>=7.7.2,<7.8", "shapely>=2.0,<3", "vtk>=9.3,<9.4", "psutil>=5.9"]
+surface = ["numpy>=1.24", "scipy>=1.10,<2", "cadquery-ocp>=7.7.2,<7.8"]
+sparse-ooc = ["numpy>=1.24", "scipy>=1.10,<2", "psutil>=5.9"]
+
+[project.scripts]
+bevel-gear = "bevel_gear.__main__:main"
+
+[tool.setuptools]
+packages = ["bevel_gear"]
+include-package-data = false
+
+[tool.setuptools.package-data]
+bevel_gear = ["assets/*.html"]

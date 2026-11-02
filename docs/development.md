@@ -11,6 +11,7 @@
 |`skills/<skill-name>/`|任务触发条件、执行流程、资源和交付要求|
 |`src/gear_transmission/`|显式单位换算、输入检查、函数调用、报告与独立复算|
 |`packages/cylindrical-gear-ltca/`|按原字节保留的独立重建计算内核快照|
+|`packages/bevel-gear-design/`|锥齿轮0.10.0重建内核原字节快照；来源见`bevel-source-map.json`|
 |`tests/`|输入适配、原数组、失败状态与复算的自动检查|
 |`evaluations/`|场景清单、实际验收和独立智能体调用记录|
 
@@ -32,6 +33,8 @@ skills/<skill-name>/
 ```
 
 入口保持简洁，条件性细节放进引用文档。依赖、模型选择、缺失输入和失败行为需要明确；安装 Skill 文件不能被描述成同时安装所有计算依赖。
+
+锥齿轮技能入口为 `skills/bevel-gear-design`，新写适配为 `bevel_workflow.py`／`bevel_cli.py`。使用原生案例协议，不在适配层重写公式；制造绑定未接受时停止。同步工具 `scripts/sync_bevel_snapshot.py` 要求来源为干净提交，并登记文件SHA256和函数行段。`bevel_snapshot.json`与圆柱`kernel_snapshot.json`分别维护，版本不要求相同。
 
 Skill 可先通过显式请求验证，再补充自动触发、缺失信息追问和越界任务的评测。加入 README 技能目录时标明实际状态，不用空目录或占位 Skill 宣称已经接入。
 

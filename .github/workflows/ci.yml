@@ -1,4 +1,4 @@
-name: 圆柱齿轮Skill验收
+name: 齿轮传动Skill验收
 on: [push, pull_request]
 jobs:
   test:
@@ -32,3 +32,6 @@ jobs:
       - run: ${{ matrix.runtime_python }} -m gear_transmission replay output/single --output output/replay
       - run: ${{ matrix.runtime_python }} -m gear_transmission case --output output/helical_18_77 --plots
       - run: ${{ matrix.runtime_python }} -m gear_transmission replay output/helical_18_77 --output output/helical_18_77_replay
+      - run: ${{ matrix.runtime_python }} -m gear_transmission.bevel_cli check skills/bevel-gear-design/assets/spiral_17_47_case.json
+      - run: ${{ matrix.runtime_python }} -m gear_transmission.bevel_cli run skills/bevel-gear-design/assets/spiral_17_47_case.json --output output/bevel --plots --reference skills/bevel-gear-design/assets/spiral_17_47_reference.json
+      - run: ${{ matrix.runtime_python }} -m gear_transmission.bevel_cli replay output/bevel --output output/bevel-replay

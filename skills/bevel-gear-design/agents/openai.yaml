@@ -1,0 +1,4 @@
+interface:
+  display_name: "锥齿轮设计与分析"
+  short_description: "零偏置直齿与弧齿锥齿轮的几何、强度、接触分析及结果独立复算"
+  default_prompt: "使用 $bevel-gear-design 分析这组锥齿轮方案，确认输入和模型，实际计算并保存可复算结果。"

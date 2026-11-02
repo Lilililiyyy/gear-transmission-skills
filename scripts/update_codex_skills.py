@@ -96,10 +96,13 @@ from importlib.metadata import version
 from pathlib import Path
 import gear_transmission, gear_contact
 from gear_transmission.workflow import identity
+from gear_transmission.bevel_workflow import identity as bevel_identity
+import bevel_gear
 root = Path(sys.argv[1]).resolve()
 assert Path(gear_transmission.__file__).resolve().parent == root / 'src/gear_transmission', '工作流来自其他项目'
 assert Path(gear_contact.__file__).resolve().parent == root / 'packages/cylindrical-gear-ltca/gear_contact', '内核来自其他项目'
-print(json.dumps({'python': sys.executable, 'identity': identity(), 'matplotlib': version('matplotlib')}, ensure_ascii=False))
+assert Path(bevel_gear.__file__).resolve().parent == root / 'packages/bevel-gear-design/bevel_gear', '锥齿轮内核来自其他项目'
+print(json.dumps({'python': sys.executable, 'identity': identity(), 'bevel_identity': bevel_identity(), 'matplotlib': version('matplotlib')}, ensure_ascii=False))
 '''
     result = subprocess.run([str(python), '-B', '-c', code, str(root)], cwd=root,
                             capture_output=True, text=True, encoding='utf-8',
@@ -108,7 +111,8 @@ print(json.dumps({'python': sys.executable, 'identity': identity(), 'matplotlib'
         raise ValueError('运行环境校验失败：' + result.stderr.strip())
     data = json.loads(result.stdout)
     return {'python': data['python'], 'versions': data['identity']['versions'],
-            'snapshot_sha256': data['identity']['snapshot_sha256'], 'matplotlib': data['matplotlib']}
+            'snapshot_sha256': data['identity']['snapshot_sha256'], 'matplotlib': data['matplotlib'],
+            'bevel_identity': data['bevel_identity']}
 
 
 def load_receipt(destination):

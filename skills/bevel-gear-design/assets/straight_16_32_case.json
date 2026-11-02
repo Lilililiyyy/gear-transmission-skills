@@ -1,0 +1,109 @@
+{
+  "schema": "bevel_analysis_case_v1",
+  "name": "16/32直齿锥齿轮副",
+  "kind": "straight",
+  "description": "理想球面渐开线直齿，工程根连接和固定孔壁",
+  "geometry": {
+    "pinion_teeth": 16,
+    "wheel_teeth": 32,
+    "wheel_outer_pitch_diameter_m": 0.128,
+    "face_width_m": 0.02,
+    "shaft_angle_rad": 1.5707963267948966,
+    "spiral_angle_rad": 0.0,
+    "pressure_angle_rad": 0.3490658503988659,
+    "addendum_coefficient": 1.0,
+    "dedendum_coefficient": 1.25,
+    "pinion_profile_shift_coefficient": 0.2,
+    "tooth_thickness_modification_coefficient": 0.0,
+    "backlash_m": 0.0,
+    "tooth_trace": "straight"
+  },
+  "materials": {
+    "pinion": {
+      "young_modulus_pa": 210000000000.0,
+      "poisson_ratio": 0.3,
+      "density_kg_m3": 7800,
+      "heat_treatment": "case_hardened",
+      "contact_stress_number_pa": 1500000000.0
+    },
+    "wheel": {
+      "young_modulus_pa": 210000000000.0,
+      "poisson_ratio": 0.3,
+      "density_kg_m3": 7800,
+      "heat_treatment": "case_hardened",
+      "contact_stress_number_pa": 1500000000.0
+    }
+  },
+  "load": {
+    "pinion_torque_n_m": 40.0,
+    "pinion_speed_rpm": 1500.0,
+    "ltca_torque_sign": 1
+  },
+  "force_convention": {
+    "flank": "drive",
+    "spiral_hand": 1
+  },
+  "strength": {
+    "pinion_pitch_deviation_m": 1.8e-05,
+    "wheel_pitch_deviation_m": 1.8e-05,
+    "pinion_cutter_tip_radius_m": 0.0012,
+    "wheel_cutter_tip_radius_m": 0.0012,
+    "pinion_opposite_cutter_tip_radius_m": 0.0012,
+    "wheel_opposite_cutter_tip_radius_m": 0.0012,
+    "application_factor": 1.25,
+    "face_load_factor": 1.2,
+    "effective_face_width_ratio": 0.85,
+    "profile_crowning": "low"
+  },
+  "stress_limits": {
+    "contact_stress_limit_pa": 1500000000.0,
+    "pinion_root_stress_limit_pa": 450000000.0,
+    "wheel_root_stress_limit_pa": 450000000.0,
+    "minimum_contact_safety": 1.1,
+    "minimum_root_safety": 1.5,
+    "basis": "合成案例的显式设计应力限值；不代表已自动推导ISO2014材料/寿命/润滑容量"
+  },
+  "analysis": {
+    "driver_angles_rad": [
+      -0.19634954084936207,
+      -0.14726215563702155,
+      -0.09817477042468103,
+      -0.04908738521234052,
+      0.0,
+      0.04908738521234052,
+      0.09817477042468103,
+      0.14726215563702155,
+      0.19634954084936207
+    ],
+    "tooth_offsets": [
+      -1,
+      0,
+      1
+    ],
+    "load_sweep_torques_nm": [
+      20.0,
+      40.0,
+      80.0
+    ]
+  },
+  "finite_element": {
+    "element_size_m": 0.004,
+    "full_gears": true,
+    "maximum_nodes": 60000,
+    "contact_refined_size_m": 0.001,
+    "refinement_radius_m": 0.003
+  },
+  "loaded_contact": {
+    "maximum_distance_m": 0.0002,
+    "maximum_channels": 400,
+    "mesh_phase_tolerance_m": 1e-09
+  },
+  "cad": {
+    "pinion": {
+      "bore_diameter_m": 0.012
+    },
+    "wheel": {
+      "bore_diameter_m": 0.02
+    }
+  }
+}
