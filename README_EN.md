@@ -2,13 +2,9 @@
 
 [简体中文](README.md) · **English**
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL--3.0--only-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/) [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL--3.0--only-blue.svg)](LICENSE) [![GitHub Release](https://img.shields.io/github/v/release/Lilililiyyy/gear-transmission-skills)](https://github.com/Lilililiyyy/gear-transmission-skills/releases)
 
 Agent Skills for gear transmission design, connecting natural-language requests to independent computational kernels for parameter studies, design comparisons, and reproducible calculations.
-
-<!-- library-version:start -->
-Library version: **0.5.0**. All skills ship together; integrated kernel versions are listed below.
-<!-- library-version:end -->
 
 ## Contents
 
@@ -24,8 +20,8 @@ Library version: **0.5.0**. All skills ship together; integrated kernel versions
 <!-- skills:start -->
 | Skill | Capabilities | Kernel version (pinned commit) | Status | Independent computational project |
 |---|---|---|---|---|
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases | 0.2.1 ([cb2e1ec](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA/commit/cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f)) | Available | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
-| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | Zero-offset straight / spiral bevel geometry, forces, nominal strength, staged CAD / TCA / nodal FE-LTCA, and independent reruns | 0.10.0 ([05da3ac](https://github.com/Lilililiyyy/Bevel-Gear-Design/commit/05da3ac166a750a6326907af5bd0dba8aa6ab034)) | Available; contact requires optional dependencies | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases | 0.2.1 | Available | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | Zero-offset straight / spiral bevel geometry, forces, nominal strength, staged CAD / TCA / nodal FE-LTCA, and independent reruns | 0.10.0 | Available | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
 <!-- skills:end -->
 
 The independent project maintains the computational models, complete API, and examples. This library provides agent workflows, input adaptation, reports, and reproducibility checks.
