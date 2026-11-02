@@ -41,7 +41,7 @@ Snapshot identity is stored in [kernel_snapshot.json](../src/gear_transmission/k
 
 Make algorithm changes in the independent project first, then explicitly update the integrated snapshot, mappings, and acceptance records. Preserve formulas, data layouts, units, signs, and branches. Continued upstream development does not automatically replace an accepted snapshot, and formulas should not be maintained in two locations simultaneously.
 
-Library `0.3.0` includes kernel `0.2.0` from clean commit `c63030dc4314a67ba282a3899f7ec8a5f6950fe1`, together with all case scripts, plotting helpers, case inputs, and public benchmark resources: 47 files in total. Generated results and caches are excluded. Historical records retain their original versions and identities.
+Library `0.4.1` includes kernel `0.2.1` from clean commit `cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f`: 48 runtime files. Ordinary cases and benchmarks share the upstream `gear_contact/contact_display.py` implementation. The adapter calls this code directly. Historical records retain their original versions and identities.
 
 From the library root, with the actual upstream checkout path:
 

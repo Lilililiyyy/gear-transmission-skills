@@ -21,6 +21,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
+      - name: 安装中文绘图字体
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
       - if: runner.os != 'Windows'
         run: bash scripts/update-codex-skills.sh
       - if: runner.os == 'Windows'
@@ -30,6 +33,7 @@ jobs:
       - run: ${{ matrix.runtime_python }} -m gear_transmission check skills/cylindrical-gear-analysis/assets/single_case.json
       - run: ${{ matrix.runtime_python }} -m gear_transmission run skills/cylindrical-gear-analysis/assets/single_case.json --output output/single --plots
       - run: ${{ matrix.runtime_python }} -m gear_transmission replay output/single --output output/replay
+      - run: ${{ matrix.runtime_python }} -m gear_transmission plot output/single --output output/single_replot
       - run: ${{ matrix.runtime_python }} -m gear_transmission case --output output/helical_18_77 --plots
       - run: ${{ matrix.runtime_python }} -m gear_transmission replay output/helical_18_77 --output output/helical_18_77_replay
       - run: ${{ matrix.runtime_python }} -m gear_transmission.bevel_cli check skills/bevel-gear-design/assets/spiral_17_47_case.json

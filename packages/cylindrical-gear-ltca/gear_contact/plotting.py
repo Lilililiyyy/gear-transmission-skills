@@ -14,6 +14,10 @@ import numpy as np
 
 _COLORS = ("#176B91", "#D47732", "#7259A0", "#328577", "#B55B72")
 
+# 通用工况与案例对标共用同一显示实现；绘图不修改任何求解数组。
+from .contact_display import (contact_pressure_colormap, contact_pass_data, draw_contact_pass,
+                              plot_contact_pass_comparison, load_plot_result)
+
 
 def _pyplot():
     """选择无界面后端和可用中文字体，保持 SVG 中的文字可编辑。"""

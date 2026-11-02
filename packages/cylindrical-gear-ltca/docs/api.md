@@ -2,7 +2,23 @@
 
 项目名为Cylindrical Gear LTCA，仓库／分发名为`cylindrical-gear-ltca`；Python导入名保留`gear_contact`。主要命令为`gear-ltca`，`gear-contact`为兼容别名。
 
-## 高层入口
+## 通用接触图与已保存结果重绘
+
+`gear_contact.contact_display` 提供 `contact_pass_data`、`draw_contact_pass`、`plot_contact_pass_comparison` 及 `load_plot_result`；`gear_contact.plotting` 同时导出这些入口。源工程案例对标与 Skill 使用同一实现和蓝青绿黄红色带。
+
+```python
+from gear_contact.plotting import load_plot_result, plot_contact_pass_comparison
+
+results = {"方案一": load_plot_result("output/design_1"),
+           "方案二": load_plot_result("output/design_2")}
+plot_contact_pass_comparison(results, "output/contact_comparison")
+```
+
+默认纵轴使用两轮渐开线映射后的实际啮合交集 `pair.contact_roll_bounds_m`，不把小轮整段渐开线范围当作可接触范围。无独立端点时，只把首尾中心单元的常值显示支撑延拓到各自真实积分边界；不求新端点压力、不填补未接触区，也不改变原峰压、PPTE 或载荷。独立端点和齿顶延伸分支分别保留，凸包外继续为空。
+
+`load_plot_result` 校验原导出清单及哈希，返回仅供重绘的视图；它不调用求解器、不代替独立复算。比较图统一坐标与压力色标，逐方案 SI 显示数据另存 NPZ。
+
+## 计算调用
 
 `analyze_pair(pair, *, torque_n_m, material_pinion, material_wheel, modification_pinion, modification_wheel, misalignment_m, phases, strips, phase_offset, elastic_mode, local_contact, iso_settings, extended_contact_settings, local_reference_depths_m, compliance_provider, boundary_gap)`。
 

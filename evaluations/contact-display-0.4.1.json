@@ -1,0 +1,106 @@
+{
+  "schema": "contact_display_fix_v1",
+  "date": "2026-11-02",
+  "library_version": "0.4.1",
+  "cylindrical_skill_version": "0.3.1",
+  "kernel_version": "0.2.1",
+  "source_commit": "cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f",
+  "source_files": 48,
+  "causes": [
+    "默认显示域误用了小轮完整渐开线，未区分两轮实际啮合区",
+    "中心模型仅用积分中点作为显示支撑，边缘半单元缺少显示支撑",
+    "临时比较脚本采用独立的turbo色带和版式，标准流程缺少接触比较图"
+  ],
+  "source_tests_passed": 73,
+  "library_tests_passed": 38,
+  "original_artifacts_intact": true,
+  "mathematical_source_files_unchanged": [
+    "analysis.py",
+    "config.py",
+    "contact_pressure.py",
+    "design.py",
+    "elasticity.py",
+    "extended_contact.py",
+    "geometry.py",
+    "hertz.py",
+    "iso_contact.py",
+    "solver.py",
+    "strength.py",
+    "surfaces.py"
+  ],
+  "raw_input_case_comparisons": [
+    {
+      "design": "0 μm鼓形",
+      "arrays": 22,
+      "passed": true,
+      "maximum_pressure_mpa": 940.8973178238955,
+      "ppte_um": 1.8667604374212652
+    },
+    {
+      "design": "8 μm鼓形",
+      "arrays": 22,
+      "passed": true,
+      "maximum_pressure_mpa": 834.659799670706,
+      "ppte_um": 1.7038231289328065
+    },
+    {
+      "design": "12 μm鼓形",
+      "arrays": 22,
+      "passed": true,
+      "maximum_pressure_mpa": 888.8847484478553,
+      "ppte_um": 1.876169126313131
+    }
+  ],
+  "coverage": [
+    {
+      "design": "0 μm鼓形",
+      "old_display_coverage": 0.6381638163816382,
+      "actual_meshing_display_coverage": 0.9998348506430503,
+      "contact_roll_bounds_m": [
+        0.006367936581878973,
+        0.018726062163152014
+      ],
+      "full_involute_roll_bounds_m": [
+        0.0,
+        0.018726062163152014
+      ]
+    },
+    {
+      "design": "8 μm鼓形",
+      "old_display_coverage": 0.6381638163816382,
+      "actual_meshing_display_coverage": 0.9998348506430503,
+      "contact_roll_bounds_m": [
+        0.006367936581878973,
+        0.018726062163152014
+      ],
+      "full_involute_roll_bounds_m": [
+        0.0,
+        0.018726062163152014
+      ]
+    },
+    {
+      "design": "12 μm鼓形",
+      "old_display_coverage": 0.6381638163816382,
+      "actual_meshing_display_coverage": 0.9998348506430503,
+      "contact_roll_bounds_m": [
+        0.006367936581878973,
+        0.018726062163152014
+      ],
+      "full_involute_roll_bounds_m": [
+        0.0,
+        0.018726062163152014
+      ]
+    }
+  ],
+  "fresh_replay": {
+    "passed": true,
+    "solves": 3,
+    "arrays": 66
+  },
+  "standalone_source_png_identical": true,
+  "wheel_replot_png_identical": true,
+  "replot_solver_executed": false,
+  "replot_numerical_replay_performed": false,
+  "physical_validation": false,
+  "scope": "覆盖率为显示网格被已知采样及有限单元支撑覆盖的比例，不是承载面积比例；不补造压力或完整二维精度"
+}

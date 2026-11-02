@@ -18,6 +18,9 @@ def main(argv=None):
     case.add_argument('request', nargs='?', help='独立项目案例JSON；省略时使用随附18/77案例')
     replay = commands.add_parser('replay', help='验证保存文件后，重新求解并比较全部原数组')
     replay.add_argument('result', help='已完成的原结果目录')
+    plot = commands.add_parser('plot', help='验证已保存结果并用统一源工程风格重绘，不重新求解')
+    plot.add_argument('result', help='已完成的原结果目录')
+    plot.add_argument('--output', required=True, help='尚不存在的新图表目录')
     for command in (run, replay, case):
         command.add_argument('--output', required=True, help='尚不存在的新结果目录')
         command.add_argument('--plots', action='store_true', help='同时生成中文PNG／SVG图表')
@@ -38,6 +41,10 @@ def main(argv=None):
             path = args.request or snapshot_root()/'examples/helical_18_77_case.json'
             run = run_request(read_json(path), args.output, plots=args.plots)
             result = {'status': run['status'], 'solve_count': len(run['cases']), 'output': args.output}
+        elif args.command == 'plot':
+            from .replot import replot_run
+            record = replot_run(args.result, args.output)
+            result = {'status': record['status'], 'solver_executed': False, 'output': args.output}
         else:
             result = replay_run(args.result, args.output, plots=args.plots)
         print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))

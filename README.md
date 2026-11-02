@@ -6,7 +6,7 @@
 
 齿轮传动设计的 Agent Skills 库，通过自然语言调用独立计算内核，完成参数分析、方案比较和结果复算。
 
-当前库版本为 **0.4.0**。保留0.3.0新增的圆柱完整工作流；圆柱LTCA内核0.2.0固定至 `c63030d`，锥齿轮内核0.10.0固定至 `05da3ac`。
+当前库版本为 **0.4.1**。圆柱 LTCA 内核 **0.2.1** 固定至 `cb2e1ec`，包含统一的接触图与重绘接口；锥齿轮内核 0.10.0 固定至 `05da3ac`。
 
 ## 目录
 
@@ -107,6 +107,14 @@ python -m gear_transmission replay output/example --output output/example_replay
 
 输出目录须为新目录。随附输入：[单工况](skills/cylindrical-gear-analysis/assets/single_case.json) · [多工况修形比较](skills/cylindrical-gear-analysis/assets/crown_study.json)。
 
+多方案的标准接触比较图位于 `plots/point_NNN/07_contact_pass_comparison.png`。已有结果可按新版显示规则重绘：
+
+```bash
+python -m gear_transmission plot output/example --output output/example_replot
+```
+
+该命令校验原文件、读取原数组并生成新图，`plot.json` 明确记录未重新求解；原图和原结果保留。显示范围采用两轮实际啮合区，不能将非啮合齿根误判为漏算，或通过补压把偏载斑点画成闭合椭圆。
+
 复现独立项目新版 **18/77 斜齿轮完整案例及接触图**：
 
 ```bash
@@ -141,11 +149,11 @@ python -m gear_transmission.bevel_cli replay output/bevel --output output/bevel_
 
 完整 `case` 另存 `workflow_summary.json`、`strength.json`、`ltca/` 与 `sensitivity/`；所有结果以 `run.json.cases` 登记的目录为准。
 
-当前有 21 项计算／绘图工作流检查和 9 项安装检查；完整资源、图表来源对比与复算见[0.3.0 同步验收](evaluations/full-sync-0.3.0.json)。[0.2.0 内核验收](evaluations/kernel-sync-0.2.0.json)、[首版计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)保留各自版本记录。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
+当前共 38 项工作流与安装检查；接触显示域、源工程一致性、重绘与复算见[0.4.1 验收](evaluations/contact-display-0.4.1.json)。早期的完整资源、图表来源对比与复算见[0.3.0 同步验收](evaluations/full-sync-0.3.0.json)。[0.2.0 内核验收](evaluations/kernel-sync-0.2.0.json)、[首版计算验收](evaluations/acceptance.json)与[安装验收](evaluations/installation.json)保留各自版本记录。数值复现、离散收敛和物理验证分别记录；模型精度范围见独立计算项目。
 
 Windows／Linux × Python 3.10／3.11 的安装、实际计算和独立复算纳入[持续验收](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml)，首版结果见 [CI 记录](evaluations/ci.json)。
 
-新增锥齿轮5项行为检查后，本地共35项通过。锥齿轮直齿／弧齿强度、同工况参照、安装后及wheel调用与复算、直齿单相位CAD／TCA／节点FE-LTCA及独立请求前向验证见[锥齿轮技能验收](evaluations/bevel-skill-0.1.0.json)。单相位求解及复现通过不代表全周期、离散峰压收敛或物理试验验证。
+0.4.0 新增锥齿轮5项行为检查后，当时本地共35项通过。锥齿轮直齿／弧齿强度、同工况参照、安装后及wheel调用与复算、直齿单相位CAD／TCA／节点FE-LTCA及独立请求前向验证见[锥齿轮技能验收](evaluations/bevel-skill-0.1.0.json)。单相位求解及复现通过不代表全周期、离散峰压收敛或物理试验验证。
 
 ## 文档与开发
 
@@ -163,6 +171,11 @@ Windows／Linux × Python 3.10／3.11 的安装、实际计算和独立复算纳
 本项目采用 [AGPL-3.0-only](LICENSE)。如需闭源集成，可[联系作者](https://github.com/Lilililiyyy)获取商业授权。
 
 ## 更新记录
+
+- **2026-11-02 · v0.4.1**
+  - 修正圆柱接触图把完整渐开线范围误作实际啮合范围的问题；中心条带的显示支撑仅延拓到其自身积分边界，原压力与 PPTE 不变。
+  - 单图、源项目案例与多方案比较共用源工程 `contact_display`，统一色带、等压线与坐标；标准流程自动生成统一色标的接触比较图。
+  - 新增 `plot`：先校验保存结果，再只读原数组重绘；明确区分重绘与重新求解／复算。修复验收见 [0.4.1 记录](evaluations/contact-display-0.4.1.json)。
 
 - **2026-11-02 · v0.4.0**
   - 新增 `bevel-gear-design`，接入0.10.0锥齿轮重建内核、两组原生案例和制造输入，保留逐文件哈希与函数行段来源。

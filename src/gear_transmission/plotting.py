@@ -4,10 +4,11 @@ from pathlib import Path
 import numpy as np
 from gear_contact.io import write_json
 from gear_contact.plotting import _pyplot, _save, _csv
+from gear_contact.contact_display import (contact_pass_data, contact_pressure_colormap,
+    draw_contact_pass, plot_contact_pass_comparison)
 from gear_ltca_snapshot.examples.case_contact_plotting import (
     repeat_cycle_for_display, _project_line_samples, _endpoint_display, _band_values, _draw_band)
 from gear_ltca_snapshot.examples.case_geometry_plotting import plot_case_geometry
-from gear_ltca_snapshot.examples.case_native_contact_plotting import project_contact_pass_samples
 
 
 def plot_cycles(results, output):
@@ -52,36 +53,6 @@ def plot_cycles(results, output):
          'source_sample_index', 'periodic_closure'), shown)
 
 
-def contact_pass_data(result, *, samples=(101, 121)):
-    """采用新版材料坐标三角插值；延伸分支另存，凸包外保留 NaN。"""
-    if all(r.endpoint_pressure is not None and r.contact_geometry_data is not None for r in result.rotations):
-        points = project_contact_pass_samples(result)
-        definition = '独立端点压力'
-    else:
-        points = np.concatenate([np.column_stack((
-            r.grid.face_coordinate_m+result.pair.pinion.face_width_m/2, r.grid.roll_pinion_m,
-            r.pressure_pa, np.zeros((len(r.pressure_pa), 2)))) for r in result.rotations])
-        definition = '条带中心压力（当前模型无独立端点）'
-    ordinary = points[~np.any(points[:, 3:5].astype(bool), axis=1)]
-    unique, inverse = np.unique(np.round(ordinary[:, :2], 12), axis=0, return_inverse=True)
-    values = np.full(len(unique), -np.inf)
-    np.maximum.at(values, inverse, ordinary[:, 2])
-    left, right = result.pair.face_bounds_m
-    x = np.linspace(left+result.pair.pinion.face_width_m/2, right+result.pair.pinion.face_width_m/2, samples[0])
-    y = np.linspace(*result.pair.pinion.involute_roll_bounds_m, samples[1])
-    field = np.full((len(x), len(y)), np.nan)
-    # 几何退化时只画原采样点；不人为扰动坐标生成二维接触面。
-    interpolated = len(unique) >= 3 and np.linalg.matrix_rank(unique-unique.mean(axis=0), tol=1e-12) == 2
-    if interpolated:
-        import matplotlib.tri as tri
-        triangulation = tri.Triangulation(unique[:, 0], unique[:, 1])
-        xx, yy = np.meshgrid(x, y, indexing='ij')
-        field = np.asarray(tri.LinearTriInterpolator(triangulation, values)(
-            np.round(xx, 12), np.round(yy, 12)).filled(np.nan))
-    return {'face_coordinate_m': x, 'roll_distance_m': y, 'pressure_pa_x_y': field,
-            'samples': points, 'ordinary_samples': ordinary, 'definition': definition, 'interpolated': interpolated}
-
-
 def plot_result(result, output):
     """输出输入几何、三周期、瞬时压力带、材料坐标及整齿通过程图和 SI 数据。"""
     output = Path(output)
@@ -105,7 +76,7 @@ def plot_result(result, output):
         edges, peak, half_width = _endpoint_display(line['edges_m'], peak, half_width)
         intervals = np.column_stack((edges[:-1], edges[1:]))
     band = _band_values(peak, half_width, normal)
-    from matplotlib.colors import Normalize, LinearSegmentedColormap
+    from matplotlib.colors import Normalize
     fig, ax = plt.subplots(figsize=(10.7, 4.5))
     fig.subplots_adjust(bottom=.25, top=.85, left=.10, right=.88)
     image = _draw_band(ax, intervals, normal, band, cmap=plt.get_cmap('coolwarm'),
@@ -127,26 +98,14 @@ def plot_result(result, output):
         instant_raw_endpoint_peak_pa=np.array([]) if endpoints is None else endpoints['pressure_pa'])
     _csv(output/'07_project_contact_pass_samples.csv', ('face_coordinate_from_left_m', 'roll_pinion_m',
         'pressure_pa', 'extended_pinion', 'extended_wheel'), points)
-    cmap = LinearSegmentedColormap.from_list('pressure_blue_to_red',
-        ['#0000ff', '#00ffff', '#00ff00', '#ffff00', '#ff0000'], N=256)
-    cmap.set_bad('#e5e9ee')
+    cmap = contact_pressure_colormap()
     fig, ax = plt.subplots(figsize=(8., 6.2))
     maximum = max(float(points[:, 2].max())*1e-6, 1.)
-    if data['interpolated']:
-        field = np.ma.masked_invalid(data['pressure_pa_x_y'].T)*1e-6
-        image = ax.pcolormesh(data['face_coordinate_m']*1e3, data['roll_distance_m']*1e3, field,
-                             shading='gouraud', cmap=cmap, vmin=0., vmax=maximum, rasterized=True)
-        if field.count() and float(field.max()) > float(field.min()):
-            ax.contour(data['face_coordinate_m']*1e3, data['roll_distance_m']*1e3, field,
-                       levels=np.linspace(0., maximum, 31)[1:-1], colors='black', linewidths=.35)
-    else:
-        own = data['ordinary_samples']
-        image = ax.scatter(own[:, 0]*1e3, own[:, 1]*1e3, c=own[:, 2]*1e-6, cmap=cmap, vmin=0., vmax=maximum)
-    ax.set(xlabel='齿宽坐标（小轮左端起）/ mm', ylabel='小轮展长 / mm', title='小轮整齿通过程接触压力')
-    ax.set_facecolor('#e5e9ee')
-    fig.colorbar(image, ax=ax, label='压力 / MPa')
-    fig.subplots_adjust(bottom=.20)
-    fig.text(.5, .045, data['definition']+'；重复材料点取周期最大值。\n灰色为未覆盖区域；齿顶延伸分支单独保存在原始采样中。',
+    image = draw_contact_pass(ax, data, maximum_pa=maximum*1e6, title='小轮整齿通过程接触压力')
+    fig.colorbar(image, ax=ax, label='接触压力 / MPa', fraction=.045, pad=.03)
+    fig.subplots_adjust(left=.11, right=.84, bottom=.23, top=.91)
+    fig.text(.5, .045, data['definition']+'；重复材料点取周期最大值。\n'
+             '显示域为两轮实际啮合区；灰色为剩余未覆盖，延伸分支另存。\n'+data['support_definition'],
              ha='center', fontsize=8.2)
     _save(fig, output, '07_project_contact_pass')
     plt.close(fig)
@@ -169,7 +128,13 @@ def plot_result(result, output):
                'instant_tooth_pair_index': pair_index, 'raw_sample_count': len(points),
                'raw_sample_peak_pa': float(points[:, 2].max()), 'interpolated': bool(data['interpolated']),
                'uncovered_display_count': int(np.count_nonzero(~np.isfinite(data['pressure_pa_x_y']))),
+               'display_grid_shape_x_y': list(data['pressure_pa_x_y'].shape),
+               'contact_roll_bounds_m': data['contact_roll_bounds_m'],
+               'pinion_involute_roll_bounds_m': data['pinion_involute_roll_bounds_m'],
+               'boundary_display_sample_count': len(data['boundary_display_samples']),
+               'boundary_display_definition': data['support_definition'],
+               'style_source': 'gear_contact.contact_display：与源工程案例共用',
                'reference_used': False, 'complete_2d_contact_accuracy_verified': False,
-               'display_definition': '普通齿廓材料坐标 Delaunay 线性插值，重复点取最大值，凸包外不填零'}
+               'display_definition': '两轮实际啮合区内的材料坐标显示；原始采样和有限单元支撑以外不填零'}
     write_json(output/'plot_manifest.json', metrics)
     return metrics

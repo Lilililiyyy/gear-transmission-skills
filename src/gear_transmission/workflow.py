@@ -118,15 +118,16 @@ def run_request(request, output, *, plots=False):
             if not result.summary['all_converged']:
                 raise ArithmeticError(f'第{index}个求解含未收敛相位，结果不能标记完成')
         if plots:
-            from .plotting import plot_result, plot_cycles
+            from .plotting import plot_result, plot_cycles, plot_contact_pass_comparison
             if study is None:
                 manifest['plot_definitions'] = plot_result(results[0][2], output / 'plots')
             else:
                 for case, (_, _, result) in zip(manifest['cases'], results):
                     case['plot_definitions'] = plot_result(result, output / case['directory'] / 'plots')
                 for index, point in enumerate(prepared['points'], 1):
-                    plot_cycles({name: values[point.name] for name, values in study.results.items()},
-                                output / f'plots/point_{index:03d}')
+                    candidates = {name: values[point.name] for name, values in study.results.items()}
+                    plot_cycles(candidates, output / f'plots/point_{index:03d}')
+                    plot_contact_pass_comparison(candidates, output / f'plots/point_{index:03d}')
         if identity() != before:
             raise RuntimeError('运行期间源码或依赖版本发生变化，本次结果不能标记可复现完成')
         manifest.update(status='completed', analysis_completed=True)

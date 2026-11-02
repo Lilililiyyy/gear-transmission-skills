@@ -34,9 +34,12 @@ def main():
     manifest_path = root/'src/gear_transmission/kernel_snapshot.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     hashes = {name: hashlib.sha256((source/name).read_bytes()).hexdigest() for name in files}
+    version = next(ast.literal_eval(node.value) for node in ast.parse((source/'gear_contact/__init__.py').read_text(encoding='utf-8')).body
+                   if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == '__version__' for t in node.targets))
     mapping_path = root/'docs/source-map.json'
     mapping = json.loads(mapping_path.read_text(encoding='utf-8'))
     example_symbols = {
+        'gear_contact/contact_display.py': ['contact_pass_data', 'draw_contact_pass', 'plot_contact_pass_comparison', 'load_plot_result'],
         'examples/run_cylindrical_workflow.py': ['prepare_case', 'calculate_case', 'run'],
         'examples/case_contact_plotting.py': ['repeat_cycle_for_display', '_project_line_samples', 'plot_case_contact'],
         'examples/case_native_contact_plotting.py': ['project_contact_pass_samples', 'plot_native_contact_comparison'],
@@ -53,7 +56,7 @@ def main():
         node = next(n for n in ast.parse((source/name).read_text(encoding='utf-8')).body
                     if isinstance(n, (ast.FunctionDef, ast.ClassDef)) and n.name == symbol)
         record.update(lines=[node.lineno, node.end_lineno], sha256=hashes[name])
-    mapping.update(symbols=list(records.values()), source_base_commit=git('rev-parse', 'HEAD'))
+    mapping.update(symbols=list(records.values()), source_base_commit=git('rev-parse', 'HEAD'), kernel_version=version)
     if args.check:
         assert manifest['source_base_commit'] == git('rev-parse', 'HEAD'), '来源提交不一致'
         assert manifest['files'] == hashes, '登记资源不完整或来源哈希变化'
@@ -68,7 +71,7 @@ def main():
         for name in files:
             (target/name).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source/name, target/name)
-        manifest.update(source_base_commit=git('rev-parse', 'HEAD'), files=hashes,
+        manifest.update(source_base_commit=git('rev-parse', 'HEAD'), files=hashes, kernel_version=version,
                         runtime_scope='完整计算模块、案例编排、绘图后处理、案例输入及公开对标资源；不含生成结果和缓存')
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
         mapping_path.write_text(json.dumps(mapping, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')

@@ -132,7 +132,7 @@
         41,
         126
       ],
-      "sha256": "a2e89171846d6ffa9a18c4334887ac231b5919065f636778e7d2dc5f4fc9e271",
+      "sha256": "c0811b8a5c027779ac2692d013db334a62edc4bdd3e3f7f42a31675ae0f1372b",
       "implementation": "原字节保留的现有新写重建计算内核"
     },
     {
@@ -214,10 +214,10 @@
       "symbol": "project_contact_pass_samples",
       "implementation": "原字节保留的现有案例／后处理实现",
       "lines": [
-        12,
-        25
+        14,
+        16
       ],
-      "sha256": "c2fc9fb8fd62da4f3f08afb3b8b8d221ea687f6f4f24a49993c60bf839894a71"
+      "sha256": "6539e37762bafe66f1def53bf5c0d02a562364649b6352b845b3c8f5723dd55b"
     },
     {
       "source_project": "cylindrical-gear-ltca",
@@ -226,10 +226,10 @@
       "symbol": "plot_native_contact_comparison",
       "implementation": "原字节保留的现有案例／后处理实现",
       "lines": [
-        28,
-        110
+        19,
+        84
       ],
-      "sha256": "c2fc9fb8fd62da4f3f08afb3b8b8d221ea687f6f4f24a49993c60bf839894a71"
+      "sha256": "6539e37762bafe66f1def53bf5c0d02a562364649b6352b845b3c8f5723dd55b"
     },
     {
       "source_project": "cylindrical-gear-ltca",
@@ -254,9 +254,57 @@
         142
       ],
       "sha256": "4ba5090a2ce3eaaaa0446e8de8a5cdf51793a46411f2086ca5791f66543e9b40"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/contact_display.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/contact_display.py",
+      "symbol": "contact_pass_data",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        36,
+        94
+      ],
+      "sha256": "bad5623144a828b2230b4b5405ad635e8d117dc38069d4b12e673c3a9d6c8f32"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/contact_display.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/contact_display.py",
+      "symbol": "draw_contact_pass",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        97,
+        116
+      ],
+      "sha256": "bad5623144a828b2230b4b5405ad635e8d117dc38069d4b12e673c3a9d6c8f32"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/contact_display.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/contact_display.py",
+      "symbol": "plot_contact_pass_comparison",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        119,
+        158
+      ],
+      "sha256": "bad5623144a828b2230b4b5405ad635e8d117dc38069d4b12e673c3a9d6c8f32"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/contact_display.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/contact_display.py",
+      "symbol": "load_plot_result",
+      "implementation": "原字节保留的现有案例／后处理实现",
+      "lines": [
+        161,
+        220
+      ],
+      "sha256": "bad5623144a828b2230b4b5405ad635e8d117dc38069d4b12e673c3a9d6c8f32"
     }
   ],
   "source_repository": "https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA",
-  "source_base_commit": "c63030dc4314a67ba282a3899f7ec8a5f6950fe1",
-  "kernel_version": "0.2.0"
+  "source_base_commit": "cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f",
+  "kernel_version": "0.2.1"
 }

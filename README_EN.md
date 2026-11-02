@@ -6,7 +6,7 @@
 
 Agent Skills for gear transmission design, connecting natural-language requests to independent computational kernels for parameter studies, design comparisons, and reproducible calculations.
 
-Library **0.3.0** integrates the complete LTCA **0.2.0** runtime at independent-project commit `c63030d`, including its case workflows and updated plotting.
+Library **0.4.1** integrates LTCA **0.2.1** at commit `cb2e1ec`, including shared contact plotting and verified replotting, alongside the existing bevel-gear integration.
 
 ## Contents
 
@@ -109,6 +109,14 @@ python -m gear_transmission replay output/example --output output/example_replay
 
 Output directories must be new. Bundled inputs: [single condition](skills/cylindrical-gear-analysis/assets/single_case.json) · [multi-condition modification comparison](skills/cylindrical-gear-analysis/assets/crown_study.json).
 
+Standard study runs export common-scale contact comparisons to `plots/point_NNN/07_contact_pass_comparison.png`. To redraw an existing run:
+
+```bash
+python -m gear_transmission plot output/example --output output/example_replot
+```
+
+This validates the saved files and reads their original arrays. It writes new figures and a `plot.json` recording that no solver was executed. The display uses the actual meshing interval; non-meshing root regions and genuine uncovered samples remain distinct. Edge-loaded footprints need not form closed ellipses.
+
 To reproduce the independent project's updated **18/77 helical case and contact figures**:
 
 ```bash
@@ -128,7 +136,7 @@ Ordinary `run --plots` also produces the updated geometry, cycle, instantaneous-
 
 The complete `case` workflow also exports `workflow_summary.json`, `strength.json`, `ltca/`, and `sensitivity/`. Actual solve directories are listed in `run.json.cases`.
 
-There are 21 computation / plotting workflow checks and 9 installation checks. The [0.3.0 acceptance record](evaluations/full-sync-0.3.0.json) covers complete resources, source figure comparisons, and independent reruns. The [0.2.0 kernel record](evaluations/kernel-sync-0.2.0.json), [initial computation record](evaluations/acceptance.json), and [installation record](evaluations/installation.json) retain their original versioned evidence. Numerical reproducibility, discretization convergence, and physical validation remain separate; consult the independent project for model accuracy limits.
+There are now 38 workflow and installation checks; see the [0.4.1 display, replot and replay record](evaluations/contact-display-0.4.1.json). The [0.3.0 acceptance record](evaluations/full-sync-0.3.0.json) covers complete resources, source figure comparisons, and independent reruns. The [0.2.0 kernel record](evaluations/kernel-sync-0.2.0.json), [initial computation record](evaluations/acceptance.json), and [installation record](evaluations/installation.json) retain their original versioned evidence. Numerical reproducibility, discretization convergence, and physical validation remain separate; consult the independent project for model accuracy limits.
 
 Installation, actual calculations, and independent reruns across Windows / Linux × Python 3.10 / 3.11 are covered by [continuous integration](https://github.com/Lilililiyyy/gear-transmission-skills/actions/workflows/ci.yml). The initial release results remain in the [CI record](evaluations/ci.json).
 
@@ -146,6 +154,11 @@ Installation, actual calculations, and independent reruns across Windows / Linux
 This project is licensed under [AGPL-3.0-only](LICENSE). For proprietary or closed-source integration, [contact the author](https://github.com/Lilililiyyy) to discuss a commercial license.
 
 ## Changelog
+
+- **2026-11-02 · v0.4.1**
+  - Correct the contact display interval and retain finite centre-cell display support without changing raw pressure or PPTE.
+  - Share the upstream contact display code across ordinary plots, benchmark cases and common-scale design comparisons.
+  - Add hash-verified, read-only `plot` replotting, separate from solving and numerical replay. See the [0.4.1 acceptance record](evaluations/contact-display-0.4.1.json).
 
 - **2026-11-02 · v0.3.0**
   - Include complete case orchestration, plotting helpers, and public benchmark inputs; record and verify all 47 upstream runtime files.
