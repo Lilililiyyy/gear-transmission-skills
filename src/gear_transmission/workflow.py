@@ -50,14 +50,16 @@ def _label(value):
 
 
 def _report(directory, manifest, request, study):
+    pressure_definition = '中心压力' if manifest.get('pressure_metric', 'center') == 'center' else '独立端点压力'
     rows = ['# 圆柱齿轮承载接触分析', '',
             '本报告由新写Skill适配流程调用保留的重建计算内核生成。内部采用m、N、Pa、rad和N·m。', '',
+            '本次压力指标：'+pressure_definition+'；比较约束、非支配筛选和下表采用同一定义。', '',
             '|方案|工况|扭矩 N·m|TE峰峰值 μm|峰压 MPa|平均法向刚度 N/μm|收敛|',
             '|---|---|---:|---:|---:|---:|---|']
     for record in manifest['cases']:
         s = record['summary']
         rows.append(f"|{_label(record['design'])}|{_label(record['operating_point'])}|{s['torque_n_m']:.8g}|"
-                    f"{s['te_peak_to_peak_m']*1e6:.8g}|{s['max_pressure_pa']*1e-6:.8g}|"
+                    f"{s['te_peak_to_peak_m']*1e6:.8g}|{record['selected_pressure_pa']*1e-6:.8g}|"
                     f"{s['mean_mesh_stiffness_n_per_m']*1e-6:.8g}|{'是' if s['all_converged'] else '否'}|")
     if study:
         rows += ['', '给定候选与工况集合中的非支配方案：' + '、'.join(map(_label, study.pareto_names)) + '。',
@@ -94,27 +96,33 @@ def run_request(request, output, *, plots=False):
     write_json(output / 'normalized_request.json', prepared['normalized'])
     manifest = {'schema': 'gear_ltca_run_v1', 'status': 'running', 'analysis_completed': False,
                 'created_utc': datetime.now(timezone.utc).isoformat(), 'identity': before, 'plots': plots,
+                'pressure_metric': prepared['pressure_metric'],
                 'unit_conversions': prepared['conversions'], 'defaulted_fields': prepared['defaults'],
                 'validation': {'numerical_replay': '尚未复算', 'discretization_converged': None,
                                'vendor_comparison': '本次未执行', 'physical_validation': False}, 'cases': []}
     write_json(output / 'run.json', manifest)
     try:
         study = None
+        selected_pressures = {}
         if prepared['designs'] is None:
             result = analyze_pair(prepared['pair'], **prepared['kwargs'])
             results = [('当前方案', '给定工况', result)]
         else:
             study = compare_designs(prepared['pair'], prepared['designs'],
                     operating_points=prepared['points'], pressure_limit_pa=prepared['pressure_limit_pa'],
+                    pressure_metric=prepared['pressure_metric'],
                     **prepared['kwargs'])
             write_json(output / 'study.json', study.to_dict())
+            selected_pressures = {(row['design'], row['operating_point']): row['max_pressure_mpa']*1e6
+                                  for row in study.rows}
             results = [(design, point, result) for design, points in study.results.items()
                        for point, result in points.items()]
         for index, (design, point, result) in enumerate(results, 1):
             relative = f'cases/case_{index:03d}'
             export_result(result, output / relative)
             manifest['cases'].append({'directory': relative, 'design': design, 'operating_point': point,
-                                      'summary': result.summary})
+                                      'summary': result.summary,
+                                      'selected_pressure_pa': selected_pressures.get((design, point), result.summary['max_pressure_pa'])})
             if not result.summary['all_converged']:
                 raise ArithmeticError(f'第{index}个求解含未收敛相位，结果不能标记完成')
         if plots:
@@ -122,6 +130,8 @@ def run_request(request, output, *, plots=False):
             if study is None:
                 manifest['plot_definitions'] = plot_result(results[0][2], output / 'plots')
             else:
+                from gear_contact.plotting import plot_design_study
+                plot_design_study(study, output / 'plots/study')
                 for case, (_, _, result) in zip(manifest['cases'], results):
                     case['plot_definitions'] = plot_result(result, output / case['directory'] / 'plots')
                 for index, point in enumerate(prepared['points'], 1):
@@ -221,9 +231,13 @@ def replay_run(directory, output, *, plots=False):
     study_passed = (read_json(directory / 'study.json') == read_json(output / 'study.json')
                     if (directory / 'study.json').exists() else not (output / 'study.json').exists())
     strength_passed = reference.get('strength') == current.get('strength')
+    pressure_selection_passed = reference.get('pressure_metric') == current.get('pressure_metric') and all(
+        previous.get('selected_pressure_pa') == repeated.get('selected_pressure_pa')
+        for previous, repeated in zip(reference['cases'], current['cases']))
     result = {'schema': 'gear_ltca_replay_v1', 'reference_run_sha256': sha256(directory / 'run.json'),
-              'passed': all(r['passed'] for r in records) and study_passed and strength_passed,
+              'passed': all(r['passed'] for r in records) and study_passed and strength_passed and pressure_selection_passed,
               'study_equal': study_passed, 'strength_equal': strength_passed,
+              'pressure_selection_equal': pressure_selection_passed,
               'cases': records, 'scope': '同源码与数值环境的独立重新求解和全数组复现，不构成工程精度验证'}
     write_json(output / 'replay.json', result)
     current['validation']['numerical_replay'] = '通过' if result['passed'] else '失败'

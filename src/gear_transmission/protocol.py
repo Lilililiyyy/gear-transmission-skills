@@ -175,9 +175,17 @@ def prepare_request(request):
     study = normalized.get('study')
     pair, kwargs, defaults = prepare_case(normalized.get('case'), study=study is not None)
     designs, points, pressure_limit = None, None, None
+    pressure_metric = 'center'
     if study is not None:
         _object(study, 'study')
-        _keys(study, {'designs', 'operating_points', 'pressure_limit_pa'}, 'study')
+        _keys(study, {'designs', 'operating_points', 'pressure_limit_pa', 'pressure_metric'}, 'study')
+        pressure_metric = study.get('pressure_metric', 'center')
+        if not isinstance(pressure_metric, str) or pressure_metric not in {'center', 'endpoint'}:
+            raise ValueError('study.pressure_metric只支持center或endpoint')
+        if pressure_metric == 'endpoint' and kwargs['extended_contact_settings'] is None:
+            raise ValueError('端点压力指标需要显式的extended_contact_settings，不能用中心压力代替')
+        if 'pressure_metric' not in study:
+            defaults.append('study.pressure_metric')
         designs, points = {}, []
         for key in ('designs', 'operating_points'):
             if not isinstance(study.get(key), list) or not study[key]:
@@ -210,4 +218,5 @@ def prepare_request(request):
                 raise ValueError('压力上限须为正数')
     return {'normalized': normalized, 'pair': pair, 'kwargs': kwargs, 'defaults': defaults,
             'conversions': conversions, 'designs': designs, 'points': points,
-            'pressure_limit_pa': pressure_limit, 'solve_count': len(designs) * len(points) if designs else 1}
+            'pressure_limit_pa': pressure_limit, 'pressure_metric': pressure_metric,
+            'solve_count': len(designs) * len(points) if designs else 1}

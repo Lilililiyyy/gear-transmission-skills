@@ -453,16 +453,16 @@ def plot_surface(modification, output_dir, *, title: str = "法向修形曲面",
 
 
 def plot_design_study(study, output_dir) -> list[str]:
-    """以方案和工况原始结果构建最坏性能散点，不混用不同单位的加权和。"""
+    """绘制已经用于约束与Pareto的比较摘要，保持中心/端点压力选择一致。"""
+    metadata = study.to_dict()
+    metric = metadata["pressure_metric"]
+    pressure_label = {"center": "条带中心", "endpoint": "接触线端点"}[metric]
     plt = _pyplot()
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
-    names = list(study.results)
-    worst_te, worst_pressure = [], []
-    for name in names:
-        metrics = [analysis_metrics(r) for r in study.results[name].values()]
-        worst_te.append(max(m["te_peak_to_peak_um"] for m in metrics))
-        worst_pressure.append(max(m["maximum_pressure_mpa"] for m in metrics))
+    names = [row["design"] for row in study.design_summary]
+    worst_te = [row["worst_te_peak_to_peak_um"] for row in study.design_summary]
+    worst_pressure = [row["worst_pressure_mpa"] for row in study.design_summary]
     fig, ax = plt.subplots(figsize=(7.4, 5.2), constrained_layout=True)
     for i, name in enumerate(names):
         selected = name in study.pareto_names
@@ -471,14 +471,17 @@ def plot_design_study(study, output_dir) -> list[str]:
         ax.annotate(name + ("（Pareto）" if selected else ""),
                     (worst_te[i], worst_pressure[i]), xytext=(7, 7), textcoords="offset points")
     ax.set(xlabel="工况集合中的最坏 TE 峰峰值 / μm",
-           ylabel="工况集合中的最高接触压力 / MPa",
+           ylabel=f"工况集合中的最高{pressure_label}压力 / MPa",
            title="多工况方案取舍：两项指标越小越好")
     ax.margins(.25)
     ax.grid(alpha=.18)
     files = _save(fig, output, "robust_design_tradeoff")
     plt.close(fig)
     files.append(_csv(output / "robust_design_plot_data.csv",
-                      ("design", "worst_te_peak_to_peak_um", "worst_pressure_MPa", "pareto"),
-                      ((name, te, pressure, name in study.pareto_names)
-                       for name, te, pressure in zip(names, worst_te, worst_pressure))))
+                      ("design", "worst_te_peak_to_peak_um", "worst_pressure_MPa", "pareto",
+                       "pressure_metric", "pressure_definition", "pressure_unit", "feasible"),
+                      ((row["design"], row["worst_te_peak_to_peak_um"], row["worst_pressure_mpa"],
+                        row["design"] in study.pareto_names, metric,
+                        metadata["pressure_definition"], "MPa", row["feasible"])
+                       for row in study.design_summary)))
     return files

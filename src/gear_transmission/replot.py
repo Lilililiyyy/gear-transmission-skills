@@ -41,6 +41,14 @@ def replot_run(directory, output):
         for index, candidates in enumerate(groups.values(), 1):
             plot_cycles(candidates, output/f'plots/point_{index:03d}')
             plot_contact_pass_comparison(candidates, output/f'plots/point_{index:03d}')
+        if (directory/'study.json').is_file():
+            from gear_contact import DesignStudy
+            from gear_contact.plotting import plot_design_study
+            saved = read_json(directory/'study.json')
+            study = DesignStudy({}, saved['rows'], saved['design_summary'], saved['pareto_names'],
+                                pressure_metric=saved.get('pressure_metric', 'center'))
+            plot_design_study(study, output/'plots/study')
+            record['pressure_metric'] = study.pressure_metric
         if identity() != before or artifact_hashes(directory) != run['artifacts']:
             raise RuntimeError('重绘期间源码或原始结果发生变化')
         record['status'] = 'completed'

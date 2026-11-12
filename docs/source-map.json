@@ -81,10 +81,10 @@
       "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/design.py",
       "symbol": "compare_designs",
       "lines": [
-        51,
-        108
+        98,
+        162
       ],
-      "sha256": "24a73a80f8852d619c2ee7f0c5e7fc59402331491bf49d22d014d6be004593a0",
+      "sha256": "12c5645ed82374d78899250cb202183c789280ba22af52b572c606808f308d97",
       "implementation": "原字节保留的现有新写重建计算内核"
     },
     {
@@ -130,9 +130,9 @@
       "symbol": "export_result",
       "lines": [
         41,
-        126
+        127
       ],
-      "sha256": "c0811b8a5c027779ac2692d013db334a62edc4bdd3e3f7f42a31675ae0f1372b",
+      "sha256": "58e289fae75b62d2286926a981e667d00ab693c2bea36f32ebe65aa1b28ebb64",
       "implementation": "原字节保留的现有新写重建计算内核"
     },
     {
@@ -302,9 +302,165 @@
         220
       ],
       "sha256": "bad5623144a828b2230b4b5405ad635e8d117dc38069d4b12e673c3a9d6c8f32"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/design.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/design.py",
+      "symbol": "DesignStudy",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        67,
+        87
+      ],
+      "sha256": "12c5645ed82374d78899250cb202183c789280ba22af52b572c606808f308d97"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/design.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/design.py",
+      "symbol": "robust_design_search",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        165,
+        170
+      ],
+      "sha256": "12c5645ed82374d78899250cb202183c789280ba22af52b572c606808f308d97"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/design.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/design.py",
+      "symbol": "sweep_parameter",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        173,
+        184
+      ],
+      "sha256": "12c5645ed82374d78899250cb202183c789280ba22af52b572c606808f308d97"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/design.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/design.py",
+      "symbol": "_selected_pressure_pa",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        26,
+        49
+      ],
+      "sha256": "12c5645ed82374d78899250cb202183c789280ba22af52b572c606808f308d97"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/response_regression.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/response_regression.py",
+      "symbol": "response_values",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        60,
+        77
+      ],
+      "sha256": "a3853e427077f0cba49aa7cca04d850e2eff0d2c5e930746d4f84745ff72c984"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/response_regression.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/response_regression.py",
+      "symbol": "validate_baseline",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        118,
+        165
+      ],
+      "sha256": "a3853e427077f0cba49aa7cca04d850e2eff0d2c5e930746d4f84745ff72c984"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/response_regression.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/response_regression.py",
+      "symbol": "compare_response",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        168,
+        197
+      ],
+      "sha256": "a3853e427077f0cba49aa7cca04d850e2eff0d2c5e930746d4f84745ff72c984"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/response_regression.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/response_regression.py",
+      "symbol": "run",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        200,
+        261
+      ],
+      "sha256": "a3853e427077f0cba49aa7cca04d850e2eff0d2c5e930746d4f84745ff72c984"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/check_convergence_matrix.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/check_convergence_matrix.py",
+      "symbol": "case_config",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        56,
+        78
+      ],
+      "sha256": "8df3d5d0a36188147eb30299b18856df536748022d5f4ab7ebd9d955577d88a5"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/check_convergence_matrix.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/check_convergence_matrix.py",
+      "symbol": "metrics_from_arrays",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        110,
+        156
+      ],
+      "sha256": "8df3d5d0a36188147eb30299b18856df536748022d5f4ab7ebd9d955577d88a5"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/check_convergence_matrix.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/check_convergence_matrix.py",
+      "symbol": "compare_metrics",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        159,
+        178
+      ],
+      "sha256": "8df3d5d0a36188147eb30299b18856df536748022d5f4ab7ebd9d955577d88a5"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/check_convergence_matrix.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/check_convergence_matrix.py",
+      "symbol": "run",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        181,
+        302
+      ],
+      "sha256": "8df3d5d0a36188147eb30299b18856df536748022d5f4ab7ebd9d955577d88a5"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "examples/check_convergence_matrix.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/examples/check_convergence_matrix.py",
+      "symbol": "exit_code",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        305,
+        311
+      ],
+      "sha256": "8df3d5d0a36188147eb30299b18856df536748022d5f4ab7ebd9d955577d88a5"
     }
   ],
   "source_repository": "https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA",
-  "source_base_commit": "cb2e1ec8a8d1ac2b6137aa6a9b781b9a797c6a7f",
-  "kernel_version": "0.2.1"
+  "source_base_commit": "fa16da1bdff9e038c9cb571972cc17f273faf5d7",
+  "kernel_version": "0.3.0"
 }

@@ -96,6 +96,8 @@ python -B examples/run_cylindrical_workflow.py --output output/helical_18_77 --p
 
 `compare_designs`、`sweep_parameter`、`robust_design_search`使用同一内核；多工况由`OperatingPoint(name, torque_n_m, misalignment_m)`定义。筛选目标为给定工况集合内的最坏TE峰峰值和最大压力，可明确指定压力上限，不内置许用应力或隐藏权重。
 
+从0.3.0起，三个入口均可显式给定 `pressure_metric='center'|'endpoint'`，默认中心压力。所选指标贯穿逐工况压力、最坏值、压力上限、Pareto集合和 `plot_design_study` 的图／CSV。端点模式需要所有相位的真实独立端点数组；缺失或非有限时明确失败。`DesignStudy.to_dict()` 记录 `pressure_metric`、定义和单位，原 `AnalysisResult.summary.max_pressure_pa` 仍为中心压力。响应回归、收敛矩阵及接入说明见[第一轮验证说明](first_round_validation.md)。
+
 外部结构柔度通过`compliance_provider(pair, grid)`提供，不能与局部压陷重复计入接触变形；额外法向间隙通过`boundary_gap(phase, grid)`提供。模型公式与限制见[model.md](model.md)。
 
 ## 图义与适用范围

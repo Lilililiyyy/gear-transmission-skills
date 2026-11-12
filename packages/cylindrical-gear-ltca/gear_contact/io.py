@@ -40,6 +40,7 @@ def write_json(path, value):
 
 def export_result(result, output_dir):
     """每个相位的变长接触数组以offsets无损展开，禁止使用pickle对象数组。"""
+    from . import __version__
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
     offsets = np.r_[0, np.cumsum([len(r.solution.forces_n) for r in result.rotations])]
@@ -115,7 +116,7 @@ def export_result(result, output_dir):
     if extended and extended[0] is not None:
         files += ("endpoint_cells.csv",)
     manifest = {
-        "module": "gear_contact", "version": "0.2.1", "implementation": "新写物理模型计算内核",
+        "module": "gear_contact", "version": __version__, "implementation": "新写物理模型计算内核",
         "units": {"length": "m", "angle": "rad", "force": "N", "torque": "N m",
                   "pressure": "Pa", "compliance": "m/N", "normal_stiffness": "N/m"},
         "array_layout": "cell_offsets[k]:cell_offsets[k+1] 对应phase[k]的原始接触单元",

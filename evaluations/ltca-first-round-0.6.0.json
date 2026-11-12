@@ -1,0 +1,105 @@
+{
+  "schema": "ltca_first_round_acceptance_v1",
+  "date": "2026-11-12",
+  "implementation": "新写设计接口与验证工具；内核来源字节保留",
+  "library_version": "0.6.0",
+  "kernel_version": "0.3.0",
+  "source_commit": "fa16da1bdff9e038c9cb571972cc17f273faf5d7",
+  "source_tests_passed": 103,
+  "library_tests_passed": 50,
+  "response_regression": {
+    "cases": 10,
+    "field_checks": 138,
+    "passed": true,
+    "baseline_sha256": "39109d6fc41599d712e8f2c6cb71157d1db9accab64ca67db830129af3d5acf8",
+    "environment": {
+      "python": "3.10.11",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "platform": "Windows-10-10.0.19045-SP0"
+    }
+  },
+  "formal_convergence": {
+    "unique_configurations": 25,
+    "numerical_checks_passed": true,
+    "formal_convergence_passed": false,
+    "cases": {
+      "combined_spur": true,
+      "internal_helical": true,
+      "low_load": false,
+      "edge_misalignment": false,
+      "iso_love_18_77": false
+    }
+  },
+  "refined_convergence": {
+    "unique_configurations": 15,
+    "numerical_checks_passed": true,
+    "formal_convergence_passed": false,
+    "cases": {
+      "low_load": false,
+      "edge_misalignment": false,
+      "iso_love_18_77": false
+    }
+  },
+  "wheel": {
+    "wheel": "gear_transmission_skills-0.6.0-py3-none-any.whl",
+    "sha256": "1ff69c5c9fc8a8c1f744b9d156649a062cd3fc3c25ca8af2105e60745f906998",
+    "snapshot_files_checked": 52,
+    "passed": true,
+    "source_commit": "fa16da1bdff9e038c9cb571972cc17f273faf5d7"
+  },
+  "endpoint_integration": {
+    "implementation": "新写验证工具",
+    "source_run": "run/run.json",
+    "solve_count": 2,
+    "pressure_metric": "endpoint",
+    "replay_passed": true,
+    "pressure_selection_equal": true,
+    "replot_completed": true,
+    "replot_solver_executed": false,
+    "original_artifacts_unchanged": true,
+    "discretization_converged": null,
+    "physical_validation": false
+  },
+  "remote_ci_for_first_round": "尚未执行；本地分支未推送",
+  "physical_or_experimental_validation": false,
+  "scope": "版本间数值回归、所列工况离散敏感性与适配层复算；不代表原组件等价或物理精度验证",
+  "evidence": [
+    {
+      "path": "work/module/cylindrical_gear/first_round_update/response_current_validation_final/response_regression.json",
+      "sha256": "891f5413a1b607b2c7633bbd4e26510bb95f02cab0d386b537c2c6f59283273e"
+    },
+    {
+      "path": "analyses/github/cylindrical-gear-ltca/output/convergence-matrix-formal-20261112/convergence_matrix.json",
+      "sha256": "2b4f592a008b77488e4b8fecebaa3f8cc5247f25692ceda30f7a8d3fae919ac6"
+    },
+    {
+      "path": "analyses/github/cylindrical-gear-ltca/output/convergence-matrix-refined-20261112/convergence_matrix.json",
+      "sha256": "e0c8ce7cd85ba86db2b61772dc830539b0b88ca7d4fcfc35ead375b0db466970"
+    },
+    {
+      "path": "work/module/cylindrical_gear/first_round_update/cylindrical_unittest_verified.log",
+      "sha256": "10b143994f3269f36c9f1fb3b628f9bee73c5d77f2f220f8038b0075c2acb276"
+    },
+    {
+      "path": "work/module/cylindrical_gear/first_round_update/skills_unittest_verified.log",
+      "sha256": "f869ff610ea5f3fe2d17d50305266ebf557217e0954cf4f3c63e223f517d9b57"
+    },
+    {
+      "path": "analyses/github/gear-transmission-skills/output/first-round-final-20261112/acceptance.json",
+      "sha256": "b9fe254fbf8ea3e38ebfaf1c4940d955c4e09ba4ce9ba5ae46e25f8663c8baa7"
+    },
+    {
+      "path": "analyses/github/gear-transmission-skills/output/first-round-final-20261112/replay/replay.json",
+      "sha256": "f034c35d98174907c9864b4a0112e0a8c4ac1d6bef3a1b0006b13a429a70a426"
+    },
+    {
+      "path": "analyses/github/gear-transmission-skills/output/first-round-final-20261112/replot/plot.json",
+      "sha256": "4a9d0fd327dad8784edb01b8715eb64453ba265d53aaac58f7fc54ae300a43c7"
+    },
+    {
+      "path": "analyses/github/gear-transmission-skills/output/first-round-wheel-regression/response_regression.json",
+      "sha256": "90ddce7b1cfc9596d6e0f329d6e480db6b58213cb3ed306765dbd2f83f26baf1"
+    }
+  ]
+}

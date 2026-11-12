@@ -43,4 +43,6 @@
 
 这个片段须与完整 `schema` 和 `case`组合。比较任务的 `case`不能再给扭矩、失准或小轮修形；大轮修形仍可在 `case`给定。候选名、工况名分别唯一，名称仅作标签。可给显式 `pressure_limit_mpa`／`pressure_limit_pa`，不提供时只按TE和压力做非支配比较。
 
+`study.pressure_metric` 可为 `center` 或 `endpoint`，默认 `center` 并登记默认字段。`endpoint` 需要 `case.extended_contact_settings` 及其支持的ISO模式，运行时还检查每个相位的真实端点数组。所选指标同时控制压力上限、最坏工况、Pareto与报告；缺少端点数据时不会退回中心压力。原始 `summary.max_pressure_pa` 保留中心定义，所选值另存为 `run.json.cases[].selected_pressure_pa`。
+
 `elastic_mode`保留 `coupled`、`independent`、`iso`、`iso_love`。ISO相关输入、局部参照深度及齿顶延伸仍按原内核协议；不得擅自补造名义载荷因子。Python外部柔度和间隙回调不能由纯JSON重现，因此本Skill首版入口不接受回调代码。

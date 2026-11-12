@@ -20,6 +20,10 @@
 
 `study.json`保持原 `compare_designs` 的目标、逐工况结果和非支配集合。压力约束只来自显式输入；无约束不等于强度安全。修形可能降低峰压同时增大TE波动，报告应解释权衡。
 
+比较请求的 `pressure_metric`、定义和单位保存在 `study.json`；`rows.max_pressure_mpa` 与 `design_summary.worst_pressure_mpa` 均采用所选定义。报告及 `plots/study/robust_design_tradeoff.png` 使用同一指标，CSV保留定义、单位和可行性。原生摘要仍分别保留中心与可用端点值；`run.json.cases[].selected_pressure_pa` 是用于本次比较的Pa数值。复算同时检查指标选择及比较结果；重绘读取已验证的 `study.json`，不重新筛选或求解。
+
 复算命令必须指定新的目录。`replay`先核对原目录所有文件哈希、代码身份和数值环境，再从原请求生成新的求解，逐数组比较。整数索引、偏移、布尔掩码要求一致；浮点容差、最大差及逐数组结论保存在 `replay.json`，并核对每个实际输入、全部汇总指标和方案比较结果。
 
 `replay.json.passed=true`仅说明给定同环境的数值复现。它不意味着网格／连续相位收敛、原组件响应精度或物理试验验证。本次未运行的验证在 `run.json.validation`中保持未验证。
+
+快照同步以登记 Git 提交中的 blob 原字节为准，不以 Windows 检出副本的换行形式为准；`scripts/sync_ltca_snapshot.py --source <原工程> --check` 同时检查文件清单、字节与函数来源映射。原证据中的 CRLF 会按提交内容保留。

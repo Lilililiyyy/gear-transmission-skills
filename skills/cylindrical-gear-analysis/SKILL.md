@@ -14,6 +14,8 @@ license: AGPL-3.0-only
 
 单工况使用 `case`；修形候选比较再给 `study.designs` 与 `study.operating_points`。比较任务的载荷、失准和小轮修形分别放在工况及候选中，不能同时在 `case` 指定。压力上限须来自用户明确依据，不自行推断许用值或隐藏评价权重。
 
+比较时显式说明 `study.pressure_metric`：默认 `center` 为中心压力，`endpoint` 为独立端点压力并要求实际端点数据。报告、压力约束及Pareto采用相同指标；不能以中心压力替代缺失端点。所选值与原生摘要中的中心值分开保存，方案比较图位于 `plots/study/`。
+
 用户要求复现独立项目新版 18/77 案例或其 MASTA 对标图时，读 [新版完整工作流](references/new-workflow.md)，使用 `case --plots`；它保留原案例、载荷层级、显式强度因子、配准和后处理。普通参数分析继续使用 `run`，不能用随附案例替换用户的几何、修形或载荷。
 
 默认模型是 `coupled` 固定齿根弹性降阶模型及局部线接触压陷。ISO模式需要明确的 `iso_settings` 和 `local_contact=false`，避免重复计入局部压陷。不要为得到期望曲线而切换模型或修改采样相位。

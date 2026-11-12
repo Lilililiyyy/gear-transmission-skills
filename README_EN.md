@@ -21,7 +21,7 @@ Agent Skills for gear transmission design, connecting natural-language requests 
 
 | Skill                                                                  | Capabilities                                                                                                                     | Version | Independent computational project                                             |
 | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------- |
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases | 0.2.1 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases | 0.3.0 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
 | [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | Zero-offset straight / spiral bevel geometry, forces, nominal strength, staged CAD / TCA / nodal FE-LTCA, and independent reruns | 0.10.0 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
 <!-- skills:end -->
 
@@ -148,6 +148,13 @@ The complete `case` workflow also exports `workflow_summary.json`, `strength.jso
 This project is licensed under [AGPL-3.0-only](LICENSE). For proprietary or closed-source integration, [contact the author](https://github.com/Lilililiyyy) to discuss a commercial license.
 
 ## Changelog
+
+- **2026-11-12 · v0.6.0**
+
+  - 接入圆柱LTCA 0.3.0：保留固定版本响应回归、多工况收敛矩阵及原组件对标的独立状态。
+  - 比较请求新增 `study.pressure_metric=center|endpoint`，默认中心压力；所选指标贯穿约束、Pareto、报告、方案比较图、独立复算和只读重绘。
+  - 端点指标缺少实际数据时明确拒绝，原中心／端点数组和单位保持不变；快照按来源提交、逐文件哈希和函数行段登记。
+  - 快照直接读取固定 Git 提交字节，避免检出换行影响来源哈希。[本地验收](evaluations/ltca-first-round-0.6.0.json)：103项内核测试、50项适配测试及10案响应回归通过；三类工况仍存在离散敏感性，保留未收敛状态。
 
 - **2026-11-12 · v0.5.1**
 
