@@ -21,9 +21,8 @@
 
 | Skill                                                                  | 主要能力                                                                            | 内核版本 | 独立计算项目                                                                  |
 | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------- |
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标       | 0.2.1    | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
-| [bevel-gear-design](skills/bevel-gear-design/SKILL.md)                 | 零偏置直齿／弧齿的几何、啮合力、名义强度及分阶段CAD／TCA／节点FE-LTCA，结果独立复算 | 0.10.0   | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design)         |
-
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标 | 0.2.1 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | 零偏置直齿／弧齿的几何、啮合力、名义强度及分阶段CAD／TCA／节点FE-LTCA，结果独立复算 | 0.10.0 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
 <!-- skills:end -->
 
 ## 安装
@@ -166,6 +165,12 @@ python -m gear_transmission.bevel_cli replay output/bevel --output output/bevel_
 本项目采用 [AGPL-3.0-only](LICENSE)。如需闭源集成，可[联系作者](https://github.com/Lilililiyyy)获取商业授权。
 
 ## 更新记录
+
+- **2026-11-12 · v0.5.1**
+
+  - 修复发布校验与README展示格式不一致的问题：保留Release徽章和四列技能表，不再要求已删除的库版本说明区块及状态列。
+  - 内核版本继续从快照同步；固定提交与文件哈希保留在快照清单，发布说明继续列出内核提交。
+  - 增加四列表格、只读检查及重复同步回归检查；计算内核和历史发布记录不变。
 
 - **2026-11-02 · v0.5.0**
 

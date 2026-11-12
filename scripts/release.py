@@ -43,12 +43,9 @@ def block(text, name, replacement):
     return re.sub(pattern, lambda match: f'<!-- {name}:start -->\n{replacement}\n<!-- {name}:end -->', text)
 
 
-def document(root, name, version, records):
+def document(root, name, records):
+    """仅同步四列表格中的内核版本；库版本由Release徽章展示，提交身份保留在快照及发布说明。"""
     text = (root/name).read_text(encoding='utf-8')
-    introduction = (f'当前库版本为 **{version}**。所有 Skill 随库统一发布；所用内核版本见下表。'
-                    if name == 'README.md' else
-                    f'Library version: **{version}**. All skills ship together; integrated kernel versions are listed below.')
-    text = block(text, 'library-version', introduction)
     table_match = re.search(r'(?s)<!-- skills:start -->\n(.*?)\n<!-- skills:end -->', text)
     if table_match is None:
         raise ValueError(name+'缺少技能表格自动维护区块')
@@ -61,10 +58,10 @@ def document(root, name, version, records):
                 raise ValueError(name+'含未登记或重复技能：'+skill)
             found.add(skill)
             columns = [part.strip() for part in line.strip().strip('|').split('|')]
-            if len(columns) != 5:
-                raise ValueError(name+'技能表格应有五列：技能、能力、内核版本、状态、独立项目')
+            if len(columns) != 4:
+                raise ValueError(name+'技能表格应有四列：技能、能力、内核版本、独立项目')
             record = records[skill]
-            columns[2] = f"{record['version']} ([{record['commit'][:7]}]({record['repository']}/commit/{record['commit']}))"
+            columns[2] = record['version']
             line = '| '+' | '.join(columns)+' |'
         lines.append(line)
     if found != set(records):
@@ -91,7 +88,7 @@ def synchronize(root, *, write=False, check_installed=False):
         data['version'] = version
         outputs[name] = json.dumps(data, ensure_ascii=False, indent=2)+'\n'
     for name in ('README.md', 'README_EN.md'):
-        outputs[name] = document(root, name, version, records)
+        outputs[name] = document(root, name, records)
     different = [name for name, value in outputs.items() if (root/name).read_text(encoding='utf-8') != value]
     if different and not write:
         raise ValueError('发布元数据不同步：'+', '.join(different)+'；请运行 python scripts/release.py --sync')

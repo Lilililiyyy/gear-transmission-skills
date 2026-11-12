@@ -39,7 +39,8 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual(json.loads((self.root/name).read_text(encoding='utf-8'))['version'], '9.8.7')
         for name in ('README.md', 'README_EN.md'):
             text = (self.root/name).read_text(encoding='utf-8')
-            self.assertIn('**9.8.7**', text)
+            self.assertNotIn('library-version:', text)
+            self.assertIn('img.shields.io/github/v/release/', text)
             self.assertIn('v0.4.1', text)
         self.assertEqual(before, (self.root/'src/gear_transmission/kernel_snapshot.json').read_bytes())
 
@@ -56,7 +57,42 @@ class ReleaseTests(unittest.TestCase):
         for name in ('README.md', 'README_EN.md'):
             text = (self.root/name).read_text(encoding='utf-8')
             self.assertIn('99.1.2', text)
-            self.assertIn('/commit/'+'1'*40, text)
+            self.assertNotIn('/commit/'+'1'*40, text)
+        self.assertIn('/commit/'+'1'*40, RELEASE.release_notes(self.root, before))
+
+    def test_current_readme_layout_is_preserved_and_sync_is_idempotent(self):
+        """徽章与四列表格可直接校验；同步不恢复已删除的版本段或状态列。"""
+        before = {name: (self.root/name).read_bytes() for name in ('README.md', 'README_EN.md')}
+        RELEASE.synchronize(self.root)
+        self.assertEqual(RELEASE.synchronize(self.root, write=True)['updated'], [])
+        for name, original in before.items():
+            self.assertEqual((self.root/name).read_bytes(), original)
+            rows = [line for line in original.decode('utf-8').splitlines()
+                    if line.startswith('|') and '/SKILL.md' in line]
+            self.assertEqual(len(rows), len(RELEASE.KERNELS))
+            self.assertTrue(all(len(line.strip().strip('|').split('|')) == 4 for line in rows))
+
+    def test_stale_kernel_version_is_rejected_without_writing(self):
+        """只读检查发现过期内核版本后不改文件；显式同步仅更新版本单元格。"""
+        path = self.root/'README.md'
+        records = RELEASE.kernel_records(self.root)
+        current = records['bevel-gear-design']['version']
+        path.write_text(path.read_text(encoding='utf-8').replace('| '+current+' |', '| 99.9.9 |'), encoding='utf-8')
+        before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+        with self.assertRaisesRegex(ValueError, '发布元数据不同步'):
+            RELEASE.synchronize(self.root)
+        self.assertEqual(before, {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file()})
+        self.assertEqual(RELEASE.synchronize(self.root, write=True)['updated'], ['README.md'])
+        RELEASE.synchronize(self.root)
+
+    def test_unexpected_table_column_is_rejected(self):
+        """表格仍严格检查结构，避免在错误列中写入内核版本。"""
+        path = self.root/'README_EN.md'
+        lines = path.read_text(encoding='utf-8').splitlines()
+        lines = [line+' unexpected |' if line.startswith('|') and '/SKILL.md' in line else line for line in lines]
+        path.write_text('\n'.join(lines)+'\n', encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, '四列'):
+            RELEASE.synchronize(self.root)
 
     def test_independent_skill_version_is_rejected(self):
         path = self.root/'skills/bevel-gear-design/SKILL.md'

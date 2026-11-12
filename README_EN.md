@@ -21,9 +21,8 @@ Agent Skills for gear transmission design, connecting natural-language requests 
 
 | Skill                                                                  | Capabilities                                                                                                                     | Version | Independent computational project                                             |
 | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------- |
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases           | 0.2.1   | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
-| [bevel-gear-design](skills/bevel-gear-design/SKILL.md)                 | Zero-offset straight / spiral bevel geometry, forces, nominal strength, staged CAD / TCA / nodal FE-LTCA, and independent reruns | 0.10.0  | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design)         |
-
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases | 0.2.1 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | Zero-offset straight / spiral bevel geometry, forces, nominal strength, staged CAD / TCA / nodal FE-LTCA, and independent reruns | 0.10.0 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
 <!-- skills:end -->
 
 ## Installation
@@ -149,6 +148,12 @@ The complete `case` workflow also exports `workflow_summary.json`, `strength.jso
 This project is licensed under [AGPL-3.0-only](LICENSE). For proprietary or closed-source integration, [contact the author](https://github.com/Lilililiyyy) to discuss a commercial license.
 
 ## Changelog
+
+- **2026-11-12 · v0.5.1**
+
+  - 修复发布校验与README展示格式不一致的问题：保留Release徽章和四列技能表，不再要求已删除的库版本说明区块及状态列。
+  - 内核版本继续从快照同步；固定提交与文件哈希保留在快照清单，发布说明继续列出内核提交。
+  - 增加四列表格、只读检查及重复同步回归检查；计算内核和历史发布记录不变。
 
 - **2026-11-02 · v0.5.0**
 

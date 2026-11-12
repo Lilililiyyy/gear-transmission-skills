@@ -1,6 +1,6 @@
 {
   "name": "gear-transmission-skills",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "齿轮传动设计Skill库：圆柱齿轮新版分析与锥齿轮几何、强度及接触分析",
   "skills": "./skills/"
 }

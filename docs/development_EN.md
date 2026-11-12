@@ -15,7 +15,7 @@ python scripts/release.py --sync
 python scripts/release.py --check
 ```
 
-`--sync` updates the project marker, plugin manifest, library introductions and kernel-version table cells. Capability and status text remains editable in each language's table. Both kernel synchronization scripts also invoke the tool. CI uses read-only checks and `--check-installed` to verify installed and imported versions.
+`--sync` 更新项目标记、插件清单及两份 README 四列技能表中的内核版本；技能能力文字仍在对应语言表格维护。README 用 GitHub Release 徽章展示已发布的库版本，不再维护独立版本说明区块或状态列。内核的固定提交和文件哈希以快照清单为准，发布说明继续列出提交链接。两种内核同步脚本也会调用该工具。`--check` 只读检查，CI 另外用 `--check-installed` 核对安装元数据及实际导入版本。
 
 Use patch increments for compatible fixes and minor increments for new skills, interfaces or features. During `0.x`, incompatible changes also increment the minor version and document migration. Establish `1.0.0` when the public interface is stable, then use major increments for incompatible changes. Kernel updates explain whether numerical results change and which validation applies.
 
