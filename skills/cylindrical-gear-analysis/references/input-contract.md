@@ -46,3 +46,14 @@
 `study.pressure_metric` 可为 `center` 或 `endpoint`，默认 `center` 并登记默认字段。`endpoint` 需要 `case.extended_contact_settings` 及其支持的ISO模式，运行时还检查每个相位的真实端点数组。所选指标同时控制压力上限、最坏工况、Pareto与报告；缺少端点数据时不会退回中心压力。原始 `summary.max_pressure_pa` 保留中心定义，所选值另存为 `run.json.cases[].selected_pressure_pa`。
 
 `elastic_mode`保留 `coupled`、`independent`、`iso`、`iso_love`。ISO相关输入、局部参照深度及齿顶延伸仍按原内核协议；不得擅自补造名义载荷因子。Python外部柔度和间隙回调不能由纯JSON重现，因此本Skill首版入口不接受回调代码。
+
+## 轴系耦合
+
+为两根轴分别填写 `case.shaft_system.pinion` 和 `case.shaft_system.wheel`。参考[可运行示例](../assets/shaft_bearing_case.json)。
+
+- `segments` 由轴首沿共同的 +z 方向排列。每段填写实心圆截面的 `length_m`、`diameter_m`，可选 `material`，缺省采用内核钢材参数。
+- `gear_node` 为齿宽中心对应的安装节点，`torque_node` 为扭矩端的角度参考节点。零基编号，轴首为 0，齿轮或支承位于轴段中间时在该处划分轴段。
+- `bearings` 每项含 `node` 和 `stiffness_n_per_m=[kx,ky,kz]`。每根轴在每个径向方向至少有两个正刚度支承节点，并至少有一处正轴向刚度。零表示该方向不提供支承。
+- 选 `coupled` 或 `independent`。独立给定的装配失准仍用 `misalignment_m`，轴系位移由内核自行反馈。比较任务共用 `case` 里的轴系配置。
+
+开启耦合后，TE 参考两轴扭矩端，法向切线刚度包含轴系柔度。各相位的节点位移、转角和轴承反力在 `diagnostics.json` 的 `elasticity[].shaft_bearing` 中。条带法向位移在 `arrays.npz` 的 `shaft_normal_displacement_m` 中，按 `cell_offsets` 索引。模型采用实心阶梯轴、小变形及刚性箱体，范围见[独立内核说明](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA/blob/330b2e221a6ce45f6f5976e6ef72c4ccaf0e84e8/docs/shaft_bearing_coupling.md)。

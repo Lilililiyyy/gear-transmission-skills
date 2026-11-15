@@ -21,7 +21,7 @@ Agent Skills for gear transmission design, connecting natural-language requests 
 
 | Skill                                                                  | Capabilities                                                                                                                     | Version | Independent computational project                                             |
 | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------- |
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification / misalignment comparisons, contact plots, explicit-factor strength and benchmark cases | 0.3.0 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | Cylindrical LTCA, modification and misalignment comparisons, stepped-shaft and linear-bearing coupling, contact plots, and explicit-factor strength | 0.4.0 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
 | [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | Zero-offset straight / spiral bevel geometry, forces, nominal strength, staged CAD / TCA / nodal FE-LTCA, and independent reruns | 0.10.0 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
 <!-- skills:end -->
 
@@ -148,6 +148,11 @@ The complete `case` workflow also exports `workflow_summary.json`, `strength.jso
 This project is licensed under [AGPL-3.0-only](LICENSE). For proprietary or closed-source integration, [contact the author](https://github.com/Lilililiyyy) to discuss a commercial license.
 
 ## Changelog
+
+- **2026-11-15 · v0.7.0**
+
+  - Updated the cylindrical LTCA kernel to 0.4.0. Use `shaft_system` in a standard LTCA request to include stepped-shaft and linear-bearing deformation in the tooth load distribution.
+  - Save and replay phase-by-phase bearing reactions, shaft nodal displacements and rotations, and strip normal displacements. [Shaft-bearing example](skills/cylindrical-gear-analysis/assets/shaft_bearing_case.json)
 
 - **2026-11-12 · v0.6.0**
 

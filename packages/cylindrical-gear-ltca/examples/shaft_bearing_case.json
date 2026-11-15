@@ -1,0 +1,35 @@
+{
+  "pair": {
+    "pinion": {"teeth": 28, "normal_module_m": 0.0025, "face_width_m": 0.025, "helix_angle_rad": 0.22},
+    "wheel": {"teeth": 56, "normal_module_m": 0.0025, "face_width_m": 0.025, "helix_angle_rad": -0.22}
+  },
+  "torque_n_m": 80,
+  "phases": 16,
+  "strips": 21,
+  "shaft_system": {
+    "pinion": {
+      "segments": [
+        {"length_m": 0.065, "diameter_m": 0.032},
+        {"length_m": 0.035, "diameter_m": 0.030}
+      ],
+      "bearings": [
+        {"node": 0, "stiffness_n_per_m": [200000000, 200000000, 120000000]},
+        {"node": 1, "stiffness_n_per_m": [200000000, 200000000, 0]}
+      ],
+      "gear_node": 2,
+      "torque_node": 0
+    },
+    "wheel": {
+      "segments": [
+        {"length_m": 0.050, "diameter_m": 0.042},
+        {"length_m": 0.070, "diameter_m": 0.038}
+      ],
+      "bearings": [
+        {"node": 0, "stiffness_n_per_m": [300000000, 300000000, 180000000]},
+        {"node": 2, "stiffness_n_per_m": [300000000, 300000000, 0]}
+      ],
+      "gear_node": 1,
+      "torque_node": 2
+    }
+  }
+}

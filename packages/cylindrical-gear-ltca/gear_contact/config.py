@@ -7,6 +7,7 @@ from .geometry import Gear, GearPair
 from .elasticity import Material
 from .surfaces import SurfaceModification, MeasuredCurve, MeasuredSurface, CompositeModification
 from .analysis import analyze_pair
+from .shaft import LinearBearing, Shaft, ShaftSegment, ShaftSystem
 
 
 def _construct(cls, value):
@@ -38,6 +39,21 @@ def modification_from_config(value):
     return _construct(classes[kind], value)
 
 
+def _shaft_from_config(value):
+    if not isinstance(value, dict) or not all(isinstance(value.get(k), (list, tuple)) for k in ("segments", "bearings")):
+        raise ValueError("轴配置必须包含 segments 与 bearings 列表")
+    segments = []
+    for item in value["segments"]:
+        if not isinstance(item, dict):
+            raise ValueError("轴段配置必须为对象")
+        segment = dict(item)
+        if "material" in segment:
+            segment["material"] = _construct(Material, segment["material"])
+        segments.append(_construct(ShaftSegment, segment))
+    bearings = [_construct(LinearBearing, item) for item in value["bearings"]]
+    return _construct(Shaft, {**value, "segments": segments, "bearings": bearings})
+
+
 def analyze_config(config):
     """读取可编辑JSON配置，兼容export_result写出的input.json。"""
     if not isinstance(config, dict) or "pair" not in config or "torque_n_m" not in config:
@@ -59,8 +75,15 @@ def analyze_config(config):
     for name in ("external_compliance_provider", "external_boundary_gap"):
         if values.pop(name, False):
             raise ValueError("含外部回调的配置需要由Python调用方重新提供相应函数，不能仅凭JSON复现")
+    if "shaft_system" in values:
+        shafts = values["shaft_system"]
+        if not isinstance(shafts, dict) or set(shafts) != {"pinion", "wheel"}:
+            raise ValueError("shaft_system 必须分别提供 pinion 与 wheel 轴配置")
+        values["shaft_system"] = ShaftSystem(_shaft_from_config(shafts["pinion"]),
+                                             _shaft_from_config(shafts["wheel"]))
     allowed = {"torque_n_m", "material_pinion", "material_wheel", "modification_pinion", "modification_wheel",
-               "misalignment_m", "phases", "strips", "phase_offset", "elastic_mode", "local_contact", "iso_settings", "extended_contact_settings", "local_reference_depths_m"}
+               "misalignment_m", "phases", "strips", "phase_offset", "elastic_mode", "local_contact", "iso_settings",
+               "extended_contact_settings", "local_reference_depths_m", "shaft_system"}
     if set(values)-allowed:
         raise ValueError("含未知计算字段："+", ".join(sorted(set(values)-allowed)))
     return analyze_pair(pair, **values)

@@ -9,10 +9,10 @@
       "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/config.py",
       "symbol": "modification_from_config",
       "lines": [
-        21,
-        38
+        22,
+        39
       ],
-      "sha256": "850f4ca8b125bb986706d18a4c0159eb9e6dbbff3bf3bf3416516b977fe5c946",
+      "sha256": "094da0477324e92de6af08a56146fd3c988d3175340870f680985ec04b04cf8b",
       "implementation": "原字节保留的现有新写重建计算内核"
     },
     {
@@ -21,10 +21,10 @@
       "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/config.py",
       "symbol": "analyze_config",
       "lines": [
-        41,
-        66
+        57,
+        89
       ],
-      "sha256": "850f4ca8b125bb986706d18a4c0159eb9e6dbbff3bf3bf3416516b977fe5c946",
+      "sha256": "094da0477324e92de6af08a56146fd3c988d3175340870f680985ec04b04cf8b",
       "implementation": "原字节保留的现有新写重建计算内核"
     },
     {
@@ -69,10 +69,10 @@
       "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/analysis.py",
       "symbol": "analyze_pair",
       "lines": [
-        90,
-        249
+        91,
+        271
       ],
-      "sha256": "d096c5d46fe461da91e783a849e6bf5fe63d55b2cb1f956e76b9ca9417c8d2fc",
+      "sha256": "ca1266d9e6245c33df8119219c47cd395a9c5a0bd0178811be9291d80e43a731",
       "implementation": "原字节保留的现有新写重建计算内核"
     },
     {
@@ -130,9 +130,9 @@
       "symbol": "export_result",
       "lines": [
         41,
-        127
+        130
       ],
-      "sha256": "58e289fae75b62d2286926a981e667d00ab693c2bea36f32ebe65aa1b28ebb64",
+      "sha256": "302267f8ce3a9483e96e036d52183c9582eada264663ff27430c0e26d5e6dc6a",
       "implementation": "原字节保留的现有新写重建计算内核"
     },
     {
@@ -458,9 +458,105 @@
         311
       ],
       "sha256": "8df3d5d0a36188147eb30299b18856df536748022d5f4ab7ebd9d955577d88a5"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/config.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/config.py",
+      "symbol": "_shaft_from_config",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        42,
+        54
+      ],
+      "sha256": "094da0477324e92de6af08a56146fd3c988d3175340870f680985ec04b04cf8b"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/shaft.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/shaft.py",
+      "symbol": "ShaftSegment",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        14,
+        26
+      ],
+      "sha256": "34f6184784d7c098ac8d3a3bf734c15f8332850529a6c2eb90b3a50ab80dfbec"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/shaft.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/shaft.py",
+      "symbol": "LinearBearing",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        30,
+        41
+      ],
+      "sha256": "34f6184784d7c098ac8d3a3bf734c15f8332850529a6c2eb90b3a50ab80dfbec"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/shaft.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/shaft.py",
+      "symbol": "Shaft",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        45,
+        70
+      ],
+      "sha256": "34f6184784d7c098ac8d3a3bf734c15f8332850529a6c2eb90b3a50ab80dfbec"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/shaft.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/shaft.py",
+      "symbol": "ShaftSystem",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        74,
+        82
+      ],
+      "sha256": "34f6184784d7c098ac8d3a3bf734c15f8332850529a6c2eb90b3a50ab80dfbec"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/shaft.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/shaft.py",
+      "symbol": "_element_stiffness",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        85,
+        108
+      ],
+      "sha256": "34f6184784d7c098ac8d3a3bf734c15f8332850529a6c2eb90b3a50ab80dfbec"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/shaft.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/shaft.py",
+      "symbol": "solve_shaft",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        164,
+        171
+      ],
+      "sha256": "34f6184784d7c098ac8d3a3bf734c15f8332850529a6c2eb90b3a50ab80dfbec"
+    },
+    {
+      "source_project": "cylindrical-gear-ltca",
+      "source_file": "gear_contact/shaft.py",
+      "integrated_file": "packages/cylindrical-gear-ltca/gear_contact/shaft.py",
+      "symbol": "_ShaftCoupling",
+      "implementation": "原字节保留的公开内核／验证／后处理实现",
+      "lines": [
+        174,
+        207
+      ],
+      "sha256": "34f6184784d7c098ac8d3a3bf734c15f8332850529a6c2eb90b3a50ab80dfbec"
     }
   ],
   "source_repository": "https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA",
-  "source_base_commit": "fa16da1bdff9e038c9cb571972cc17f273faf5d7",
-  "kernel_version": "0.3.0"
+  "source_base_commit": "330b2e221a6ce45f6f5976e6ef72c4ccaf0e84e8",
+  "kernel_version": "0.4.0"
 }

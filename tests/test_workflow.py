@@ -84,6 +84,37 @@ class WorkflowTests(unittest.TestCase):
         self.assertTrue(replay['passed'])
         self.assertTrue(replay['study_equal'])
 
+    def test_shaft_case_matches_kernel_and_replays(self):
+        request = read_json(ASSETS / 'shaft_bearing_case.json')
+        request['case'].update(phases=4, strips=5)
+        output = self.directory / 'shaft'
+        run_request(request, output)
+        direct = analyze_config(request['case'])
+        export_result(direct, self.directory / 'direct')
+        case = output / 'cases/case_001'
+        with np.load(case / 'arrays.npz', allow_pickle=False) as actual, \
+             np.load(self.directory / 'direct/arrays.npz', allow_pickle=False) as expected:
+            self.assertEqual(set(actual.files), set(expected.files))
+            for name in actual.files:
+                np.testing.assert_array_equal(actual[name], expected[name], err_msg=name)
+            self.assertGreater(np.max(np.abs(actual['shaft_normal_displacement_m'])), 0)
+        self.assertEqual(read_json(case / 'diagnostics.json'),
+                         read_json(self.directory / 'direct/diagnostics.json'))
+        replay = replay_run(output, self.directory / 'shaft_replay')
+        self.assertTrue(replay['passed'])
+        self.assertTrue(replay['cases'][0]['shaft_diagnostics_equal'])
+
+    def test_shaft_input_rejects_missing_axis_and_iso_mode(self):
+        request = read_json(ASSETS / 'shaft_bearing_case.json')
+        pinion = request['case']['shaft_system'].pop('pinion')
+        with self.assertRaisesRegex(ValueError, 'pinion与wheel'):
+            prepare_request(request)
+        request['case']['shaft_system']['pinion'] = pinion
+        request['case'].update(elastic_mode='iso', local_contact=False,
+                               iso_settings={'nominal_pinion_torque_n_m': 80})
+        with self.assertRaisesRegex(ValueError, 'shaft_system仅支持'):
+            prepare_request(request)
+
     def test_no_silent_study_override(self):
         request = self.request(study=True)
         request['case']['torque_n_m'] = 80

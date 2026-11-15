@@ -1,6 +1,6 @@
 ---
 name: cylindrical-gear-analysis
-description: 调用独立内核完成圆柱齿轮 LTCA、修形及失准比较，输出 TE、刚度、瞬时压力带与整齿通过程接触图，保存可复算结果；支持新版完整案例和显式因子标准强度复算。适用于直齿或斜齿、内或外啮合。不能独立选取完整标准因子、预测材料寿命或分析整套轴承箱体系统。
+description: 调用独立内核完成圆柱齿轮 LTCA、修形及失准比较，可耦合阶梯轴与线性轴承。输出 TE、刚度、瞬时压力带与整齿接触图，保存可复算结果。适用于直齿或斜齿、内或外啮合，也支持显式因子标准强度复算。
 license: AGPL-3.0-only
 ---
 
@@ -19,6 +19,8 @@ license: AGPL-3.0-only
 用户要求复现独立项目新版 18/77 案例或其 MASTA 对标图时，读 [新版完整工作流](references/new-workflow.md)，使用 `case --plots`；它保留原案例、载荷层级、显式强度因子、配准和后处理。普通参数分析继续使用 `run`，不能用随附案例替换用户的几何、修形或载荷。
 
 默认模型是 `coupled` 固定齿根弹性降阶模型及局部线接触压陷。ISO模式需要明确的 `iso_settings` 和 `local_contact=false`，避免重复计入局部压陷。不要为得到期望曲线而切换模型或修改采样相位。
+
+用户提供两轴和轴承参数时，在 `case.shaft_system` 配置两根阶梯轴及刚性箱体上的线性轴承，使用 `coupled` 或 `independent` 模式。轴段、节点、刚度和结果定义见[输入与单位契约](references/input-contract.md#轴系耦合)，可运行示例见 [shaft_bearing_case.json](assets/shaft_bearing_case.json)。
 
 外啮合两轮螺旋角等值异号，内啮合同号；内齿圈放在 `wheel`，齿数为正整数。扭矩为已选受载面的非负幅值；失准为有效重叠齿宽右端减左端的法向间隙。修形正值表示材料去除。不要根据数值大小猜单位。
 

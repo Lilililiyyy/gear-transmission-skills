@@ -15,5 +15,6 @@ from .config import analyze_config, modification_from_config
 from .strength import MeshRatingFactors, GearRatingFactors, StressLimits, evaluate_iso6336_explicit_factors
 from .iso_contact import ISOContactSettings, iso_single_tooth_stiffness, build_iso_compliance
 from .extended_contact import ExtendedContactSettings, extended_contact_grid
+from .shaft import LinearBearing, Shaft, ShaftSegment, ShaftSystem, solve_shaft
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"

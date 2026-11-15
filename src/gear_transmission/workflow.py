@@ -76,8 +76,11 @@ def _report(directory, manifest, request, study):
              '- 压力为局部Hertz线接触结果；瞬时接触图固定相位与齿对，周期包络不能积分为同时承载面积。',
              '- 本次未执行空间／相位收敛研究、原组件对标或物理试验验证；不输出标准强度或疲劳寿命结论。',
              '- 标准评级需要另外提供对应标准因子及材料限值，不能以LTCA峰压替代标准接触应力。',
-             '- 原数组NPZ不含pickle，cell_offsets保留每个相位的变长单元索引；未覆盖区域不能补作确定零压。', '',
-             '## 复算', '',
+             '- 原数组NPZ不含pickle，cell_offsets保留每个相位的变长单元索引；未覆盖区域不能补作确定零压。', '']
+    if 'max_abs_shaft_normal_displacement_m' in manifest['cases'][0]['summary']:
+        rows += ['轴系工况的TE参考两根轴的扭矩端。法向切线刚度包含轴系柔度。',
+                 '逐相位轴承反力及轴节点位移、转角见各工况的diagnostics.json；条带法向位移见arrays.npz。', '']
+    rows += ['## 复算', '',
              '运行`gear-design replay 本结果目录 --output 新目录`。程序先验证保存文件和代码身份，再重新求解，',
              '逐项比较全部NPZ数组、活动掩码和汇总指标；replay.json只说明数值复现，不证明物理精度。', '']
     (directory / 'report.md').write_text('\n'.join(rows), encoding='utf-8')
@@ -225,9 +228,19 @@ def replay_run(directory, output, *, plots=False):
                 summary_passed &= bool(np.isclose(value, other, rtol=1e-10, atol=1e-14))
             else:
                 summary_passed &= value == other
-        input_passed = read_json(directory / relative / 'input.json') == read_json(output / relative / 'input.json')
+        saved_input = read_json(directory / relative / 'input.json')
+        input_passed = saved_input == read_json(output / relative / 'input.json')
+        shaft_passed = True
+        if 'shaft_system' in saved_input:
+            saved = read_json(directory / relative / 'diagnostics.json')
+            recalculated = read_json(output / relative / 'diagnostics.json')
+            shaft_passed = ([phase['shaft_bearing'] for phase in saved['elasticity']] ==
+                            [phase['shaft_bearing'] for phase in recalculated['elasticity']])
         records.append({'directory': relative, 'input_equal': input_passed, 'summary_passed': bool(summary_passed),
-                        'arrays': rows, 'passed': bool(input_passed and summary_passed and all(r['passed'] for r in rows))})
+                        'arrays': rows, 'passed': bool(input_passed and summary_passed and shaft_passed
+                                                      and all(r['passed'] for r in rows))})
+        if 'shaft_system' in saved_input:
+            records[-1]['shaft_diagnostics_equal'] = shaft_passed
     study_passed = (read_json(directory / 'study.json') == read_json(output / 'study.json')
                     if (directory / 'study.json').exists() else not (output / 'study.json').exists())
     strength_passed = reference.get('strength') == current.get('strength')

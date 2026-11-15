@@ -57,6 +57,9 @@ def export_result(result, output_dir):
         series[key] = np.concatenate([np.asarray(getattr(r, key)) for r in result.rotations])
     for key in ("forces_n", "residual_gaps_m", "active_mask"):
         series[key] = np.concatenate([np.asarray(getattr(r.solution, key)) for r in result.rotations])
+    if "shaft_system" in result.inputs:
+        series["shaft_normal_displacement_m"] = np.concatenate([
+            r.elastic_diagnostics["shaft_bearing"]["normal_displacement_m"] for r in result.rotations])
     extended = [r.contact_geometry_data for r in result.rotations]
     if any(value is not None for value in extended):
         if not all(value is not None for value in extended):

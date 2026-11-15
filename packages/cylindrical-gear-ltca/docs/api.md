@@ -20,7 +20,9 @@ plot_contact_pass_comparison(results, "output/contact_comparison")
 
 ## 计算调用
 
-`analyze_pair(pair, *, torque_n_m, material_pinion, material_wheel, modification_pinion, modification_wheel, misalignment_m, phases, strips, phase_offset, elastic_mode, local_contact, iso_settings, extended_contact_settings, local_reference_depths_m, compliance_provider, boundary_gap)`。
+`analyze_pair(pair, *, torque_n_m, material_pinion, material_wheel, modification_pinion, modification_wheel, misalignment_m, phases, strips, phase_offset, elastic_mode, local_contact, iso_settings, extended_contact_settings, local_reference_depths_m, compliance_provider, boundary_gap, shaft_system)`。
+
+`shaft_system` 可在内置齿梁模式下将两根阶梯轴和线性轴承的变形反馈到接触协调。参数、坐标、输出及复算命令见[轴系耦合](shaft_bearing_coupling.md)。
 
 `phase_offset` 为均匀完整周期的起采相位，以基节周期计，默认0。对标时只由接触线几何配准确定；结果的 `phase` 保留模1物理相位，绘制连续周期时应按采样顺序或展开相位，避免把回零段错误连线。
 

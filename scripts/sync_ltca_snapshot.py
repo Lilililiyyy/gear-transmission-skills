@@ -49,6 +49,9 @@ def main():
     example_symbols = {
         'gear_contact/design.py': ['DesignStudy', 'compare_designs', 'robust_design_search', 'sweep_parameter', '_selected_pressure_pa'],
         'gear_contact/contact_display.py': ['contact_pass_data', 'draw_contact_pass', 'plot_contact_pass_comparison', 'load_plot_result'],
+        'gear_contact/config.py': ['_shaft_from_config'],
+        'gear_contact/shaft.py': ['ShaftSegment', 'LinearBearing', 'Shaft', 'ShaftSystem', '_element_stiffness',
+                                  'solve_shaft', '_ShaftCoupling'],
         'examples/response_regression.py': ['response_values', 'validate_baseline', 'compare_response', 'run'],
         'examples/check_convergence_matrix.py': ['case_config', 'metrics_from_arrays', 'compare_metrics', 'run', 'exit_code'],
         'examples/run_cylindrical_workflow.py': ['prepare_case', 'calculate_case', 'run'],
@@ -68,11 +71,16 @@ def main():
                     if isinstance(n, (ast.FunctionDef, ast.ClassDef)) and n.name == symbol)
         record.update(lines=[node.lineno, node.end_lineno], sha256=hashes[name])
     mapping.update(symbols=list(records.values()), source_base_commit=commit, kernel_version=version)
+    shaft_example = root/'skills/cylindrical-gear-analysis/assets/shaft_bearing_case.json'
+    shaft_request = {'schema': 'gear_ltca_request_v1',
+                     'case': json.loads(contents['examples/shaft_bearing_case.json'])}
+    example_text = json.dumps(shaft_request, ensure_ascii=False, indent=2)+'\n'
     if args.check:
         assert manifest['source_base_commit'] == commit, '来源提交不一致'
         assert manifest['files'] == hashes, '登记资源不完整或来源哈希变化'
         assert all((target/name).read_bytes() == contents[name] for name in files), '快照与来源提交字节不一致'
         assert json.loads(mapping_path.read_text(encoding='utf-8')) == mapping, '函数来源映射未更新'
+        assert shaft_example.read_text(encoding='utf-8') == example_text, '轴系示例未同步'
     else:
         for name in set(manifest['files'])-set(files):
             stale = (target/name).resolve()
@@ -86,6 +94,7 @@ def main():
                         runtime_scope='完整计算模块、案例编排、绘图后处理、案例输入及公开对标资源；不含生成结果和缓存')
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
         mapping_path.write_text(json.dumps(mapping, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+        shaft_example.write_text(example_text, encoding='utf-8')
     subprocess.run([sys.executable, str(root/'scripts/release.py'), '--check' if args.check else '--sync'], check=True)
     print(json.dumps({'checked': args.check, 'source_commit': commit, 'files': len(files)}, ensure_ascii=False))
 

@@ -13,6 +13,7 @@ from .hertz import hertz_line_contact, local_line_approach, local_line_complemen
 from .solver import ContactSolution, solve_contact
 from .iso_contact import ISOContactSettings, solve_iso_contact
 from .extended_contact import ExtendedContactSettings, extended_contact_grid
+from .shaft import ShaftSystem, _ShaftCoupling
 
 
 @dataclass
@@ -97,7 +98,8 @@ def analyze_pair(pair: GearPair, *, torque_n_m: float,
                  extended_contact_settings: ExtendedContactSettings | dict | None = None,
                  local_reference_depths_m=None,
                  compliance_provider: Callable | None = None,
-                 boundary_gap: Callable | None = None) -> AnalysisResult:
+                 boundary_gap: Callable | None = None,
+                 shaft_system: ShaftSystem | None = None) -> AnalysisResult:
     """求一个均匀采样啮合周期的静态接触响应。
 
     torque_n_m 为已选齿面的非负载荷幅值；正反受载面的修形由调用方明确
@@ -111,6 +113,8 @@ def analyze_pair(pair: GearPair, *, torque_n_m: float,
     接触线几何配准确定，不允许通过响应曲线拟合来最小化对标差异。
     elastic_mode为iso/iso_love时采用ISO综合齿对刚度，iso_settings
     必须提供名义载荷，且local_contact必须False，避免重复计入压陷。
+    shaft_system 可在齿梁路径叠加两根轴和线性轴承的柔度，扭矩
+    参考截面由两根轴的 torque_node 指定。
     """
     if not np.isfinite(torque_n_m) or torque_n_m < 0 or not np.isfinite(misalignment_m):
         raise ValueError("扭矩幅值必须非负有限，失准间隙必须有限")
@@ -142,6 +146,13 @@ def analyze_pair(pair: GearPair, *, torque_n_m: float,
             extended_contact_settings = ExtendedContactSettings(**extended_contact_settings)
         if not isinstance(extended_contact_settings, ExtendedContactSettings):
             raise ValueError("extended_contact_settings必须为ExtendedContactSettings或对应字段对象")
+    shaft_coupling = None
+    if shaft_system is not None:
+        if not isinstance(shaft_system, ShaftSystem):
+            raise ValueError("shaft_system 必须为 ShaftSystem")
+        if iso_mode or compliance_provider is not None or elastic_mode not in ("independent", "coupled"):
+            raise ValueError("轴系耦合只支持内置 independent 或 coupled 齿梁柔度")
+        shaft_coupling = _ShaftCoupling(pair, shaft_system)
     force = pair.normal_force_from_torque(torque_n_m)
     phase_array = (np.arange(phases, dtype=float)/phases + phase_offset) % 1.0
     rotations = []
@@ -178,8 +189,13 @@ def analyze_pair(pair: GearPair, *, torque_n_m: float,
             compliance = compliance_provider(pair, grid)
             elastic_diagnostics = {"model": "调用方给定的结构柔度矩阵", "local_contact_included": False}
         if not iso_mode:
+            if shaft_coupling is not None:
+                shaft_projections, shaft_flexibility = shaft_coupling.project(grid)
+                compliance = compliance + shaft_flexibility
             local_law = _LocalLaw(grid, material_pinion, material_wheel, local_reference_depths_m) if local_contact else None
             solution = solve_contact(gaps, compliance, force, local_law=local_law)
+            if shaft_coupling is not None:
+                elastic_diagnostics["shaft_bearing"] = shaft_coupling.diagnostics(shaft_projections, solution.forces_n)
         line_load = solution.forces_n/grid.widths_m
         if not iso_mode:
             pressure = hertz_line_contact(line_load, grid.curvature_per_m, material_pinion, material_wheel)
@@ -246,4 +262,10 @@ def analyze_pair(pair: GearPair, *, torque_n_m: float,
         inputs["iso_settings"] = asdict(iso_settings)
     if extended_contact_settings is not None:
         inputs["extended_contact_settings"] = asdict(extended_contact_settings)
+    if shaft_coupling is not None:
+        inputs["shaft_system"] = asdict(shaft_system)
+        summary["model_scope"] = "固定齿根齿梁、阶梯轴与线性轴承耦合，刚性箱体；小变形、无摩擦、准静态"
+        summary["max_abs_shaft_normal_displacement_m"] = max(
+            float(np.max(np.abs(r.elastic_diagnostics["shaft_bearing"]["normal_displacement_m"])))
+            for r in rotations)
     return AnalysisResult(pair, phase_array, approach, angular, stiffness, rotations, summary, inputs)

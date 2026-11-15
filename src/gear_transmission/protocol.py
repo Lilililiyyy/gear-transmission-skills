@@ -6,8 +6,8 @@ import json
 import math
 from pathlib import Path
 
-from gear_contact import Gear, GearPair, Material, OperatingPoint, analyze_pair
-from gear_contact.config import modification_from_config
+from gear_contact import Gear, GearPair, Material, OperatingPoint, ShaftSystem, analyze_pair
+from gear_contact.config import _shaft_from_config, modification_from_config
 from gear_contact.iso_contact import ISOContactSettings
 from gear_contact.extended_contact import ExtendedContactSettings
 
@@ -158,6 +158,14 @@ def prepare_case(config, *, study=False):
     for name, cls in (('iso_settings', ISOContactSettings), ('extended_contact_settings', ExtendedContactSettings)):
         if config[name] is not None:
             config[name] = construct(cls, _object(config[name], name), 'case.' + name)
+    if config['shaft_system'] is not None:
+        if iso:
+            raise ValueError('shaft_system仅支持independent或coupled齿梁模式')
+        shafts = _object(config['shaft_system'], 'case.shaft_system')
+        if set(shafts) != {'pinion', 'wheel'}:
+            raise ValueError('shaft_system必须分别提供pinion与wheel轴配置')
+        config['shaft_system'] = ShaftSystem(_shaft_from_config(shafts['pinion']),
+                                            _shaft_from_config(shafts['wheel']))
     return pair, config, defaults
 
 

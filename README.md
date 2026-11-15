@@ -21,7 +21,7 @@
 
 | Skill                                                                  | 主要能力                                                                            | 内核版本 | 独立计算项目                                                                  |
 | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------- |
-| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、新版接触图、显式因子标准强度复算、完整案例对标 | 0.3.0 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
+| [cylindrical-gear-analysis](skills/cylindrical-gear-analysis/SKILL.md) | 圆柱齿轮 LTCA、修形／失准比较、阶梯轴与线性轴承耦合、接触图、显式因子标准强度复算 | 0.4.0 | [Cylindrical Gear LTCA](https://github.com/Lilililiyyy/Cylindrical-Gear-LTCA) |
 | [bevel-gear-design](skills/bevel-gear-design/SKILL.md) | 零偏置直齿／弧齿的几何、啮合力、名义强度及分阶段CAD／TCA／节点FE-LTCA，结果独立复算 | 0.10.0 | [Bevel Gear Design](https://github.com/Lilililiyyy/Bevel-Gear-Design) |
 <!-- skills:end -->
 
@@ -165,6 +165,11 @@ python -m gear_transmission.bevel_cli replay output/bevel --output output/bevel_
 本项目采用 [AGPL-3.0-only](LICENSE)。如需闭源集成，可[联系作者](https://github.com/Lilililiyyy)获取商业授权。
 
 ## 更新记录
+
+- **2026-11-15 · v0.7.0**
+
+  - 同步圆柱齿轮 LTCA 0.4.0。在常规 LTCA 请求中配置 `shaft_system`，可计算阶梯轴与线性轴承变形对齿面载荷分配的影响。
+  - 保存逐相位轴承反力、轴节点位移和转角、条带法向位移，并在复算时逐项比较。[轴系耦合示例](skills/cylindrical-gear-analysis/assets/shaft_bearing_case.json)
 
 - **2026-11-12 · v0.6.0**
 
